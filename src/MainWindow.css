@@ -1,28 +1,52 @@
 .button-default{
-	-fx-background-color: A9A9A9;
-	-fx-font-size: 16px;
-	-fx-font-family: "BankGothic Lt Bt";
-	-fx-border-color: black;
-
+	-fx-background-color: #5D6971; 
+	-fx-font: bold 16px "BankGothic Lt Bt";
+	-fx-border: 0;
+	-fx-background-radius: 10px;
+    -fx-text-fill: white;
 }
-.buttonss{
-	
+.button-default:hover{
+	-fx-background-color: #405060;
+	-fx-cursor: hand;
 }
-.grid{
-	-fx-background-color: AFEEEE;
-	-fx-border-color: black;
-    -fx-border-width: 1;
-    -fx-border-style:;
+.button-menu{
+	-fx-background-color: #FFFFFF; 
+	-fx-font: bold 16px "BankGothic Lt Bt";
+	-fx-border: 0;
+	-fx-background-radius: 10px;
+    -fx-text-fill: black;
+    -fx-min-width: 150px;
+}
+.button-menu:hover{
+	-fx-background-color: #E0E0E0;
+	-fx-cursor: hand;
+}
+.menu{
+	-fx-background-color: #C00000;
+	-fx-border-color: #C00000;
+    -fx-border-width: 0;
 }
 .label{
-	-fx-background-color: A9A9A9;
-	-fx-font-size: 17px;
-	-fx-font-family: "BankGothic Lt Bt";
-	-fx-border-color: black;
+	-fx-background-color: transparent;
+	-fx-font: bold 30px "BankGothic Lt Bt";
+	-fx-border-color: #C00000;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
 }
 .label1{
-	-fx-background-color: A9A9A9;
-	-fx-font-size: 12px;
-	-fx-font-family: "BankGothic Lt Bt";
-	-fx-border-color: black;
+	-fx-background-color: transparent;
+	-fx-font: bold 12px "BankGothic Lt Bt";
+	-fx-border-color: #C00000;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
+}
+.green-bar  { -fx-accent: green;  }
+.red-bar    { -fx-accent: red;    }
+.tableColumn {
+	-fx-width: 20%;
+}
+.img {
+	-fx-background-size: contain;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position:center;
 }
