@@ -6,10 +6,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class Data {
+public class old_Data {
 	private String name, ausgaben, einnahmen;
 
-	public Data(String name, String ausgaben, String einnahmen) {
+	public old_Data(String name, String ausgaben, String einnahmen) {
 		super();
 		this.name = name;
 		this.ausgaben = ausgaben;
@@ -40,19 +40,19 @@ public class Data {
 		this.einnahmen = einnahmen;
 	}
 
-	public static ArrayList<TableColumn<Data, ?>> getColumn(TableView table) {
+	public static ArrayList<TableColumn<old_Data, ?>> getColumn(TableView table) {
 
 		int i;
-		ArrayList<TableColumn<Data, ?>> columns = new ArrayList<TableColumn<Data, ?>>();
+		ArrayList<TableColumn<old_Data, ?>> columns = new ArrayList<TableColumn<old_Data, ?>>();
 
 		String[] columnNames = { "Bezeichnung", "Ausgaben", "Einnahmen" };
 		String[] variableNames = { "name", "ausgaben", "einnahmen" };
 		Integer[] column_width = { 32, 32, 32 };
 
 		i = 0;
-		TableColumn<Data, String> nameCol = new TableColumn<>(columnNames[i++]);
-		TableColumn<Data, String> ausCol = new TableColumn<>(columnNames[i++]);
-		TableColumn<Data, String> einCol = new TableColumn<>(columnNames[i++]);
+		TableColumn<old_Data, String> nameCol = new TableColumn<>(columnNames[i++]);
+		TableColumn<old_Data, String> ausCol = new TableColumn<>(columnNames[i++]);
+		TableColumn<old_Data, String> einCol = new TableColumn<>(columnNames[i++]);
 
 		i = 0;
 		nameCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
@@ -60,9 +60,9 @@ public class Data {
 		einCol.prefWidthProperty().bind(table.widthProperty().divide(100 / column_width[i++]));
 
 		i = 0;
-		nameCol.setCellValueFactory(new PropertyValueFactory<Data, String>(variableNames[i++]));
-		ausCol.setCellValueFactory(new PropertyValueFactory<Data, String>(variableNames[i++]));
-		einCol.setCellValueFactory(new PropertyValueFactory<Data, String>(variableNames[i++]));
+		nameCol.setCellValueFactory(new PropertyValueFactory<old_Data, String>(variableNames[i++]));
+		ausCol.setCellValueFactory(new PropertyValueFactory<old_Data, String>(variableNames[i++]));
+		einCol.setCellValueFactory(new PropertyValueFactory<old_Data, String>(variableNames[i++]));
 
 		columns.add(nameCol);
 		columns.add(ausCol);

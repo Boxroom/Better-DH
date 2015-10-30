@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 
-public class Overview {
+public class old_Overview {
 
 	private int umsatz;
 	private int partner;

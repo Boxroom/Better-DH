@@ -7,14 +7,14 @@ import javafx.geometry.VPos;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 
-public class Bilanz {
+public class old_Bilanz {
 
 	public void changeCenterToBilanz(GridPane grid) {
 
 		// Student studenten = new Student(); Für später
 
-		TableView<Data> table = new TableView<Data>();
-		table.getColumns().addAll(Data.getColumn(table));
+		TableView<old_Data> table = new TableView<old_Data>();
+		table.getColumns().addAll(old_Data.getColumn(table));
 		table.setItems(getData());
 
 		grid.setConstraints(table, 2, 2, 4, 4, HPos.CENTER, VPos.CENTER);
@@ -23,13 +23,13 @@ public class Bilanz {
 
 	}
 
-	private static ObservableList<Data> getData() {
+	private static ObservableList<old_Data> getData() {
 
-		ObservableList<Data> data = FXCollections.observableArrayList();
+		ObservableList<old_Data> data = FXCollections.observableArrayList();
 		// Hier Daten hinzufügen
-		data.addAll(new Data("Grundstück", "200.000", "450.000"));
-		data.addAll(new Data("Dozenten", "1.000", "5.000"));
-		data.addAll(new Data("Studenten", "20.000", "50.000"));
+		data.addAll(new old_Data("Grundstück", "200.000", "450.000"));
+		data.addAll(new old_Data("Dozenten", "1.000", "5.000"));
+		data.addAll(new old_Data("Studenten", "20.000", "50.000"));
 		// data.addAll(new Data(studenten.getName, studenten.getEinnahmen,
 		// Studenten.getAusgaben)); Für später
 

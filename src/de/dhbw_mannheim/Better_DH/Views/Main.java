@@ -24,8 +24,7 @@ public class Main implements View {
 	private GridPane center;
 	private Label l_welcome;
 	private HBox fill_width;
-	private Button start;
-	private Button load;
+	private Button start, load;
 	
 	public Main() {
 		root = new BorderPane();
@@ -41,7 +40,7 @@ public class Main implements View {
 
 		l_welcome = new Label("Willkommen zu");
 		l_welcome.setPrefWidth(Integer.MAX_VALUE);
-		l_welcome.getStyleClass().add("label");
+		l_welcome.getStyleClass().add("label1");
 		l_welcome.setStyle("-fx-text-fill:black;-fx-font-size:56px;");
 		l_welcome.setAlignment(Pos.CENTER);
 		l_welcome.setPadding(new Insets(30, 0, 0, 0));
@@ -52,19 +51,16 @@ public class Main implements View {
 		fill_width.setStyle("-fx-background-image: url('Images/BetterDH.png');");
 		center.add(fill_width, 0, 1, 3, 1);
 
-		start = PreDef.button("Spiel starten");
+		start = PreDef.button("Spiel starten", "button_main_start");
 		start.setPrefHeight(100);
+		start.setVisible(false);
 		center.add(start, 0, 2, 1, 1);
-
-		start.setOnAction(e -> System.out.println(this.toString()));
 
 		center.add(PreDef.fill_width(), 1, 2, 1, 1);
 
-		load = PreDef.button("Spiel laden");
+		load = PreDef.button("Spiel laden", "button_main_load");
 		load.setPrefHeight(100);
 		center.add(load, 2, 2, 1, 1);
-
-		center.setGridLinesVisible(false);
 
 		root.setCenter(center);
 	}

@@ -3,6 +3,8 @@
  */
 package de.dhbw_mannheim.Better_DH;
 
+import java.util.List;
+
 /**
  * @author Florian
  *
@@ -10,12 +12,22 @@ package de.dhbw_mannheim.Better_DH;
 public class Engine {
 
 	private Account player = null;
+	private MemoryManagement mm = null;
 
 	public Engine() {
+		mm = new MemoryManagement();
+	}
+	
+	public void simulate() {
+		// TODO simulate
 	}
 
 	public String getName() {
 		return player == null ? "" : player.getName();
+	}
+
+	public List<String> getNames() {
+		return mm.getNames();
 	}
 
 	public boolean loadPlayer(String name) {
@@ -23,8 +35,10 @@ public class Engine {
 		return true;
 	}
 
-	public void savePlayer() {
+	public boolean savePlayer() {
 		// TODO Save current temporary variables from Account in MemoryManagement
+		
+		return true;
 	}
 
 	public boolean createPlayer(String name) {

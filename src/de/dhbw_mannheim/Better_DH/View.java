@@ -24,18 +24,19 @@ public interface View {
 		hbox.setPadding(new Insets(10, 10, 10, 10));
 
 		if (buttons) {
-			Button sim = PreDef.button_menu("Simulieren");
+			Button sim = PreDef.button_menu("Simulieren", "button_view_simulate");
 			hbox.getChildren().addAll(sim);
 		}
 
 		HBox hb = PreDef.fill_width();
 		hb.setAlignment(Pos.CENTER);
 		Label l_title = new Label(title);
+		l_title.getStyleClass().add("label2");
 		hb.getChildren().add(l_title);
 		hbox.getChildren().addAll(hb);
 
 		if (buttons) {
-			Button save = PreDef.button_menu("Speichern");
+			Button save = PreDef.button_menu("Speichern", "button_view_save");
 			hbox.getChildren().add(save);
 		}
 
@@ -57,19 +58,19 @@ public interface View {
 			l_date.setAlignment(Pos.CENTER);
 			left.add(l_date, 0, 0);
 
-			Button overview = PreDef.button("Übersicht");
+			Button overview = PreDef.button("Übersicht", "button_view_overview");
 			left.add(overview, 0, 1);
 
-			Button zfh = PreDef.button("Zufriedenheit");
+			Button zfh = PreDef.button("Zufriedenheit", "button_view_satisfaction");
 			left.add(zfh, 0, 2);
 
-			Button personal = PreDef.button("Personal");
+			Button personal = PreDef.button("Personal", "button_view_staff");
 			left.add(personal, 0, 3);
 
-			Button money = PreDef.button("Bilanz");
+			Button money = PreDef.button("Finanzen", "button_view_money");
 			left.add(money, 0, 4);
 
-			Button buy = PreDef.button("Einkauf");
+			Button buy = PreDef.button("Einkauf", "button_view_buy");
 			left.add(buy, 0, 5);
 		}
 
