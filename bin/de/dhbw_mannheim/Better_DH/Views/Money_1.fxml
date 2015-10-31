@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+
+
+<ScrollPane hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0">
+         <children>
+            <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" pickOnBounds="false" HBox.hgrow="ALWAYS">
+              <columns>
+                <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="300.0" text="Betreff" />
+                <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="300.0" text="Monatliche Einnahmen" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+   </content>
+</ScrollPane>
