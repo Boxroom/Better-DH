@@ -3,8 +3,12 @@
  */
 package de.dhbw_mannheim.Better_DH.Views;
 
+import java.io.IOException;
+
 import de.dhbw_mannheim.Better_DH.View;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -29,6 +33,14 @@ public class Money implements View {
 		center.setPadding(new Insets(10, 10, 10, 10));
 		center.setVgap(4);
 		center.setHgap(4);
+		
+		try {
+			Parent money = FXMLLoader.load(getClass().getResource("Money.fxml"));
+			center.add(money, 0, 0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		
 
