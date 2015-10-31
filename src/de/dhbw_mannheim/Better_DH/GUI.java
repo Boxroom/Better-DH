@@ -1,10 +1,11 @@
 /**
  * Conventions:
  * 	ID's:
- * 			"button_"+[Class]+"_"+[English name]
+ * 			[Type]+"_"+[Class]+"_"+[English name]
  * 			Everything lower case
  * 		Example:
  * 			"button_view_save"
+ * 			"label_overview_example"
  */
 package de.dhbw_mannheim.Better_DH;
 
@@ -26,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -131,7 +133,10 @@ public class GUI extends Application {
 			window.setScene(overview);
 			
 			initiateMenuButtons();
-			
+
+			Label qualitydh = (Label) overview.lookup("#label_overview_qualitydh");
+			if(qualitydh != null && engine.hasPlayer())
+				qualitydh.setText(qualitydh.getText().replaceAll("&VAR&", ""+engine.getDozenten_zahl()));
 			break;
 		case SATISFACTION:
 			view = new Satisfaction();

@@ -13,7 +13,7 @@
          <children>
             <StackPane HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #5D6971; -fx-background-radius: 15;" text="Dozentenzahl&#10;&#10;12/30" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" StackPane.alignment="CENTER">
+                  <Label id="label_overview_qualitydh" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #5D6971; -fx-background-radius: 15;" text="Dozentenzahl&#10;&#10;&amp;VAR&amp;" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" StackPane.alignment="CENTER">
                      <graphic>
                         <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" />
                      </graphic>
