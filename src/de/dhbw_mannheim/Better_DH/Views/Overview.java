@@ -3,8 +3,12 @@
  */
 package de.dhbw_mannheim.Better_DH.Views;
 
+import java.io.IOException;
+
 import de.dhbw_mannheim.Better_DH.View;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -30,7 +34,14 @@ public class Overview implements View {
 		center.setVgap(4);
 		center.setHgap(4);
 
-		
+		try {
+			Parent overview = FXMLLoader.load(getClass().getResource("Overview.fxml"));
+			center.add(overview, 0, 0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 
 		root.setCenter(center);
 	}

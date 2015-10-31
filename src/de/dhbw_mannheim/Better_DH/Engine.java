@@ -25,6 +25,10 @@ public class Engine {
 	public String getName() {
 		return player == null ? "" : player.getName();
 	}
+	
+	public int getDozenten_zahl() {
+		return player.getDozenten_zahl();
+	}
 
 	public List<String> getNames() {
 		return mm.getNames();

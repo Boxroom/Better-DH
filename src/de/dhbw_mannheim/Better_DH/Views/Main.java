@@ -67,7 +67,6 @@ public class Main implements View {
 
 	@Override
 	public BorderPane getView() {
-
 		return root;
 	}
 
