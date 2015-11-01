@@ -40,7 +40,7 @@ public class Main implements View {
 
 		l_welcome = new Label("Willkommen zu");
 		l_welcome.setPrefWidth(Integer.MAX_VALUE);
-		l_welcome.getStyleClass().add("label1");
+		l_welcome.getStyleClass().add("label_h1");
 		l_welcome.setStyle("-fx-text-fill:black;-fx-font-size:56px;");
 		l_welcome.setAlignment(Pos.CENTER);
 		l_welcome.setPadding(new Insets(30, 0, 0, 0));

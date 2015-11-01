@@ -1,6 +1,6 @@
 .button-default{
 	-fx-background-color: #5D6971; 
-	-fx-font: bold 16px "BankGothic Lt Bt";
+	-fx-font: bold 18px "BankGothic Lt Bt";
 	-fx-border: 0;
 	-fx-background-radius: 10px;
     -fx-text-fill: white;
@@ -11,7 +11,7 @@
 }
 .button-menu{
 	-fx-background-color: #FFFFFF; 
-	-fx-font: bold 16px "BankGothic Lt Bt";
+	-fx-font: bold 18px "BankGothic Lt Bt";
 	-fx-border: 0;
 	-fx-background-radius: 10px;
     -fx-text-fill: black;
@@ -26,19 +26,22 @@
 	-fx-border-color: #C00000;
     -fx-border-width: 0;
 }
-.label2{
+.label_h3, .label_h1, .label_view{
 	-fx-background-color: transparent;
-	-fx-font: bold 30px "BankGothic Lt Bt";
-	-fx-border-color: #C00000;
+	-fx-font: bold 12px "BankGothic Lt Bt";
     -fx-border-width: 0;
     -fx-text-fill: white;
 }
-.label1{
-	-fx-background-color: transparent;
-	-fx-font: bold 12px "BankGothic Lt Bt";
-	-fx-border-color: #C00000;
-    -fx-border-width: 0;
-    -fx-text-fill: white;
+.label_h1{
+	-fx-font-size: 30px;
+}
+.label_h3{
+	-fx-font-size: 12px;
+}
+.label_view{
+	-fx-background-color:  #5D6971;
+	-fx-background-radius:  15;
+	-fx-font-size: 16px;
 }
 .green-bar  { -fx-accent: green;  }
 .orange-bar    { -fx-accent: orange;    }

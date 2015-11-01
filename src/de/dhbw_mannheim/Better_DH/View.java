@@ -31,7 +31,7 @@ public interface View {
 		HBox hb = PreDef.fill_width();
 		hb.setAlignment(Pos.CENTER);
 		Label l_title = new Label(title);
-		l_title.getStyleClass().add("label2");
+		l_title.getStyleClass().add("label_h1");
 		hb.getChildren().add(l_title);
 		hbox.getChildren().addAll(hb);
 
@@ -54,7 +54,7 @@ public interface View {
 		if (buttons) {
 			Label l_date = new Label("Semester " + semester + " / Woche " + woche);
 			l_date.setPrefWidth(Integer.MAX_VALUE);
-			l_date.getStyleClass().add("label1");
+			l_date.getStyleClass().add("label_h3");
 			l_date.setAlignment(Pos.CENTER);
 			left.add(l_date, 0, 0);
 
