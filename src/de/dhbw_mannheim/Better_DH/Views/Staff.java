@@ -18,11 +18,11 @@ public class Staff implements View {
 	
 	private GridPane center;
 	
-	public Staff() {
+	public Staff(int semester, int woche) {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Personal", true));
-		root.setLeft(getLeftMenu(true));
+		root.setLeft(getLeftMenu(semester, woche, true));
 
 		center = new GridPane();
 		center.getStyleClass().add("center");

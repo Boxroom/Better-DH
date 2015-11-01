@@ -30,7 +30,7 @@ public class Main implements View {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Hauptmenü", false));
-		root.setLeft(getLeftMenu(false));
+		root.setLeft(getLeftMenu(0, 0, false));
 
 		center = new GridPane();
 		center.getStyleClass().add("center");
@@ -53,7 +53,7 @@ public class Main implements View {
 
 		start = PreDef.button("Spiel starten", "button_main_start");
 		start.setPrefHeight(100);
-		start.setVisible(false);
+		start.setDisable(true);
 		center.add(start, 0, 2, 1, 1);
 
 		center.add(PreDef.fill_width(), 1, 2, 1, 1);

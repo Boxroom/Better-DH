@@ -22,11 +22,11 @@ public class Money implements View {
 	
 	private GridPane center;
 	
-	public Money() {
+	public Money(int semester, int woche) {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Finanzen", true));
-		root.setLeft(getLeftMenu(true));
+		root.setLeft(getLeftMenu(semester, woche, true));
 
 		center = new GridPane();
 		center.getStyleClass().add("center");

@@ -10,10 +10,19 @@ package de.dhbw_mannheim.Better_DH;
 public class Account {
 
 	private String name;
+	private int semester, woche;
 	private int dozenten_zahl;
 	
 	public String getName() {
 		return name;
+	}
+	
+	public int getSemester() {
+		return semester;
+	}
+	
+	public int getWoche() {
+		return woche;
 	}
 	
 	public int getDozenten_zahl() {
@@ -23,6 +32,8 @@ public class Account {
 	public Account(String name) {
 		this.name = name;
 		dozenten_zahl = 200;
+		semester = 3;
+		woche = 4;
 	}
 
 }

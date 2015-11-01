@@ -18,11 +18,11 @@ public class Satisfaction implements View {
 	
 	private GridPane center;
 	
-	public Satisfaction() {
+	public Satisfaction(int semester, int woche) {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Zufriedenheit", true));
-		root.setLeft(getLeftMenu(true));
+		root.setLeft(getLeftMenu(semester, woche, true));
 
 		center = new GridPane();
 		center.getStyleClass().add("center");

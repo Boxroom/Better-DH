@@ -26,8 +26,16 @@ public class Engine {
 		return player == null ? "" : player.getName();
 	}
 	
+	public int getSemester() {
+		return player == null ? 0 : player.getSemester();
+	}
+	
+	public int getWoche() {
+		return player == null ? 0 : player.getWoche();
+	}
+	
 	public int getDozenten_zahl() {
-		return player.getDozenten_zahl();
+		return player == null ? 0 : player.getDozenten_zahl();
 	}
 
 	public List<String> getNames() {

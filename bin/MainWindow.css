@@ -41,6 +41,7 @@
     -fx-text-fill: white;
 }
 .green-bar  { -fx-accent: green;  }
+.orange-bar    { -fx-accent: orange;    }
 .red-bar    { -fx-accent: red;    }
 .tableColumn {
 	-fx-width: 20%;

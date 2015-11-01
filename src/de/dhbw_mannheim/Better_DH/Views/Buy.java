@@ -18,11 +18,11 @@ public class Buy implements View {
 	
 	private GridPane center;
 	
-	public Buy() {
+	public Buy(int semester, int woche) {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Einkauf", true));
-		root.setLeft(getLeftMenu(true));
+		root.setLeft(getLeftMenu(semester, woche, true));
 
 		center = new GridPane();
 		center.getStyleClass().add("center");

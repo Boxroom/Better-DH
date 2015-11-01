@@ -43,7 +43,7 @@ public interface View {
 		return hbox;
 	}
 
-	public default GridPane getLeftMenu(boolean buttons) {
+	public default GridPane getLeftMenu(int semester, int woche, boolean buttons) {
 		GridPane left = new GridPane();
 		left.getStyleClass().add("menu");
 		left.setPadding(new Insets(10, 10, 10, 10));
@@ -52,7 +52,7 @@ public interface View {
 		left.setPrefWidth(170);
 
 		if (buttons) {
-			Label l_date = new Label("Semester " + 3 + " / Woche " + 4);
+			Label l_date = new Label("Semester " + semester + " / Woche " + woche);
 			l_date.setPrefWidth(Integer.MAX_VALUE);
 			l_date.getStyleClass().add("label1");
 			l_date.setAlignment(Pos.CENTER);

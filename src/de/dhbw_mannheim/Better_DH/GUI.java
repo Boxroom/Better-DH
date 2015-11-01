@@ -111,7 +111,7 @@ public class GUI extends Application {
 			if(load != null)
 				load.setOnAction(e -> {
 						List<String> choices = engine.getNames();
-	
+						
 						ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
 						dialog.setTitle("Spiel laden");
 						dialog.setHeaderText("Wähle deinen Spielstand aus");
@@ -122,24 +122,28 @@ public class GUI extends Application {
 						Optional<String> result = dialog.showAndWait();
 						result.ifPresent(name -> {
 								if(engine.loadPlayer(name))
-									start.setVisible(true);
+									start.setDisable(false);
 							});
 					});
 			break;
 		case OVERVIEW:
-			view = new Overview();
+			view = new Overview(engine.getSemester(), engine.getWoche());
 			Scene overview = new Scene(view.getView());
 			overview.getStylesheets().add("/MainWindow.css");
 			window.setScene(overview);
 			
 			initiateMenuButtons();
-
-			Label qualitydh = (Label) overview.lookup("#label_overview_qualitydh");
-			if(qualitydh != null && engine.hasPlayer())
-				qualitydh.setText(qualitydh.getText().replaceAll("&VAR&", ""+engine.getDozenten_zahl()));
+			
+			PreDef.initLabel((Label) overview.lookup("#label_overview_qualitydh"), ""+engine.getDozenten_zahl(), 0.0);
+			PreDef.initLabel((Label) overview.lookup("#label_overview_sales"), ""+engine.getDozenten_zahl(), 0.2);
+			PreDef.initLabel((Label) overview.lookup("#label_overview_lecturers"), ""+engine.getDozenten_zahl(), 1.4);
+			PreDef.initLabel((Label) overview.lookup("#label_overview_reputation"), ""+engine.getDozenten_zahl(), 0.5);
+			PreDef.initLabel((Label) overview.lookup("#label_overview_venturer"), ""+engine.getDozenten_zahl(), 0.7);
+			PreDef.initLabel((Label) overview.lookup("#label_overview_students"), ""+engine.getDozenten_zahl(), 0.8);
+			
 			break;
 		case SATISFACTION:
-			view = new Satisfaction();
+			view = new Satisfaction(engine.getSemester(), engine.getWoche());
 			Scene satisfaction = new Scene(view.getView());
 			satisfaction.getStylesheets().add("/MainWindow.css");
 			window.setScene(satisfaction);
@@ -148,7 +152,7 @@ public class GUI extends Application {
 			
 			break;
 		case STAFF:
-			view = new Staff();
+			view = new Staff(engine.getSemester(), engine.getWoche());
 			Scene staff = new Scene(view.getView());
 			staff.getStylesheets().add("/MainWindow.css");
 			window.setScene(staff);
@@ -157,7 +161,7 @@ public class GUI extends Application {
 			
 			break;
 		case MONEY:
-			view = new Money();
+			view = new Money(engine.getSemester(), engine.getWoche());
 			Scene money = new Scene(view.getView());
 			money.getStylesheets().add("/MainWindow.css");
 			window.setScene(money);
@@ -166,7 +170,7 @@ public class GUI extends Application {
 			
 			break;
 		case BUY:
-			view = new Buy();
+			view = new Buy(engine.getSemester(), engine.getWoche());
 			Scene buy = new Scene(view.getView());
 			buy.getStylesheets().add("/MainWindow.css");
 			window.setScene(buy);
@@ -223,9 +227,14 @@ public class GUI extends Application {
 					alert.setHeaderText("Möchtest du den aktuellen Simulationsstand speichern?");
 					alert.setContentText("Dadurch wird der alte Stand überschrieben.");
 					alert.initOwner(window);
+					
+					ButtonType buttonTypeYes = new ButtonType("Ja");
+					ButtonType buttonTypeNo = new ButtonType("Nein");
+					
+					alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 	
 					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK){
+					if (result.get() == buttonTypeYes){
 						if(engine.savePlayer()) {
 							Alert alert1 = new Alert(AlertType.INFORMATION);
 							alert1.setTitle("Gespeichert");
