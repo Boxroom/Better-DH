@@ -11,8 +11,21 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 
+/**
+ * Diese Klasse hat lediglich statische Elemente und wird zu keiner Zeit instanziiert.
+ * Enthalten sind Codesegmente, die von mehreren Klassen benötigt werden können um z.B. einen global
+ * gleich aussehenden Button zu erstellen.
+ * 
+ * @author Florian
+ */
 public class PreDef {
 	
+	/**
+	 * Es wird ein Platzhalter erstellt
+	 *
+	 * @return		Eine HBox die so breit ist, das jeder Parent Node, in dem diese HBox plaziert wird,
+	 * 				komplett in der Breite ausgefüllt wird.
+	 */
 	public static HBox fill_width() {
 		HBox fill_width = new HBox();
 		fill_width.setPrefWidth(Integer.MAX_VALUE);
@@ -20,6 +33,11 @@ public class PreDef {
 		return fill_width;
 	}
 	
+	/**
+	 * Standardbuttons werden hier erstellt und zurückgegeben
+	 *
+	 * @return	Standardisierter Button
+	 */
 	public static Button button(String text, String id) {
 		Button button = new Button(text);
 		button.setPrefSize(Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -29,7 +47,12 @@ public class PreDef {
         
 		return button;
 	}
-	
+
+	/**
+	 * Standardbuttons werden hier erstellt und zurückgegeben
+	 *
+	 * @return	Standardisierter Button für oberes Menü
+	 */
 	public static Button button_menu(String text, String id) {
 		Button button = new Button(text);
 		button.setAlignment(Pos.CENTER);
@@ -38,7 +61,10 @@ public class PreDef {
 		button.setId(id);
 		return button;
 	}
-	
+
+	/**
+	 * Alle Labels auf den Fenstern werden nach dem selben Muster initialisiert.
+	 */
 	public static void initLabel(Label label, String insert, double progress) {
 		if(label != null) {
 			Label label2 = (Label) label.getGraphic();

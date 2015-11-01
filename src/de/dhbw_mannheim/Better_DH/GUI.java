@@ -32,8 +32,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
+ * Die GUI dient als Einstieg in die Anwendung, da von hier die onClick Events optimal verarbeitet werden können.
+ * Das Fenster wird initialisiert und mit Inhalt aus anderen Klassen die von View erben gefüllt.
+ * 
  * @author Florian
- *
  */
 public class GUI extends Application {
 
@@ -48,6 +50,10 @@ public class GUI extends Application {
 		launch(args);
 	}
 	
+	/**
+	 * Die Applikation wird gestartet. Das Hauptfenster wird initialisiert und alle Eigenschaften
+	 * gesetzt, die die Aplikation definieren. Dazu werden unteranderem die letzten Fenstereigenschaften abgerufen.
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		engine = new Engine();
@@ -72,6 +78,10 @@ public class GUI extends Application {
 		window.show();
 	}
 
+	/**
+	 * Die Applikation wird beendet. 
+	 * Die Position und größe der Anwendung wird gespeichert.
+	 */
 	@Override
 	public void stop() {
 		Preferences userPrefs = Preferences.userNodeForPackage(getClass());
@@ -83,8 +93,13 @@ public class GUI extends Application {
 		}
 		userPrefs.putBoolean("stage.maximized", window.isMaximized());
 	}
-
-	public void setPage(int id) {
+	
+	/**
+	 * Das Fenster wird hier mit Inhalt gefüllt. Die übergebene id legt dabei fest, welche Seite geöffnet wird.
+	 * 
+	 * @param id	Identifikationsnummer des Views
+	 */
+	private void setPage(int id) {
 		pid = id;
 		switch(pid){
 		case MAIN:
@@ -181,6 +196,9 @@ public class GUI extends Application {
 		}
 	}
 	
+	/**
+	 * Alle Events der Menübuttons werden hier festgelegt.
+	 */
 	private void initiateMenuButtons() {
         window.setOnCloseRequest(e -> {
 			Alert alert = new Alert(AlertType.CONFIRMATION);

@@ -12,10 +12,23 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
+ * Als Interface aller für die Simulation verwendeter Fenster dient diese Klasse, um alle Fenster
+ * generell gleich zu halten und redundanz zu sparen.
+ * Es gibt immer eine Methode, die das Parent Node in Form einer BorderPane des aktuellen Fensters wiedergibt.
+ * Da seit Java 8 auch Methoden in einem Interface implementiert werden dürfen, werden hier auch die Menüs vorbereitet.
+ * 
  * @author Florian
- *
  */
 public interface View {
+	/**
+	 * Es wird ein GridPane zurückgegeben, welches alle Elemente zum aufbau des oberen Menü enthält und in dieser
+	 * Methode dynamisch erstellt und gefüllt wird, dank der übergebenen Parameter.
+	 * Das zurückgegebene Element kann dann zum hinzufügen in das aktuelle Fenster genutzt werden.
+	 *
+	 * @param  title  	Titel des aktuellen Fensters, der im oberen Menü angezeigt werden soll
+	 * @param  buttons 	ob die Buttons angezeigt werden sollen
+	 * @return      	ein GridPane welches das obere Menü enthält
+	 */
 	public default HBox getTopMenu(String title, boolean buttons) {
 		HBox hbox = new HBox();
 		hbox.getStyleClass().add("menu");
@@ -42,8 +55,18 @@ public interface View {
 
 		return hbox;
 	}
-
-	public default GridPane getLeftMenu(int semester, int woche, boolean buttons) {
+	
+	/**
+	 * Es wird ein GridPane zurückgegeben, welches alle Elemente zum aufbau des linken Menü enthält und in dieser
+	 * Methode dynamisch erstellt und gefüllt wird, dank der übergebenen Parameter.
+	 * Das zurückgegebene Element kann dann zum hinzufügen in das aktuelle Fenster genutzt werden.
+	 *
+	 * @param  semester  	aktuelles Semester
+	 * @param  woche 		aktuelle Woche
+	 * @param  buttons 		ob die Buttons angezeigt werden sollen
+	 * @return      		ein GridPane welches das Linke Menü mit allen verlinkungen der Simulationsübersichten enthält
+	 */
+	public default GridPane getLeftMenu(int semester, int week, boolean buttons) {
 		GridPane left = new GridPane();
 		left.getStyleClass().add("menu");
 		left.setPadding(new Insets(10, 10, 10, 10));
@@ -52,7 +75,7 @@ public interface View {
 		left.setPrefWidth(170);
 
 		if (buttons) {
-			Label l_date = new Label("Semester " + semester + " / Woche " + woche);
+			Label l_date = new Label("Semester " + semester + " / Woche " + week);
 			l_date.setPrefWidth(Integer.MAX_VALUE);
 			l_date.getStyleClass().add("label_h3");
 			l_date.setAlignment(Pos.CENTER);
@@ -61,8 +84,8 @@ public interface View {
 			Button overview = PreDef.button("Übersicht", "button_view_overview");
 			left.add(overview, 0, 1);
 
-			Button zfh = PreDef.button("Zufriedenheit", "button_view_satisfaction");
-			left.add(zfh, 0, 2);
+			Button sat = PreDef.button("Zufriedenheit", "button_view_satisfaction");
+			left.add(sat, 0, 2);
 
 			Button personal = PreDef.button("Personal", "button_view_staff");
 			left.add(personal, 0, 3);
@@ -77,5 +100,8 @@ public interface View {
 		return left;
 	}
 
+	/**
+	 * @return      ein BorderPane welches das komplette Fenster darstellt
+	 */
 	public BorderPane getView();
 }
