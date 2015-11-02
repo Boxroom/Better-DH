@@ -17,7 +17,7 @@ import javafx.scene.layout.HBox;
  * @author Florian
  *
  */
-public class Main implements View {
+public class Main extends View {
 
 	private BorderPane root;
 	

@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
  * @author Florian
  *
  */
-public class Satisfaction implements View {
+public class Satisfaction extends View {
 
 	private BorderPane root;
 	
@@ -37,14 +37,12 @@ public class Satisfaction implements View {
 			center.setPrefSize(Integer.MAX_VALUE, Integer.MAX_VALUE);
 			root.setCenter(center);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public BorderPane getView() {
-
 		return root;
 	}
 

@@ -291,6 +291,11 @@ public class GUI extends Application {
 			overview.setOnAction(e -> {
 					setPage(OVERVIEW);
 				});
+		Button reputation = (Button) scene.lookup("#button_view_reputation");
+		if(reputation != null)
+			reputation.setOnAction(e -> {
+					setPage(REPUTATION);
+				});
 		Button satisfaction = (Button) scene.lookup("#button_view_satisfaction");
 		if(satisfaction != null)
 			satisfaction.setOnAction(e -> {

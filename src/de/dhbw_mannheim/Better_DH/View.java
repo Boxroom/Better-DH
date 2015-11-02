@@ -19,7 +19,7 @@ import javafx.scene.layout.HBox;
  * 
  * @author Florian
  */
-public interface View {
+public abstract class View {
 	/**
 	 * Es wird ein GridPane zurückgegeben, welches alle Elemente zum aufbau des oberen Menü enthält und in dieser
 	 * Methode dynamisch erstellt und gefüllt wird, dank der übergebenen Parameter.
@@ -29,7 +29,7 @@ public interface View {
 	 * @param  buttons 	ob die Buttons angezeigt werden sollen
 	 * @return      	ein GridPane welches das obere Menü enthält
 	 */
-	public default HBox getTopMenu(String title, boolean buttons) {
+	public HBox getTopMenu(String title, boolean buttons) {
 		HBox hbox = new HBox();
 		hbox.getStyleClass().add("menu");
 		hbox.setPrefHeight(80);
@@ -66,7 +66,7 @@ public interface View {
 	 * @param  buttons 		ob die Buttons angezeigt werden sollen
 	 * @return      		ein GridPane welches das Linke Menü mit allen verlinkungen der Simulationsübersichten enthält
 	 */
-	public default GridPane getLeftMenu(int semester, int week, boolean buttons) {
+	public GridPane getLeftMenu(int semester, int week, boolean buttons) {
 		GridPane left = new GridPane();
 		left.getStyleClass().add("menu");
 		left.setPadding(new Insets(10, 10, 10, 10));
@@ -106,5 +106,5 @@ public interface View {
 	/**
 	 * @return      ein BorderPane welches das komplette Fenster darstellt
 	 */
-	public BorderPane getView();
+	public abstract BorderPane getView();
 }
