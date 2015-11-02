@@ -84,17 +84,20 @@ public interface View {
 			Button overview = PreDef.button("Übersicht", "button_view_overview");
 			left.add(overview, 0, 1);
 
+			Button rep = PreDef.button("Reputation", "button_view_reputation");
+			left.add(rep, 0, 2);
+			
 			Button sat = PreDef.button("Zufriedenheit", "button_view_satisfaction");
-			left.add(sat, 0, 2);
+			left.add(sat, 0, 3);
 
 			Button personal = PreDef.button("Personal", "button_view_staff");
-			left.add(personal, 0, 3);
+			left.add(personal, 0, 4);
 
 			Button money = PreDef.button("Finanzen", "button_view_money");
-			left.add(money, 0, 4);
+			left.add(money, 0, 5);
 
 			Button buy = PreDef.button("Einkauf", "button_view_buy");
-			left.add(buy, 0, 5);
+			left.add(buy, 0, 6);
 		}
 
 		return left;

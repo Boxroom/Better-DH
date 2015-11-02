@@ -17,6 +17,7 @@ import de.dhbw_mannheim.Better_DH.Views.Buy;
 import de.dhbw_mannheim.Better_DH.Views.Main;
 import de.dhbw_mannheim.Better_DH.Views.Money;
 import de.dhbw_mannheim.Better_DH.Views.Overview;
+import de.dhbw_mannheim.Better_DH.Views.Reputation;
 import de.dhbw_mannheim.Better_DH.Views.Satisfaction;
 import de.dhbw_mannheim.Better_DH.Views.Staff;
 import javafx.application.Application;
@@ -39,7 +40,7 @@ import javafx.stage.Stage;
  */
 public class GUI extends Application {
 
-	public final static int MAIN = 0, OVERVIEW = 1, SATISFACTION = 2, STAFF = 3, MONEY = 4, BUY = 5;
+	public final static int MAIN = 0, OVERVIEW = 1, REPUTATION = 2, SATISFACTION = 3, STAFF = 4, MONEY = 5, BUY = 6;
 	
 	private int pid;
 	private Engine engine;
@@ -155,6 +156,15 @@ public class GUI extends Application {
 			PreDef.initLabel((Label) overview.lookup("#label_overview_reputation"), ""+engine.getDozenten_zahl(), 0.5);
 			PreDef.initLabel((Label) overview.lookup("#label_overview_venturer"), ""+engine.getDozenten_zahl(), 0.7);
 			PreDef.initLabel((Label) overview.lookup("#label_overview_students"), ""+engine.getDozenten_zahl(), 0.8);
+			
+			break;
+		case REPUTATION:
+			view = new Reputation(engine.getSemester(), engine.getWoche());
+			Scene reputation = new Scene(view.getView());
+			reputation.getStylesheets().add("/MainWindow.css");
+			window.setScene(reputation);
+			
+			initiateMenuButtons();
 			
 			break;
 		case SATISFACTION:
