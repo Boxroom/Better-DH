@@ -66,7 +66,7 @@ public abstract class View {
 	 * @param  buttons 		ob die Buttons angezeigt werden sollen
 	 * @return      		ein GridPane welches das Linke Menü mit allen verlinkungen der Simulationsübersichten enthält
 	 */
-	public GridPane getLeftMenu(int semester, int week, boolean buttons) {
+	public GridPane getLeftMenu(boolean buttons) {
 		GridPane left = new GridPane();
 		left.getStyleClass().add("menu");
 		left.setPadding(new Insets(10, 10, 10, 10));
@@ -75,10 +75,11 @@ public abstract class View {
 		left.setPrefWidth(170);
 
 		if (buttons) {
-			Label l_date = new Label("Semester " + semester + " / Woche " + week);
+			Label l_date = new Label("Semester &VAR& / Woche &VAR&");
 			l_date.setPrefWidth(Integer.MAX_VALUE);
 			l_date.getStyleClass().add("label_h3");
 			l_date.setAlignment(Pos.CENTER);
+			l_date.setId("label_view_date");;
 			left.add(l_date, 0, 0);
 
 			Button overview = PreDef.button("Übersicht", "button_view_overview");

@@ -21,12 +21,11 @@ public class Satisfaction extends View {
 	
 	private GridPane center;
 	
-	public Satisfaction(int semester, int woche) {
+	public Satisfaction() {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Zufriedenheit", true));
-		root.setLeft(getLeftMenu(semester, woche, true));
-		
+		root.setLeft(getLeftMenu(true));
 		
 		try {
 			center = (GridPane)FXMLLoader.load(getClass().getResource("Satisfaction.fxml"));

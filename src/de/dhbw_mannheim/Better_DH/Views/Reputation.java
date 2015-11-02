@@ -21,12 +21,11 @@ public class Reputation extends View {
 	
 	private GridPane center;
 	
-	public Reputation(int semester, int woche) {
+	public Reputation() {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Reputation", true));
-		root.setLeft(getLeftMenu(semester, woche, true));
-		
+		root.setLeft(getLeftMenu(true));
 		
 		try {
 			center = (GridPane)FXMLLoader.load(getClass().getResource("Reputation.fxml"));

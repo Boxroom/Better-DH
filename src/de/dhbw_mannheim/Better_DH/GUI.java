@@ -102,14 +102,12 @@ public class GUI extends Application {
 	 */
 	private void setPage(int id) {
 		pid = id;
+		Scene scene = null;
 		switch(pid){
 		case MAIN:
-			view = new Main();
-			Scene main = new Scene(view.getView());
-			main.getStylesheets().add("/MainWindow.css");
-			window.setScene(main);
+			scene = new Scene((view = new Main()).getView());
 			
-			Button start = (Button) main.lookup("#button_main_start");
+			Button start = (Button) scene.lookup("#button_main_start");
 			if(start != null)
 				start.setOnAction(e -> {
 						if(engine.hasPlayer()){
@@ -123,7 +121,7 @@ public class GUI extends Application {
 							alert.showAndWait();
 						}
 					});
-			Button load = (Button) main.lookup("#button_main_load");
+			Button load = (Button) scene.lookup("#button_main_load");
 			if(load != null)
 				load.setOnAction(e -> {
 						List<String> choices = engine.getNames();
@@ -143,73 +141,43 @@ public class GUI extends Application {
 					});
 			break;
 		case OVERVIEW:
-			view = new Overview(engine.getSemester(), engine.getWoche());
-			Scene overview = new Scene(view.getView());
-			overview.getStylesheets().add("/MainWindow.css");
-			window.setScene(overview);
+			scene = new Scene((view = new Overview()).getView());
 			
-			initiateMenuButtons();
-			
-			PreDef.initLabel((Label) overview.lookup("#label_overview_qualitydh"), ""+engine.getDozenten_zahl(), 0.0);
-			PreDef.initLabel((Label) overview.lookup("#label_overview_sales"), ""+engine.getDozenten_zahl(), 0.2);
-			PreDef.initLabel((Label) overview.lookup("#label_overview_lecturers"), ""+engine.getDozenten_zahl(), 1.4);
-			PreDef.initLabel((Label) overview.lookup("#label_overview_reputation"), ""+engine.getDozenten_zahl(), 0.5);
-			PreDef.initLabel((Label) overview.lookup("#label_overview_venturer"), ""+engine.getDozenten_zahl(), 0.7);
-			PreDef.initLabel((Label) overview.lookup("#label_overview_students"), ""+engine.getDozenten_zahl(), 0.8);
-			
+			PreDef.initLabel((Label) scene.lookup("#label_overview_qualitydh"), ""+engine.getDozenten_zahl(), 0.0);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_sales"), ""+engine.getDozenten_zahl(), 0.2);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_lecturers"), ""+engine.getDozenten_zahl(), 1.4);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_reputation"), ""+engine.getDozenten_zahl(), 0.5);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_venturer"), ""+engine.getDozenten_zahl(), 0.7);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_students"), ""+engine.getDozenten_zahl(), 0.8);
 			break;
 		case REPUTATION:
-			view = new Reputation(engine.getSemester(), engine.getWoche());
-			Scene reputation = new Scene(view.getView());
-			reputation.getStylesheets().add("/MainWindow.css");
-			window.setScene(reputation);
-			
-			initiateMenuButtons();
-			
+			scene = new Scene((view = new Reputation()).getView());
 			break;
 		case SATISFACTION:
-			view = new Satisfaction(engine.getSemester(), engine.getWoche());
-			Scene satisfaction = new Scene(view.getView());
-			satisfaction.getStylesheets().add("/MainWindow.css");
-			window.setScene(satisfaction);
-			
-			initiateMenuButtons();
-			
+			scene = new Scene((view = new Satisfaction()).getView());
 			break;
 		case STAFF:
-			view = new Staff(engine.getSemester(), engine.getWoche());
-			Scene staff = new Scene(view.getView());
-			staff.getStylesheets().add("/MainWindow.css");
-			window.setScene(staff);
-			
-			initiateMenuButtons();
-			
+			scene = new Scene((view = new Staff()).getView());
 			break;
 		case MONEY:
-			view = new Money(engine.getSemester(), engine.getWoche());
-			Scene money = new Scene(view.getView());
-			money.getStylesheets().add("/MainWindow.css");
-			window.setScene(money);
-			
-			initiateMenuButtons();
-			
+			scene = new Scene((view = new Money()).getView());
 			break;
 		case BUY:
-			view = new Buy(engine.getSemester(), engine.getWoche());
-			Scene buy = new Scene(view.getView());
-			buy.getStylesheets().add("/MainWindow.css");
-			window.setScene(buy);
-			
-			initiateMenuButtons();
-			
+			scene = new Scene((view = new Buy()).getView());
 			break;
 		}
+		scene.getStylesheets().add("/MainWindow.css");
+		window.setScene(scene);
+		if(pid != MAIN)
+			initiateSimWindow();
+		initiateLeftMenu(engine.getSemester(), engine.getWoche());
+		initiateTopMenu();
 	}
 	
 	/**
-	 * Alle Events der Menübuttons werden hier festgelegt.
+	 * Alle Events des Fensters werden hier festgelegt.
 	 */
-	private void initiateMenuButtons() {
+	private void initiateSimWindow() {
         window.setOnCloseRequest(e -> {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Simulation speichern");
@@ -246,6 +214,12 @@ public class GUI extends Application {
 		        e.consume();
 			}
 		});
+	}
+	
+	/**
+	 * Alle Events der oberen Menübuttons werden hier festgelegt.
+	 */
+	private void initiateTopMenu() {
 		Scene scene = window.getScene();
 		Button save = (Button) scene.lookup("#button_view_save");
 		if(save != null)
@@ -280,6 +254,17 @@ public class GUI extends Application {
 						}
 					}
 				});
+	}
+	
+	/**
+	 * Alle Events der linken Menübuttons werden hier festgelegt.
+	 * Sowie das Label mit dem aktuellen Semester/Wochen fortschritt.
+	 */
+	private void initiateLeftMenu(int semester, int week) {
+		Scene scene = window.getScene();
+		Label date = (Label) scene.lookup("#label_view_date");
+		if(date != null)
+			date.setText(date.getText().replaceFirst("&VAR&", ""+semester).replaceFirst("&VAR&", ""+week));
 		Button simulate = (Button) scene.lookup("#button_view_simulate");
 		if(simulate != null)
 			simulate.setOnAction(e -> {

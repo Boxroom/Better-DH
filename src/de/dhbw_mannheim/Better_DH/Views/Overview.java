@@ -21,11 +21,11 @@ public class Overview extends View {
 	
 	private GridPane center;
 	
-	public Overview(int semester, int woche) {
+	public Overview() {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Übersicht", true));
-		root.setLeft(getLeftMenu(semester, woche, true));
+		root.setLeft(getLeftMenu(true));
 
 		try {
 			center = (GridPane)FXMLLoader.load(getClass().getResource("Overview.fxml"));

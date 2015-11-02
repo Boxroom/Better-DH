@@ -21,12 +21,11 @@ public class Money extends View {
 	
 	private GridPane center;
 	
-	public Money(int semester, int woche) {
+	public Money() {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Finanzen", true));
-		root.setLeft(getLeftMenu(semester, woche, true));
-		
+		root.setLeft(getLeftMenu(true));
 		
 		try {
 			center = (GridPane)FXMLLoader.load(getClass().getResource("Money.fxml"));

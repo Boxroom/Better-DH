@@ -21,12 +21,11 @@ public class Buy extends View {
 	
 	private GridPane center;
 	
-	public Buy(int semester, int woche) {
+	public Buy() {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Einkauf", true));
-		root.setLeft(getLeftMenu(semester, woche, true));
-		
+		root.setLeft(getLeftMenu(true));
 		
 		try {
 			center = (GridPane)FXMLLoader.load(getClass().getResource("Buy.fxml"));

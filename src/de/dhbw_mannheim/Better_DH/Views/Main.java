@@ -30,7 +30,7 @@ public class Main extends View {
 		root = new BorderPane();
 
 		root.setTop(getTopMenu("Hauptmenü", false));
-		root.setLeft(getLeftMenu(0, 0, false));
+		root.setLeft(getLeftMenu(false));
 
 		center = new GridPane();
 		center.getStyleClass().add("center");
