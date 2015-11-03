@@ -124,7 +124,7 @@ public class GUI extends Application {
 			Button load = (Button) scene.lookup("#button_main_load");
 			if(load != null)
 				load.setOnAction(e -> {
-						List<String> choices = engine.getNames();
+						List<String> choices = engine.getAllNames();
 						
 						ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
 						dialog.setTitle("Spiel laden");
