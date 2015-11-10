@@ -152,12 +152,48 @@ public class GUI extends Application {
 			break;
 		case REPUTATION:
 			scene = new Scene((view = new Reputation()).getView());
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_qualitydh"), ""+engine.getDozenten_zahl(), 0.0);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_reputation"), ""+engine.getDozenten_zahl(), 0.5);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_staffNumber1"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_staffNumber2"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_inventory1"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_inventory2"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_events1"), "", 0.6);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_events2"), "", 0.6);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_food"), "", 0.9);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_money"), "", 0.1);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_tv"), "", 0.5);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_qualitydh"), "", 1.0);	
+			
+			//@Flo: "insert" steht für das was bei den Labels unter der ProgressBar steht? Falls ja, dann müsste mein Code hier richtig sein
+			
 			break;
 		case SATISFACTION:
 			scene = new Scene((view = new Satisfaction()).getView());
+			scene = new Scene((view = new Reputation()).getView());
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_staff"), ""+engine.getDozenten_zahl(), 0.0);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_students"), ""+engine.getDozenten_zahl(), 0.5);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_staffNumber"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_inventory1"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_inventory2"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_events1"), "", 0.6);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_events2"), "", 0.6);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_food"), "", 0.9);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_food2"), "", 0.9);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_money"), "", 0.3);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_qualitydh1"), "", 1.0);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_qualitydh2"), "", 1.0);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_reputation1"), "", 0.9);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_reputation2"), "", 0.9);
+			
 			break;
 		case STAFF:
 			scene = new Scene((view = new Staff()).getView());
+			PreDef.initLabel((Label) scene.lookup("#label_staff_satisfaction"), ""+engine.getDozenten_zahl(), 0.7);
+			PreDef.initLabel((Label) scene.lookup("#label_staff_money"), ""+engine.getDozenten_zahl(), 0.0); //@Flo: Was machen, wenn das Label keine Progressbar hat?	
+			//@Flo: Was machen bei einem Button in der View? PreDef.button ist in dem Fall nicht passend
+			//@Flo: Was machen wenn ein Bild in der View ist (siehe Staff.fxml)?
+			
 			break;
 		case MONEY:
 			scene = new Scene((view = new Money()).getView());

@@ -244,7 +244,7 @@
                   </ProgressBar>
                </graphic>
             </Label>
-            <Label id="label_reputation_werbung" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Werbung">
+            <Label id="label_reputation_tv" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Werbung">
                <graphic>
                   <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
                      <effect>
