@@ -80,7 +80,7 @@ public class Account {
 		   return Spielstandname;
 		}
 	public String getSemesterAnzahl(){
-		   return Spielstandname;
+		   return SemesterAnzahl;
 		}
 	public String getWoche(){
 		   return Woche;

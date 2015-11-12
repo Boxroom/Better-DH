@@ -18,20 +18,24 @@ import org.w3c.dom.Attr;
 public class Verzeichniserstellen {
 
     public static void main(String[] args) throws IOException { 
+    	Verzeichniserstellen Test = new Verzeichniserstellen();
+    	Test.Ordnererstellen();
+    	Test.defaultLadestand();
     }
     
     
    public void Ordnererstellen(){
-	   String s = System.getProperty("user.name");
-	   String k = "C:/Users/"+s+"/XML";
+	   String filePath = new File("").getAbsolutePath();
+	  
+	   String k = filePath+"/Better-DH";
 	   if (checkDir(k))
 	   {
 	     }
 	   else
 	   {
-		   String path = "C:/Users/"+s+"/"; 
-	        String dirName = "XML"; 
-	        File dir = new File(path + dirName); 
+		   
+	        String dirName = "Better-DH"; 
+	        File dir = new File(filePath + dirName); 
 
 	        if (dir.mkdir()) { 
 	            System.out.println("Ordner erstellt"); 
@@ -189,8 +193,21 @@ public class Verzeichniserstellen {
 	   		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	   		Transformer transformer = transformerFactory.newTransformer();
 	   		DOMSource source = new DOMSource(doc);
-	   	    String s = System.getProperty("user.name");
-	   		StreamResult result = new StreamResult(new File("C:\\Users\\"+s+"\\XML\\"+Spielstandname+".xml"));
+	   		
+	   		String filePath = new File("").getAbsolutePath();
+			String parsedPath="";
+	   		for (int i=0; i<filePath.length();i++){
+	   	    	if(filePath.charAt(i)=='\\'){
+	   	    		parsedPath +=filePath.charAt(i)+Character.toString((char)92);
+	   	    	}
+	   	    	else{
+	   	    		parsedPath +=filePath.charAt(i);
+	   	    	}
+	   	    }
+	   	    
+	   	    
+	   		StreamResult result = new StreamResult(new File(parsedPath+"\\\\Better-DH"+"\\\\"+Spielstandname+".xml"));
+
 
 	   		
 

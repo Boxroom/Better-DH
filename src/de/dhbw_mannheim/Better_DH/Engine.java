@@ -48,9 +48,6 @@ public class Engine {
 
 	
 	
-	
-	
-	
 	static void Export(){
 		
 		  try {
@@ -179,8 +176,20 @@ public class Engine {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-		    String s = System.getProperty("user.name");
-			StreamResult result = new StreamResult(new File("C:\\Users\\"+s+"\\XML\\"+Spielstandname+".xml"));
+			String filePath = new File("").getAbsolutePath();
+			String parsedPath="";
+			for (int i=0; i<filePath.length();i++){
+	   	    	if(filePath.charAt(i)=='\\'){
+	   	    		parsedPath +=filePath.charAt(i)+Character.toString((char)92);
+	   	    	}
+	   	    	else{
+	   	    		parsedPath +=filePath.charAt(i);
+	   	    	}
+	   	    }
+	   	    
+	   	    
+	   		StreamResult result = new StreamResult(new File(parsedPath+"\\\\Better-DH"+"\\\\"+Spielstandname+".xml"));
+
 
 			
 
@@ -202,9 +211,9 @@ public class Engine {
 		
 		  try { //testet ob die Datei vorhanden ist
 			  
-	    String s = System.getProperty("user.name");
-
-		File fXmlFile = new File("C:/Users/"+s+"/Better-DH/"+Speicherstandname+".xml");
+	    
+	    String filePath = new File("").getAbsolutePath();
+		File fXmlFile = new File(filePath+"/Better-DH/"+Speicherstandname+".xml");
 		//path zur Datei
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -405,6 +414,274 @@ public class Engine {
 			}
 		}
 
+		
+		
+		public void setDozentZufiredenheitInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDozentZufiredenheit();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDozentZufiredenheit(temp);
+		}
+		
+		
+		public void setDozentenAnzahlInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDozentenAnzahl();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDozentenAnzahl(temp);
+		}
+		
+		public void setDozentenGehaltInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDozentenGehalt();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDozentenGehalt(temp);
+		}
+		
+		public void setStudentenZufriedenheitInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getStudentenZufriedenheit();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setStudentenZufriedenheit(temp);
+		}
+		
+		public void setStudentenAnzahlInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getStudentenAnzahl();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setStudentenAnzahl(temp);
+		}
+		
+		public void setPartnerunternehmenAnzahlInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getPartnerunternehmenAnzahl();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setPartnerunternehmenAnzahl(temp);
+		}
+		
+		public void setDhQualitätInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhQualität();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhQualität(temp);
+		}
+		
+		public void setDhAnsehenInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhAnsehen();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhAnsehen(temp);
+		}
+		
+		public void setDhInventarInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhInventar();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhInventar(temp);
+		}
+		
+		public void setDhEssenInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhEssen();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhEssen(temp);
+		}
+		
+		public void setDhVeranstaltungenInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhVeranstaltungen();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhVeranstaltungen(temp);
+		}
+		
+		public void setDhWerbungInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhWerbung();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhWerbung(temp);
+		}
+		
+		public void setDhStudentenplätzeInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhStudentenplätze();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhStudentenplätze(temp);
+		}
+		
+		public void setDhKapitalInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getDhKapital();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setDhKapital(temp);
+		}
+		
+		public void setSemesterAnzahlInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getSemesterAnzahl();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setSemesterAnzahl(temp);
+		}
+		
+		public void setWocheInAccount(int change){
+		    Account set = new Account();
+		    String temp = set.getWoche();
+		    int tempInt = Integer.parseInt(temp);
+		    
+		    tempInt += change;
+		    temp = Integer.toString(tempInt);
+		    set.setWoche(temp);
+		}
+		
+	
+		
+		
+		public String getDozentZufriedenheitInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDozentZufiredenheit();
+		    return temp;
+		}
+		
+		public String getDozentenAnzahlInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDozentenAnzahl();
+		    return temp;
+		}
+		
+		public String getDozentenGehaltInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDozentenGehalt();
+		    return temp;
+		}
+
+		public String getStudentenZufriedenheitInAccount(){
+		    Account set = new Account();
+		    String temp = set.getStudentenZufriedenheit();
+		    return temp;
+		}
+
+		public String getStudentenAnzahlInAccount(){
+		    Account set = new Account();
+		    String temp = set.getStudentenAnzahl();
+		    return temp;
+		}
+
+		public String getPartnerunternehmenAnzahlInAccount(){
+		    Account set = new Account();
+		    String temp = set.getPartnerunternehmenAnzahl();
+		    return temp;
+		}
+
+		public String getDhQualitätInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhQualität();
+		    return temp;
+		}
+
+		public String getDhAnsehenInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhAnsehen();
+		    return temp;
+		}
+
+		public String getDhInventarInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhInventar();
+		    return temp;
+		}
+
+		public String getDhEssenInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhEssen();
+		    return temp;
+		}
+
+		public String getDhVeranstaltungenInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhVeranstaltungen();
+		    return temp;
+		}
+
+		public String getDhWerbungInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhWerbung();
+		    return temp;
+		}
+
+		public String getDhStudentenplätzeInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhStudentenplätze();
+		    return temp;
+		}
+
+		public String getDhKapitalInAccount(){
+		    Account set = new Account();
+		    String temp = set.getDhKapital();
+		    return temp;
+		}
+		
+		public String getSemesterAnzahlInAccount(){
+		    Account set = new Account();
+		    String temp = set.getSemesterAnzahl();
+		    return temp;
+		}
+		
+		public String getWocheInAccount(){
+		    Account set = new Account();
+		    String temp = set.getWoche();
+		    return temp;
+		}
+		
+		
+		
+		
+		
+		
+		
 	
 
 }
