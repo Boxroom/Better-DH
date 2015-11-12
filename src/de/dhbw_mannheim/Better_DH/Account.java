@@ -24,7 +24,7 @@ public class Account {
 			       DhStudentenplätze, 
 			       DhKapital;
 	
-	static String Spielstandname,
+	private String Spielstandname,
 				  SemesterAnzahl,
 				  Woche;
 	//Initialisierung aller Variablen

@@ -24,7 +24,7 @@ public class Main extends View {
 	private GridPane center;
 	private Label l_welcome;
 	private HBox fill_width;
-	private Button start, load;
+	private Button start, load, create;
 	
 	public Main() {
 		root = new BorderPane();
@@ -56,7 +56,9 @@ public class Main extends View {
 		start.setDisable(true);
 		center.add(start, 0, 2, 1, 1);
 
-		center.add(PreDef.fill_width(), 1, 2, 1, 1);
+		create = PreDef.button("Neuer Account", "button_main_create");
+		create.setPrefHeight(100);
+		center.add(create, 1, 2, 1, 1);
 
 		load = PreDef.button("Spiel laden", "button_main_load");
 		load.setPrefHeight(100);

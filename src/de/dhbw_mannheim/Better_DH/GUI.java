@@ -9,7 +9,7 @@
  */
 package de.dhbw_mannheim.Better_DH;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.prefs.Preferences;
 
@@ -29,6 +29,7 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -45,6 +46,7 @@ public class GUI extends Application {
 	private int pid;
 	private Engine engine;
 	private Stage window;
+	@SuppressWarnings("unused")
 	private View view;
 
 	public static void main(String[] args) {
@@ -121,12 +123,42 @@ public class GUI extends Application {
 							alert.showAndWait();
 						}
 					});
+			Button create = (Button) scene.lookup("#button_main_create");
+			if(create != null)
+				create.setOnAction(e -> {
+						TextInputDialog dialog = new TextInputDialog(System.getProperty("user.name"));
+						dialog.setTitle("Neuen Account erstellen");
+						dialog.setHeaderText("Bitte gebe deinen Namen ein um einen\nneuen Spielstand zu erstellen.");
+						dialog.setContentText("Name:");
+						dialog.initOwner(window);
+	
+						Optional<String> result = dialog.showAndWait();
+						result.ifPresent(name -> {
+								if(engine.createPlayer(name)){
+									Alert alert = new Alert(AlertType.CONFIRMATION);
+									alert.setTitle("Account erstellt");
+									alert.setHeaderText(null);
+									alert.setContentText("Dein Account wurde erfolgreich erstellt!");
+									alert.initOwner(window);
+									alert.showAndWait();
+									if(engine.loadPlayer(name))
+										start.setDisable(false);
+								}else{
+									Alert alert = new Alert(AlertType.ERROR);
+									alert.setTitle("Account exestiert");
+									alert.setHeaderText(null);
+									alert.setContentText("Ein anderer Account mit dem gleichen Namen existiert bereits!");
+									alert.initOwner(window);
+									alert.showAndWait();
+								}
+							});
+					});
 			Button load = (Button) scene.lookup("#button_main_load");
 			if(load != null)
 				load.setOnAction(e -> {
-						List<String> choices = engine.getAllNames();
+						ArrayList<String> choices = engine.getAllNames();
 						
-						ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+						ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.isEmpty()?null:choices.get(0), choices);
 						dialog.setTitle("Spiel laden");
 						dialog.setHeaderText("Wähle deinen Spielstand aus");
 						dialog.setContentText("Name:");
@@ -143,17 +175,17 @@ public class GUI extends Application {
 		case OVERVIEW:
 			scene = new Scene((view = new Overview()).getView());
 			
-			PreDef.initLabel((Label) scene.lookup("#label_overview_qualitydh"), ""+engine.getDozenten_zahl(), 0.0);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_sales"), ""+engine.getDozenten_zahl(), 0.2);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_lecturers"), ""+engine.getDozenten_zahl(), 1.4);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_reputation"), ""+engine.getDozenten_zahl(), 0.5);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_venturer"), ""+engine.getDozenten_zahl(), 0.7);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_students"), ""+engine.getDozenten_zahl(), 0.8);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_qualitydh"), "", 0.0);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_sales"), "", 0.2);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_lecturers"), "", 1.4);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_reputation"), "", 0.5);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_venturer"), "", 0.7);
+			PreDef.initLabel((Label) scene.lookup("#label_overview_students"), "", 0.8);
 			break;
 		case REPUTATION:
 			scene = new Scene((view = new Reputation()).getView());
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_qualitydh"), ""+engine.getDozenten_zahl(), 0.0);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_reputation"), ""+engine.getDozenten_zahl(), 0.5);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_qualitydh"), "", 0.0);
+			PreDef.initLabel((Label) scene.lookup("#label_reputation_reputation"), "", 0.5);
 			PreDef.initLabel((Label) scene.lookup("#label_reputation_staffNumber1"), "", 0.3);
 			PreDef.initLabel((Label) scene.lookup("#label_reputation_staffNumber2"), "", 0.3);
 			PreDef.initLabel((Label) scene.lookup("#label_reputation_inventory1"), "", 0.3);
@@ -165,14 +197,12 @@ public class GUI extends Application {
 			PreDef.initLabel((Label) scene.lookup("#label_reputation_tv"), "", 0.5);
 			PreDef.initLabel((Label) scene.lookup("#label_reputation_qualitydh"), "", 1.0);	
 			
-			//@Flo: "insert" steht für das was bei den Labels unter der ProgressBar steht? Falls ja, dann müsste mein Code hier richtig sein
-			
 			break;
 		case SATISFACTION:
 			scene = new Scene((view = new Satisfaction()).getView());
 			scene = new Scene((view = new Reputation()).getView());
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_staff"), ""+engine.getDozenten_zahl(), 0.0);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_students"), ""+engine.getDozenten_zahl(), 0.5);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_staff"), "", 0.0);
+			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_students"), "", 0.5);
 			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_staffNumber"), "", 0.3);
 			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_inventory1"), "", 0.3);
 			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_inventory2"), "", 0.3);
@@ -189,8 +219,8 @@ public class GUI extends Application {
 			break;
 		case STAFF:
 			scene = new Scene((view = new Staff()).getView());
-			PreDef.initLabel((Label) scene.lookup("#label_staff_satisfaction"), ""+engine.getDozenten_zahl(), 0.7);
-			PreDef.initLabel((Label) scene.lookup("#label_staff_money"), ""+engine.getDozenten_zahl(), 0.0); //@Flo: Was machen, wenn das Label keine Progressbar hat?	
+			PreDef.initLabel((Label) scene.lookup("#label_staff_satisfaction"), "", 0.7);
+			PreDef.initLabel((Label) scene.lookup("#label_staff_money"), "", 0.0); //@Flo: Was machen, wenn das Label keine Progressbar hat?	
 			//@Flo: Was machen bei einem Button in der View? PreDef.button ist in dem Fall nicht passend
 			//@Flo: Was machen wenn ein Bild in der View ist (siehe Staff.fxml)?
 			
@@ -206,7 +236,7 @@ public class GUI extends Application {
 		window.setScene(scene);
 		if(pid != MAIN)
 			initiateSimWindow();
-		initiateLeftMenu(engine.getSemester(), engine.getWoche());
+		initiateLeftMenu(engine.getSemesterAnzahlInAccount(), engine.getWocheInAccount());
 		initiateTopMenu();
 	}
 	
@@ -296,7 +326,7 @@ public class GUI extends Application {
 	 * Alle Events der linken Menübuttons werden hier festgelegt.
 	 * Sowie das Label mit dem aktuellen Semester/Wochen fortschritt.
 	 */
-	private void initiateLeftMenu(int semester, int week) {
+	private void initiateLeftMenu(String semester, String week) {
 		Scene scene = window.getScene();
 		Label date = (Label) scene.lookup("#label_view_date");
 		if(date != null)
