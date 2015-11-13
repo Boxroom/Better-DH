@@ -13,13 +13,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.prefs.Preferences;
 
-import de.dhbw_mannheim.Better_DH.Views.Buy;
-import de.dhbw_mannheim.Better_DH.Views.Main;
-import de.dhbw_mannheim.Better_DH.Views.Money;
-import de.dhbw_mannheim.Better_DH.Views.Overview;
-import de.dhbw_mannheim.Better_DH.Views.Reputation;
-import de.dhbw_mannheim.Better_DH.Views.Satisfaction;
-import de.dhbw_mannheim.Better_DH.Views.Staff;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -41,13 +34,10 @@ import javafx.stage.Stage;
  */
 public class GUI extends Application {
 
-	public final static int MAIN = 0, OVERVIEW = 1, REPUTATION = 2, SATISFACTION = 3, STAFF = 4, MONEY = 5, BUY = 6;
+	private Scene MAIN, OVERVIEW, REPUTATION, SATISFACTION, STAFF, MONEY, BUY;
 	
-	private int pid;
 	private Engine engine;
 	private Stage window;
-	@SuppressWarnings("unused")
-	private View view;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -71,6 +61,15 @@ public class GUI extends Application {
 		double h = userPrefs.getDouble("stage.height", 600);
 		boolean m = userPrefs.getBoolean("stage.maximized", false);
 
+		(MAIN = new Scene((new View("Hauptmenü", false, false, "Views/Main.fxml")).getView())).getStylesheets().add("/MainWindow.css");
+		(OVERVIEW = new Scene((new View("Übersicht", true, true, "Views/Overview.fxml")).getView())).getStylesheets().add("/MainWindow.css");
+		(REPUTATION = new Scene((new View("Reputation", true, true, "Views/Reputation.fxml")).getView())).getStylesheets().add("/MainWindow.css");
+		(SATISFACTION = new Scene((new View("Zufriedenheit", true, true, "Views/Satisfaction.fxml")).getView())).getStylesheets().add("/MainWindow.css");
+		(STAFF = new Scene((new View("Personal", true, true, "Views/Staff.fxml")).getView())).getStylesheets().add("/MainWindow.css");
+		(MONEY = new Scene((new View("Finanzen", true, true, "Views/Money.fxml")).getView())).getStylesheets().add("/MainWindow.css");
+		(BUY = new Scene((new View("Einkauf", true, true, "Views/Buy.fxml")).getView())).getStylesheets().add("/MainWindow.css");
+		initButtons();
+		
 		setPage(MAIN);
 		
 		window.setX(x);
@@ -102,142 +101,121 @@ public class GUI extends Application {
 	 * 
 	 * @param id	Identifikationsnummer des Views
 	 */
-	private void setPage(int id) {
-		pid = id;
-		Scene scene = null;
-		switch(pid){
-		case MAIN:
-			scene = new Scene((view = new Main()).getView());
-			
-			Button start = (Button) scene.lookup("#button_main_start");
-			if(start != null)
-				start.setOnAction(e -> {
-						if(engine.hasPlayer()){
-							setPage(OVERVIEW);
-						} else {
-							Alert alert = new Alert(AlertType.ERROR);
-							alert.setTitle("Error Dialog");
-							alert.setHeaderText(null);
-							alert.setContentText("Dein Account konnte nicht geladen werden!");
-							alert.initOwner(window);
-							alert.showAndWait();
-						}
-					});
-			Button create = (Button) scene.lookup("#button_main_create");
-			if(create != null)
-				create.setOnAction(e -> {
-						TextInputDialog dialog = new TextInputDialog(System.getProperty("user.name"));
-						dialog.setTitle("Neuen Account erstellen");
-						dialog.setHeaderText("Bitte gebe deinen Namen ein um einen\nneuen Spielstand zu erstellen.");
-						dialog.setContentText("Name:");
-						dialog.initOwner(window);
+	private void setPage(Scene scene) {
+		window.setScene(scene);
+		if(scene != MAIN) {
+			initiateSimWindow();
+			initiateLeftMenu(engine.getSemesterAnzahlInAccount(), engine.getWocheInAccount());
+			initiateTopMenu();
+		}
+	}
 	
-						Optional<String> result = dialog.showAndWait();
-						result.ifPresent(name -> {
-								if(engine.createPlayer(name)){
-									Alert alert = new Alert(AlertType.CONFIRMATION);
-									alert.setTitle("Account erstellt");
-									alert.setHeaderText(null);
-									alert.setContentText("Dein Account wurde erfolgreich erstellt!");
-									alert.initOwner(window);
-									alert.showAndWait();
-									if(engine.loadPlayer(name))
-										start.setDisable(false);
-								}else{
-									Alert alert = new Alert(AlertType.ERROR);
-									alert.setTitle("Account exestiert");
-									alert.setHeaderText(null);
-									alert.setContentText("Ein anderer Account mit dem gleichen Namen existiert bereits!");
-									alert.initOwner(window);
-									alert.showAndWait();
-								}
-							});
-					});
-			Button load = (Button) scene.lookup("#button_main_load");
-			if(load != null)
-				load.setOnAction(e -> {
-						ArrayList<String> choices = engine.getAllNames();
-						
-						ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.isEmpty()?null:choices.get(0), choices);
-						dialog.setTitle("Spiel laden");
-						dialog.setHeaderText("Wähle deinen Spielstand aus");
-						dialog.setContentText("Name:");
-						dialog.initOwner(window);
-						dialog.setGraphic(null);
-						
-						Optional<String> result = dialog.showAndWait();
-						result.ifPresent(name -> {
+	private void initButtons(){
+		Button start = (Button) MAIN.lookup("#button_main_start");
+		if(start != null)
+			start.setOnAction(e -> {
+					if(engine.hasPlayer()){
+						setPage(OVERVIEW);
+						updateViews();
+					} else {
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Error Dialog");
+						alert.setHeaderText(null);
+						alert.setContentText("Dein Account konnte nicht geladen werden!");
+						alert.initOwner(window);
+						alert.showAndWait();
+					}
+				});
+		Button create = (Button) MAIN.lookup("#button_main_create");
+		if(create != null)
+			create.setOnAction(e -> {
+					TextInputDialog dialog = new TextInputDialog(System.getProperty("user.name"));
+					dialog.setTitle("Neuen Account erstellen");
+					dialog.setHeaderText("Bitte gebe deinen Namen ein um einen\nneuen Spielstand zu erstellen.");
+					dialog.setContentText("Name:");
+					dialog.initOwner(window);
+
+					Optional<String> result = dialog.showAndWait();
+					result.ifPresent(name -> {
+							if(engine.createPlayer(name)){
+								Alert alert = new Alert(AlertType.CONFIRMATION);
+								alert.setTitle("Account erstellt");
+								alert.setHeaderText(null);
+								alert.setContentText("Dein Account wurde erfolgreich erstellt!");
+								alert.initOwner(window);
+								alert.showAndWait();
 								if(engine.loadPlayer(name))
 									start.setDisable(false);
-							});
-					});
-			break;
-		case OVERVIEW:
-			scene = new Scene((view = new Overview()).getView());
-			
-			PreDef.initLabel((Label) scene.lookup("#label_overview_qualitydh"), "", 0.0);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_sales"), "", 0.2);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_lecturers"), "", 1.4);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_reputation"), "", 0.5);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_venturer"), "", 0.7);
-			PreDef.initLabel((Label) scene.lookup("#label_overview_students"), "", 0.8);
-			break;
-		case REPUTATION:
-			scene = new Scene((view = new Reputation()).getView());
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_qualitydh"), "", 0.0);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_reputation"), "", 0.5);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_staffNumber1"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_staffNumber2"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_inventory1"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_inventory2"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_events1"), "", 0.6);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_events2"), "", 0.6);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_food"), "", 0.9);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_money"), "", 0.1);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_tv"), "", 0.5);
-			PreDef.initLabel((Label) scene.lookup("#label_reputation_qualitydh"), "", 1.0);	
-			
-			break;
-		case SATISFACTION:
-			scene = new Scene((view = new Satisfaction()).getView());
-			scene = new Scene((view = new Reputation()).getView());
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_staff"), "", 0.0);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_students"), "", 0.5);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_staffNumber"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_inventory1"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_inventory2"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_events1"), "", 0.6);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_events2"), "", 0.6);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_food"), "", 0.9);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_food2"), "", 0.9);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_money"), "", 0.3);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_qualitydh1"), "", 1.0);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_qualitydh2"), "", 1.0);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_reputation1"), "", 0.9);
-			PreDef.initLabel((Label) scene.lookup("#label_satisfaction_reputation2"), "", 0.9);
-			
-			break;
-		case STAFF:
-			scene = new Scene((view = new Staff()).getView());
-			PreDef.initLabel((Label) scene.lookup("#label_staff_satisfaction"), "", 0.7);
-			PreDef.initLabel((Label) scene.lookup("#label_staff_money"), "", 0.0); //@Flo: Was machen, wenn das Label keine Progressbar hat?	
-			//@Flo: Was machen bei einem Button in der View? PreDef.button ist in dem Fall nicht passend
-			//@Flo: Was machen wenn ein Bild in der View ist (siehe Staff.fxml)?
-			
-			break;
-		case MONEY:
-			scene = new Scene((view = new Money()).getView());
-			break;
-		case BUY:
-			scene = new Scene((view = new Buy()).getView());
-			break;
-		}
-		scene.getStylesheets().add("/MainWindow.css");
-		window.setScene(scene);
-		if(pid != MAIN)
-			initiateSimWindow();
-		initiateLeftMenu(engine.getSemesterAnzahlInAccount(), engine.getWocheInAccount());
-		initiateTopMenu();
+							}else{
+								Alert alert = new Alert(AlertType.ERROR);
+								alert.setTitle("Account exestiert");
+								alert.setHeaderText(null);
+								alert.setContentText("Ein anderer Account mit dem gleichen Namen existiert bereits!");
+								alert.initOwner(window);
+								alert.showAndWait();
+							}
+						});
+				});
+		Button load = (Button) MAIN.lookup("#button_main_load");
+		if(load != null)
+			load.setOnAction(e -> {
+					ArrayList<String> choices = engine.getAllNames();
+					
+					ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.isEmpty()?null:choices.get(0), choices);
+					dialog.setTitle("Spiel laden");
+					dialog.setHeaderText("Wähle deinen Spielstand aus");
+					dialog.setContentText("Name:");
+					dialog.initOwner(window);
+					dialog.setGraphic(null);
+					
+					Optional<String> result = dialog.showAndWait();
+					result.ifPresent(name -> {
+							if(engine.loadPlayer(name))
+								start.setDisable(false);
+						});
+				});
+	}
+	
+	private void updateViews() {
+		PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), "", 0.0);
+		PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), "", 0.2);
+		PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), "", 1.4);
+		PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), "", 0.5);
+		PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), "", 0.7);
+		PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), "", 0.8);
+
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), "", 0.0);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), "", 0.5);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), "", 0.3);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), "", 0.3);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory1"), "", 0.3);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory2"), "", 0.3);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events1"), "", 0.6);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events2"), "", 0.6);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_food"), "", 0.9);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), "", 0.1);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_tv"), "", 0.5);
+		PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_qualitydh"), "", 1.0);
+		
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), "", 0.0);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), "", 0.5);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), "", 0.3);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory1"), "", 0.3);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory2"), "", 0.3);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events1"), "", 0.6);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events2"), "", 0.6);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food"), "", 0.9);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food2"), "", 0.9);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), "", 0.3);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_qualitydh1"), "", 1.0);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_qualitydh2"), "", 1.0);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), "", 0.9);
+		PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), "", 0.9);
+		
+		PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), "", 0.7);
+		PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), "", 0.0); //@Flo: Was machen, wenn das Label keine Progressbar hat?	
+		//@Flo: Was machen bei einem Button in der View? PreDef.button ist in dem Fall nicht passend
+		//@Flo: Was machen wenn ein Bild in der View ist (siehe Staff.fxml)?
 	}
 	
 	/**
@@ -287,6 +265,12 @@ public class GUI extends Application {
 	 */
 	private void initiateTopMenu() {
 		Scene scene = window.getScene();
+		Button simulate = (Button) scene.lookup("#button_view_simulate");
+		if(simulate != null)
+			simulate.setOnAction(e -> {
+					engine.simulate();
+					updateViews();
+				});
 		Button save = (Button) scene.lookup("#button_view_save");
 		if(save != null)
 			save.setOnAction(e -> {
@@ -331,12 +315,6 @@ public class GUI extends Application {
 		Label date = (Label) scene.lookup("#label_view_date");
 		if(date != null)
 			date.setText(date.getText().replaceFirst("&VAR&", ""+semester).replaceFirst("&VAR&", ""+week));
-		Button simulate = (Button) scene.lookup("#button_view_simulate");
-		if(simulate != null)
-			simulate.setOnAction(e -> {
-					engine.simulate();
-					setPage(pid);
-				});
 		Button overview = (Button) scene.lookup("#button_view_overview");
 		if(overview != null)
 			overview.setOnAction(e -> {

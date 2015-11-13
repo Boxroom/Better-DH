@@ -3,6 +3,9 @@
  */
 package de.dhbw_mannheim.Better_DH;
 
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,14 +15,36 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * Als Interface aller für die Simulation verwendeter Fenster dient diese Klasse, um alle Fenster
+ * Als Basis aller für die Simulation verwendeter Fenster dient diese Klasse, um alle Fenster
  * generell gleich zu halten und redundanz zu sparen.
  * Es gibt immer eine Methode, die das Parent Node in Form einer BorderPane des aktuellen Fensters wiedergibt.
  * Da seit Java 8 auch Methoden in einem Interface implementiert werden dürfen, werden hier auch die Menüs vorbereitet.
  * 
  * @author Florian
  */
-public abstract class View {
+public class View {
+	protected BorderPane root;
+	
+	public View(String title, boolean topButtons, boolean leftButtons, String fxmlRessource) {
+		root = new BorderPane();
+		
+		root.setTop(getTopMenu(title, topButtons));
+		root.setLeft(getLeftMenu(leftButtons));
+		
+		try {
+			GridPane center = new GridPane();
+			center = (GridPane)FXMLLoader.load(getClass().getResource(fxmlRessource));
+			center.getStyleClass().add("center");
+			center.setPadding(new Insets(10, 10, 10, 10));
+			center.setVgap(4);
+			center.setHgap(4);
+			center.setPrefSize(Integer.MAX_VALUE, Integer.MAX_VALUE);
+			root.setCenter(center);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Es wird ein GridPane zurückgegeben, welches alle Elemente zum aufbau des oberen Menü enthält und in dieser
 	 * Methode dynamisch erstellt und gefüllt wird, dank der übergebenen Parameter.
@@ -107,5 +132,7 @@ public abstract class View {
 	/**
 	 * @return      ein BorderPane welches das komplette Fenster darstellt
 	 */
-	public abstract BorderPane getView();
+	public BorderPane getView() {
+		return root;
+	}
 }
