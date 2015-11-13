@@ -11,6 +11,7 @@ package de.dhbw_mannheim.Better_DH;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Random;
 import java.util.prefs.Preferences;
 
 import javafx.application.Application;
@@ -318,6 +319,67 @@ public class GUI extends Application {
 	/**
 	 * Alle Events der oberen Menübuttons werden hier festgelegt.
 	 */
+	
+	/**
+	 * Der Statusbericht wird hier generiert
+	 */
+	
+	private void status(){
+		
+		if(true /*Integer.parseInt(account.getWoche()) == 0*/){
+			Alert status = new Alert(AlertType.INFORMATION);
+			status.setTitle("Statusbericht");
+
+			String statStuds = "Der Leiter der dualen Hochschule hat dieses Semester eine Veränderungen der Studentenzahl auf " + engine.getStudentenAnzahlInAccount() + " Studenten erreicht. ";
+			String statQuality = "Der Leiter der dualen Hochschule bewirkte eine Veränderung ihrer Qualität auf " + engine.getDhQualitätInAccount() + " .";
+			String statCompanies = "Die Anzahl der Partnerunternehmen der dualen Hochschule hat sich dieses Semester auf" + engine.getPartnerunternehmenAnzahlInAccount() + " Stück verändert. ";
+			String statSatStud = "Er erreichte es außerdem die Zufriedenheit der Studenten auf einen Wert von " + engine.getStudentenZufriedenheitInAccount() + " zu bringen. ";
+			String statSatStaff = "Des Weiteren veränderte sich die Zufriedenheit der Dozenten auf einen Wert von " + engine.getDozentZufriedenheitInAccount() + " . ";
+			String statReputation = "Weiterhin hat sich dieses Semester eine Veränderung auf " + engine.getDhAnsehenInAccount() + " beim Ansehen der dualen Hochschule ergeben. ";
+			String statMoney = "Eine weitere große Veränderung ist der Umsatz der DH, welcher sich nach letztem Semester auf einen Wert von " + engine.getDhKapitalInAccount() + " festsetzte. ";
+			String statStaffMoney = "Was ebenfalls beachtet werden sollte, ist das aktuelle Gehalt der Dozenten, welches der DH mit " + engine.getDozentenGehaltInAccount() + " pro Dozent zu Buche schlägt. ";
+			String statEnd = "Insgesamt lässt sich sagen, dass es beachtlich ist, wie die duale Hochschule sich letztes Semester ingesamt entwickelt hat. ";
+			String statBegin = "Die duale Hochschule ist sehr vielen Menschen bekannt. Sie ist aktuell im " + engine.getSemesterAnzahlInAccount() + " und es ergaben sich so einige Veränderungen, die hier gleich erfahren werden. ";
+			
+			String[] statFirstArr = new String[1];
+			String[] statFirstRand = new String[1];
+			statFirstArr[0] = statStuds;
+			statFirstArr[1] = statQuality;
+			Random rand1 = new Random();
+			int rand1Int = rand1.nextInt();
+			int z1 = rand1Int % 2;
+			z1 = Math.abs(z1);
+			for (int i = 1; i>=0 ; --i){
+				statFirstRand[z1] = statFirstArr[i];
+				z1++;
+				z1 = z1 % 2;
+			}
+			
+			String[] statSecArr = new String[3];
+			String[] statSecRand = new String[5];
+			statSecArr[0] = statCompanies;
+			statSecArr[1] = statSatStud;
+			statSecArr[2] = statSatStaff;
+			statSecArr[3] = statReputation;
+			statSecArr[4] = statMoney;
+			statSecArr[5] = statStaffMoney;
+			Random rand2 = new Random();
+			int rand2Int = rand2.nextInt();
+			int z2 = rand2Int % 6;
+			z2 = Math.abs(z2);
+			for (int i = 3; i>=0 ; --i){
+				statSecRand[z2] = statSecArr[i];
+				z2++;
+				z2 = z2 % 6;
+			}
+			String statusContent = statBegin + statFirstRand[0] + statSecRand[0] + statSecRand[1] + statSecRand[2] + statSecRand[3] + statSecRand[4] + statSecRand[5] + statFirstRand[1] + statEnd;
+			status.setContentText(statusContent);
+			status.setHeaderText(null);
+			status.initOwner(window);
+			status.showAndWait();
+			}
+	}
+	
 	private void initiateTopMenu() {
 		Scene scene = window.getScene();
 		Button simulate = (Button) scene.lookup("#button_view_simulate");
@@ -325,6 +387,7 @@ public class GUI extends Application {
 			simulate.setOnAction(e -> {
 					engine.simulate();
 					updateLabels();
+					status();
 				});
 		Button save = (Button) scene.lookup("#button_view_save");
 		if(save != null)
