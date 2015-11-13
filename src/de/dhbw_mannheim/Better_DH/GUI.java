@@ -25,13 +25,14 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
  * Die GUI dient als Einstieg in die Anwendung, da von hier die onClick Events optimal verarbeitet werden können.
  * Das Fenster wird initialisiert und mit Inhalt aus anderen Klassen die von View erben gefüllt.
  * 
- * @author Florian
+ * @author Florian, Sebastian
  */
 public class GUI extends Application {
 
@@ -341,8 +342,8 @@ public class GUI extends Application {
 			String statEnd = "Insgesamt lässt sich sagen, dass es beachtlich ist, wie die duale Hochschule sich letztes Semester ingesamt entwickelt hat. ";
 			String statBegin = "Die duale Hochschule ist sehr vielen Menschen bekannt. Sie ist aktuell im " + engine.getSemesterAnzahlInAccount() + " und es ergaben sich so einige Veränderungen, die hier gleich erfahren werden. ";
 			
-			String[] statFirstArr = new String[1];
-			String[] statFirstRand = new String[1];
+			String[] statFirstArr = new String[2];
+			String[] statFirstRand = new String[2];
 			statFirstArr[0] = statStuds;
 			statFirstArr[1] = statQuality;
 			Random rand1 = new Random();
@@ -355,8 +356,8 @@ public class GUI extends Application {
 				z1 = z1 % 2;
 			}
 			
-			String[] statSecArr = new String[3];
-			String[] statSecRand = new String[5];
+			String[] statSecArr = new String[6];
+			String[] statSecRand = new String[6];
 			statSecArr[0] = statCompanies;
 			statSecArr[1] = statSatStud;
 			statSecArr[2] = statSatStaff;
@@ -374,10 +375,14 @@ public class GUI extends Application {
 			}
 			String statusContent = statBegin + statFirstRand[0] + statSecRand[0] + statSecRand[1] + statSecRand[2] + statSecRand[3] + statSecRand[4] + statSecRand[5] + statFirstRand[1] + statEnd;
 			status.setContentText(statusContent);
-			status.setHeaderText(null);
+			status.setHeaderText("Aktuelles vom Campus");
+			ImageView graphic = new ImageView("./Images/Grafiken/Werbung/Bild6.png");
+			graphic.setFitWidth(200);
+			graphic.setFitHeight(130);
+			status.setGraphic(graphic);
 			status.initOwner(window);
 			status.showAndWait();
-			}
+		}
 	}
 	
 	private void initiateTopMenu() {
