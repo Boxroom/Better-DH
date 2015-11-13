@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * @author Sebastian
+ *
+-->
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="8.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="14.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Button id="button_buy2_changeSIte" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="130.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: #5D6971; -fx-background-radius: 5;" text="&amp;VAR&amp; / 2" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
+      <VBox layoutX="226.0" layoutY="93.0" spacing="15.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+         <children>
+            <Label id="label_buy2_food" alignment="CENTER" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="130.0" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: #5D6971; -fx-background-radius: 15;" text="Essen" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <Label alignment="CENTER" contentDisplay="TOP" text="&amp;VAR&amp;" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Label>
+            <Button id="button_buy2_food" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: #5D6971; -fx-background-radius: 15;" text="Kaufen" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="424.0" layoutY="93.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Label id="label_buy2_students" alignment="CENTER" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="130.0" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: #5D6971; -fx-background-radius: 15;" text="Plätze für Studenten" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <Label alignment="CENTER" contentDisplay="TOP" text="&amp;VAR&amp;" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Label>
+            <Button id="button_buy2_students" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: #5D6971; -fx-background-radius: 15;" text="Kaufen" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
