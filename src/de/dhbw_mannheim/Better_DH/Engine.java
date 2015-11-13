@@ -302,99 +302,67 @@ public class Engine {
 	}
 
 	public String getDozentZufriedenheitInAccount() {
-		Account set = new Account();
-		String temp = set.getDozentZufiredenheit();
-		return temp;
+		return account.getDozentZufiredenheit();
 	}
 
 	public String getDozentenAnzahlInAccount() {
-		Account set = new Account();
-		String temp = set.getDozentenAnzahl();
-		return temp;
+		return account.getDozentenAnzahl();
 	}
 
 	public String getDozentenGehaltInAccount() {
-		Account set = new Account();
-		String temp = set.getDozentenGehalt();
-		return temp;
+		return account.getDozentenGehalt();
 	}
 
 	public String getStudentenZufriedenheitInAccount() {
-		Account set = new Account();
-		String temp = set.getStudentenZufriedenheit();
-		return temp;
+		return account.getStudentenZufriedenheit();
 	}
 
 	public String getStudentenAnzahlInAccount() {
-		Account set = new Account();
-		String temp = set.getStudentenAnzahl();
-		return temp;
+		return account.getStudentenAnzahl();
 	}
 
 	public String getPartnerunternehmenAnzahlInAccount() {
-		Account set = new Account();
-		String temp = set.getPartnerunternehmenAnzahl();
-		return temp;
+		return account.getPartnerunternehmenAnzahl();
 	}
 
 	public String getDhQualitätInAccount() {
-		Account set = new Account();
-		String temp = set.getDhQualität();
-		return temp;
+		return account.getDhQualität();
 	}
 
 	public String getDhAnsehenInAccount() {
-		Account set = new Account();
-		String temp = set.getDhAnsehen();
-		return temp;
+		return account.getDhAnsehen();
 	}
 
 	public String getDhInventarInAccount() {
-		Account set = new Account();
-		String temp = set.getDhInventar();
-		return temp;
+		return account.getDhInventar();
 	}
 
 	public String getDhEssenInAccount() {
-		Account set = new Account();
-		String temp = set.getDhEssen();
-		return temp;
+		return account.getDhEssen();
 	}
 
 	public String getDhVeranstaltungenInAccount() {
-		Account set = new Account();
-		String temp = set.getDhVeranstaltungen();
-		return temp;
+		return account.getDhVeranstaltungen();
 	}
 
 	public String getDhWerbungInAccount() {
-		Account set = new Account();
-		String temp = set.getDhWerbung();
-		return temp;
+		return account.getDhWerbung();
 	}
 
 	public String getDhStudentenplätzeInAccount() {
-		Account set = new Account();
-		String temp = set.getDhStudentenplätze();
-		return temp;
+		return account.getDhStudentenplätze();
 	}
 
 	public String getDhKapitalInAccount() {
-		Account set = new Account();
-		String temp = set.getDhKapital();
-		return temp;
+		return account.getDhKapital();
 	}
 
 	public String getSemesterAnzahlInAccount() {
-		Account set = new Account();
-		String temp = set.getSemesterAnzahl();
-		return temp;
+		return account.getSemesterAnzahl();
 	}
 
 	public String getWocheInAccount() {
-		Account set = new Account();
-		String temp = set.getWoche();
-		return temp;
+		return account.getWoche();
 	}
 
 }

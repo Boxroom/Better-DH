@@ -1,9 +1,11 @@
 .button-default{
 	-fx-background-color: #5D6971; 
 	-fx-font: bold 18px "BankGothic Lt Bt";
-	-fx-border: 0;
+	-fx-border-width: 0;
 	-fx-background-radius: 10px;
     -fx-text-fill: white;
+	-fx-wrap-text: true;
+    -fx-text-alignment: center;
 }
 .button-default:hover{
 	-fx-background-color: #405060;
@@ -12,7 +14,7 @@
 .button-menu{
 	-fx-background-color: #FFFFFF; 
 	-fx-font: bold 18px "BankGothic Lt Bt";
-	-fx-border: 0;
+	-fx-border-width: 0;
 	-fx-background-radius: 10px;
     -fx-text-fill: black;
     -fx-min-width: 150px;
@@ -42,6 +44,8 @@
 	-fx-background-color:  #5D6971;
 	-fx-background-radius:  15;
 	-fx-font-size: 16px;
+	-fx-wrap-text: true;
+    -fx-text-alignment: center;
 }
 .green-bar  { -fx-accent: green;  }
 .orange-bar    { -fx-accent: orange;    }

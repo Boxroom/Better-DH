@@ -63,28 +63,53 @@ public class PreDef {
 	}
 
 	/**
+	 * Alle Buttons auf den Fenstern werden nach dem selben Muster initialisiert.
+	 */
+	public static void initButton(Button button) {
+		if(button != null) {
+			DoubleProperty fontSize = new SimpleDoubleProperty(30);
+	        fontSize.bind(button.widthProperty().add(button.heightProperty()).divide(17));
+	        button.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"));
+		}
+	}
+
+	/**
 	 * Alle Labels auf den Fenstern werden nach dem selben Muster initialisiert.
 	 */
 	public static void initLabel(Label label, String insert, double progress) {
 		if(label != null) {
-			Label label2 = (Label) label.getGraphic();
-			if(label2 != null) {
+			DoubleProperty fontSize = new SimpleDoubleProperty(30);
+	        fontSize.bind(label.widthProperty().add(label.heightProperty()).divide(17));
+	        label.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"));
+			if(label.getGraphic() != null && label.getGraphic() instanceof Label){
+				Label label2 = (Label) label.getGraphic();
 				label2.setText(insert);
-				ProgressBar bar = (ProgressBar) label2.getGraphic();
-				bar.setProgress(progress);
-				bar.setTooltip(new Tooltip(""+Math.min(Math.round(progress*100),100)+"%"));
-				label2.prefWidthProperty().bind(label.widthProperty());
-				bar.prefWidthProperty().bind(label2.widthProperty());
-				bar.setPadding(new Insets(0,15,0,15));
 				
-				DoubleProperty fontSize = new SimpleDoubleProperty(30);
-		        fontSize.bind(label.widthProperty().add(label.heightProperty()).divide(20));
-		        label.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"));
-		        label.getStyleClass().add("label_view");
 		        label2.styleProperty().bind(label.styleProperty());
 		        
-		        if(progress < 0.5) {
-					bar.getStyleClass().add("red-bar");
+				if(label2.getGraphic() != null && label2.getGraphic() instanceof ProgressBar) {
+					ProgressBar bar = (ProgressBar) label2.getGraphic();
+					bar.setProgress(progress);
+					bar.setTooltip(new Tooltip(""+Math.min(Math.round(progress*100),100)+"%"));
+					label2.prefWidthProperty().bind(label.widthProperty());
+					bar.prefWidthProperty().bind(label2.widthProperty());
+					bar.setPadding(new Insets(0,15,0,15));
+			        
+			        if(progress < 0.5) {
+						bar.getStyleClass().add("red-bar");
+					} else if(progress < 0.75) {
+						bar.getStyleClass().add("orange-bar");
+					} else {
+						bar.getStyleClass().add("green-bar");
+					}
+				}
+			} else if(label.getGraphic() != null && label.getGraphic() instanceof ProgressBar){
+				ProgressBar bar = (ProgressBar) label.getGraphic();
+				bar.setProgress(progress);
+				bar.setTooltip(new Tooltip(""+insert));
+		        
+			    if(progress < 0.5) {
+			        bar.getStyleClass().add("red-bar");
 				} else if(progress < 0.75) {
 					bar.getStyleClass().add("orange-bar");
 				} else {

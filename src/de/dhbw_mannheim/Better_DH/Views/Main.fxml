@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../MainWindow.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
@@ -28,10 +28,22 @@
       <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button id="button_main_start" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="button-default" text="Spiel starten" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button id="button_main_create" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="button-default" text="Neuer Account" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <Button id="button_main_load" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="button-default" text="Spiel laden" GridPane.columnIndex="5" GridPane.rowIndex="3" />
       <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-text-fill: black; -fx-font-size: 56px;" styleClass="label_h1" text="Willkommen zu" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-image: url('Images/BetterDH.png');" styleClass="img" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2" />
+      <Button id="button_main_start" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" styleClass="button-default" text="Spiel starten" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button id="button_main_create" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" styleClass="button-default" text="Account erstellen" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button id="button_main_load" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" styleClass="button-default" text="Spiel laden" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="3">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </GridPane>

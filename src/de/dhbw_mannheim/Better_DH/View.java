@@ -17,13 +17,13 @@ import javafx.scene.layout.HBox;
 /**
  * Als Basis aller für die Simulation verwendeter Fenster dient diese Klasse, um alle Fenster
  * generell gleich zu halten und redundanz zu sparen.
- * Es gibt immer eine Methode, die das Parent Node in Form einer BorderPane des aktuellen Fensters wiedergibt.
- * Da seit Java 8 auch Methoden in einem Interface implementiert werden dürfen, werden hier auch die Menüs vorbereitet.
+ * Dem Konstruktor werden die Eigenschaften des Fensters übergeben
+ * Durch getView() erhät die GUI ein BorderPane, welches als Scene gesetzt werden kann.
  * 
  * @author Florian
  */
 public class View {
-	protected BorderPane root;
+	private BorderPane root;
 	
 	public View(String title, boolean topButtons, boolean leftButtons, String fxmlRessource) {
 		root = new BorderPane();
@@ -54,8 +54,9 @@ public class View {
 	 * @param  buttons 	ob die Buttons angezeigt werden sollen
 	 * @return      	ein GridPane welches das obere Menü enthält
 	 */
-	public HBox getTopMenu(String title, boolean buttons) {
+	private HBox getTopMenu(String title, boolean buttons) {
 		HBox hbox = new HBox();
+		hbox.getStylesheets().add("/MainWindow.css");
 		hbox.getStyleClass().add("menu");
 		hbox.setPrefHeight(80);
 		hbox.setAlignment(Pos.CENTER);
@@ -91,8 +92,9 @@ public class View {
 	 * @param  buttons 		ob die Buttons angezeigt werden sollen
 	 * @return      		ein GridPane welches das Linke Menü mit allen verlinkungen der Simulationsübersichten enthält
 	 */
-	public GridPane getLeftMenu(boolean buttons) {
+	private GridPane getLeftMenu(boolean buttons) {
 		GridPane left = new GridPane();
+		left.getStylesheets().add("/MainWindow.css");
 		left.getStyleClass().add("menu");
 		left.setPadding(new Insets(10, 10, 10, 10));
 		left.setVgap(16);
