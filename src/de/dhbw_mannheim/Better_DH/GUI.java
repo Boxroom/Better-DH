@@ -34,7 +34,7 @@ import javafx.stage.Stage;
  */
 public class GUI extends Application {
 
-	private Scene MAIN, OVERVIEW, REPUTATION, SATISFACTION, STAFF, MONEY, MONEY_IN, MONEY_OUT, BUY;
+	private Scene MAIN, OVERVIEW, REPUTATION, SATISFACTION, STAFF, MONEY, MONEY_IN, MONEY_OUT, BUY, BUY2;
 	
 	private Engine engine;
 	private Stage window;
@@ -70,6 +70,7 @@ public class GUI extends Application {
 		MONEY_IN = new Scene((new View("Einnahmen", true, true, "Views/Money_1.fxml")).getView());
 		MONEY_OUT = new Scene((new View("Ausgaben", true, true, "Views/Money_1.fxml")).getView());
 		BUY = new Scene((new View("Einkauf", true, true, "Views/Buy.fxml")).getView());
+		BUY2 = new Scene((new View("Einkauf", true, true, "Views/Buy_2.fxml")).getView());
 		initButtons();
 		
 		setPage(MAIN);
@@ -207,6 +208,16 @@ public class GUI extends Application {
 			expenditure.setOnMouseClicked(e -> {
 					setPage(MONEY_OUT);
 				});
+		Button changeSIte = (Button) BUY.lookup("#button_buy_changeSIte");
+		if(changeSIte != null)
+			changeSIte.setOnMouseClicked(e -> {
+					setPage(BUY2);
+				});
+		Button changeSIte2 = (Button) BUY2.lookup("#button_buy2_changeSIte");
+		if(changeSIte2 != null)
+			changeSIte2.setOnMouseClicked(e -> {
+					setPage(BUY);
+				});
 		PreDef.initButton((Button) MAIN.lookup("#button_main_start"));
 		PreDef.initButton((Button) MAIN.lookup("#button_main_create"));
 		PreDef.initButton((Button) MAIN.lookup("#button_main_load"));
@@ -214,6 +225,8 @@ public class GUI extends Application {
 		PreDef.initButton((Button) STAFF.lookup("#button_staff_getLess"));
 		PreDef.initButton((Button) STAFF.lookup("#button_staff_moneyMore"));
 		PreDef.initButton((Button) STAFF.lookup("#button_staff_moneyLess"));
+		PreDef.initButton((Button) BUY.lookup("#button_buy_changeSIte"));
+		PreDef.initButton((Button) BUY2.lookup("#button_buy2_changeSIte"));
 	}
 	
 	private void updateLabels() {
