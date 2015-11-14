@@ -15,7 +15,6 @@ public class Engine {
 
 	public Engine() {
 		save = new MemoryManagement();
-		account = new Account();
 	}
 	
 	final static double mealMAX = 5, stockMAX = 8000, eventsMAX = 7, amountLecturerMAX = 500, capitalMAX = 10000000,
@@ -35,7 +34,7 @@ public class Engine {
 	}
 
 	public boolean hasPlayer() {
-		return account.getSpielstandname() != null && account.getSpielstandname().length() > 0;
+		return account != null && account.getName() != null && account.getName().length() > 0;
 	}
 
 	// array Liste, die alle Namen der gespeicherten Dateien wiedergibt
@@ -141,228 +140,268 @@ public class Engine {
 		}
 	}
 
-	public void setDozentZufiredenheitInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDozentZufiredenheit();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDozentZufiredenheit(temp);
-	}
-
-	public void setDozentenAnzahlInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDozentenAnzahl();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDozentenAnzahl(temp);
-	}
-
-	public void setDozentenGehaltInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDozentenGehalt();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDozentenGehalt(temp);
-	}
-
-	public void setStudentenZufriedenheitInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getStudentenZufriedenheit();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setStudentenZufriedenheit(temp);
-	}
-
-	public void setStudentenAnzahlInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getStudentenAnzahl();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setStudentenAnzahl(temp);
-	}
-
-	public void setPartnerunternehmenAnzahlInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getPartnerunternehmenAnzahl();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setPartnerunternehmenAnzahl(temp);
-	}
-
-	public void setDhQualitätInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhQualität();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhQualität(temp);
-	}
-
-	public void setDhAnsehenInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhAnsehen();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhAnsehen(temp);
-	}
-
-	public void setDhInventarInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhInventar();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhInventar(temp);
-	}
-
-	public void setDhEssenInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhEssen();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhEssen(temp);
-	}
-
-	public void setDhVeranstaltungenInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhVeranstaltungen();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhVeranstaltungen(temp);
-	}
-
-	public void setDhWerbungInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhWerbung();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhWerbung(temp);
-	}
-
-	public void setDhStudentenplätzeInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhStudentenplätze();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhStudentenplätze(temp);
-	}
-
-	public void setDhKapitalInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getDhKapital();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setDhKapital(temp);
-	}
-
-	public void setSemesterAnzahlInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getSemesterAnzahl();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setSemesterAnzahl(temp);
-	}
-
-	public void setWocheInAccount(int change) {
-		Account set = new Account();
-		String temp = set.getWoche();
-		int tempInt = Integer.parseInt(temp);
-
-		tempInt += change;
-		temp = Integer.toString(tempInt);
-		set.setWoche(temp);
-	}
-
-	public String getDozentZufriedenheitInAccount() {
-		return account.getDozentZufiredenheit();
-	}
-
-	public String getDozentenAnzahlInAccount() {
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getDozentenAnzahl()
+	 */
+	public int getDozentenAnzahl() {
 		return account.getDozentenAnzahl();
 	}
 
-	public String getDozentenGehaltInAccount() {
-		return account.getDozentenGehalt();
-	}
-
-	public String getStudentenZufriedenheitInAccount() {
-		return account.getStudentenZufriedenheit();
-	}
-
-	public String getStudentenAnzahlInAccount() {
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getStudentenAnzahl()
+	 */
+	public int getStudentenAnzahl() {
 		return account.getStudentenAnzahl();
 	}
 
-	public String getPartnerunternehmenAnzahlInAccount() {
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getPartnerunternehmenAnzahl()
+	 */
+	public int getPartnerunternehmenAnzahl() {
 		return account.getPartnerunternehmenAnzahl();
 	}
 
-	public String getDhQualitätInAccount() {
-		return account.getDhQualität();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getStudentenplaetze()
+	 */
+	public int getStudentenplaetze() {
+		return account.getStudentenplaetze();
 	}
 
-	public String getDhAnsehenInAccount() {
-		return account.getDhAnsehen();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getDozentZufriedenheit()
+	 */
+	public double getDozentZufriedenheit() {
+		return account.getDozentZufriedenheit();
 	}
 
-	public String getDhInventarInAccount() {
-		return account.getDhInventar();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getDozentenGehalt()
+	 */
+	public double getDozentenGehalt() {
+		return account.getDozentenGehalt();
 	}
 
-	public String getDhEssenInAccount() {
-		return account.getDhEssen();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getStudentenZufriedenheit()
+	 */
+	public double getStudentenZufriedenheit() {
+		return account.getStudentenZufriedenheit();
 	}
 
-	public String getDhVeranstaltungenInAccount() {
-		return account.getDhVeranstaltungen();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getQualitaet()
+	 */
+	public double getQualitaet() {
+		return account.getQualitaet();
 	}
 
-	public String getDhWerbungInAccount() {
-		return account.getDhWerbung();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getAnsehen()
+	 */
+	public double getAnsehen() {
+		return account.getAnsehen();
 	}
 
-	public String getDhStudentenplätzeInAccount() {
-		return account.getDhStudentenplätze();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getInventar()
+	 */
+	public double getInventar() {
+		return account.getInventar();
 	}
 
-	public String getDhKapitalInAccount() {
-		return account.getDhKapital();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getEssen()
+	 */
+	public double getEssen() {
+		return account.getEssen();
 	}
 
-	public String getSemesterAnzahlInAccount() {
-		return account.getSemesterAnzahl();
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getVeranstaltungen()
+	 */
+	public double getVeranstaltungen() {
+		return account.getVeranstaltungen();
 	}
 
-	public String getWocheInAccount() {
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getWerbung()
+	 */
+	public double getWerbung() {
+		return account.getWerbung();
+	}
+
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getKapital()
+	 */
+	public double getKapital() {
+		return account.getKapital();
+	}
+
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getName()
+	 */
+	public String getName() {
+		return account.getName();
+	}
+
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getSemester()
+	 */
+	public int getSemester() {
+		return account.getSemester();
+	}
+
+	/**
+	 * @return
+	 * @see de.dhbw_mannheim.Better_DH.Account#getWoche()
+	 */
+	public int getWoche() {
 		return account.getWoche();
 	}
 
+	/**
+	 * @param dozentenAnzahl
+	 * @see de.dhbw_mannheim.Better_DH.Account#setDozentenAnzahl(int)
+	 */
+	public void setDozentenAnzahl(int dozentenAnzahl) {
+		account.setDozentenAnzahl(dozentenAnzahl);
+	}
+
+	/**
+	 * @param studentenAnzahl
+	 * @see de.dhbw_mannheim.Better_DH.Account#setStudentenAnzahl(int)
+	 */
+	public void setStudentenAnzahl(int studentenAnzahl) {
+		account.setStudentenAnzahl(studentenAnzahl);
+	}
+
+	/**
+	 * @param partnerunternehmenAnzahl
+	 * @see de.dhbw_mannheim.Better_DH.Account#setPartnerunternehmenAnzahl(int)
+	 */
+	public void setPartnerunternehmenAnzahl(int partnerunternehmenAnzahl) {
+		account.setPartnerunternehmenAnzahl(partnerunternehmenAnzahl);
+	}
+
+	/**
+	 * @param studentenplaetze
+	 * @see de.dhbw_mannheim.Better_DH.Account#setStudentenplaetze(int)
+	 */
+	public void setStudentenplaetze(int studentenplaetze) {
+		account.setStudentenplaetze(studentenplaetze);
+	}
+
+	/**
+	 * @param dozentZufriedenheit
+	 * @see de.dhbw_mannheim.Better_DH.Account#setDozentZufriedenheit(double)
+	 */
+	public void setDozentZufriedenheit(double dozentZufriedenheit) {
+		account.setDozentZufriedenheit(dozentZufriedenheit);
+	}
+
+	/**
+	 * @param dozentenGehalt
+	 * @see de.dhbw_mannheim.Better_DH.Account#setDozentenGehalt(double)
+	 */
+	public void setDozentenGehalt(double dozentenGehalt) {
+		account.setDozentenGehalt(dozentenGehalt);
+	}
+
+	/**
+	 * @param studentenZufriedenheit
+	 * @see de.dhbw_mannheim.Better_DH.Account#setStudentenZufriedenheit(double)
+	 */
+	public void setStudentenZufriedenheit(double studentenZufriedenheit) {
+		account.setStudentenZufriedenheit(studentenZufriedenheit);
+	}
+
+	/**
+	 * @param qualitaet
+	 * @see de.dhbw_mannheim.Better_DH.Account#setQualitaet(double)
+	 */
+	public void setQualitaet(double qualitaet) {
+		account.setQualitaet(qualitaet);
+	}
+
+	/**
+	 * @param ansehen
+	 * @see de.dhbw_mannheim.Better_DH.Account#setAnsehen(double)
+	 */
+	public void setAnsehen(double ansehen) {
+		account.setAnsehen(ansehen);
+	}
+
+	/**
+	 * @param inventar
+	 * @see de.dhbw_mannheim.Better_DH.Account#setInventar(double)
+	 */
+	public void setInventar(double inventar) {
+		account.setInventar(inventar);
+	}
+
+	/**
+	 * @param essen
+	 * @see de.dhbw_mannheim.Better_DH.Account#setEssen(double)
+	 */
+	public void setEssen(double essen) {
+		account.setEssen(essen);
+	}
+
+	/**
+	 * @param veranstaltungen
+	 * @see de.dhbw_mannheim.Better_DH.Account#setVeranstaltungen(double)
+	 */
+	public void setVeranstaltungen(double veranstaltungen) {
+		account.setVeranstaltungen(veranstaltungen);
+	}
+
+	/**
+	 * @param werbung
+	 * @see de.dhbw_mannheim.Better_DH.Account#setWerbung(double)
+	 */
+	public void setWerbung(double werbung) {
+		account.setWerbung(werbung);
+	}
+
+	/**
+	 * @param kapital
+	 * @see de.dhbw_mannheim.Better_DH.Account#setKapital(double)
+	 */
+	public void setKapital(double kapital) {
+		account.setKapital(kapital);
+	}
+
+	/**
+	 * @param semester
+	 * @see de.dhbw_mannheim.Better_DH.Account#setSemester(int)
+	 */
+	public void setSemester(int semester) {
+		account.setSemester(semester);
+	}
+
+	/**
+	 * @param woche
+	 * @see de.dhbw_mannheim.Better_DH.Account#setWoche(int)
+	 */
+	public void setWoche(int woche) {
+		account.setWoche(woche);
+	}
+	
 }

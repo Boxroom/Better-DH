@@ -52,18 +52,18 @@ public class MemoryManagement {
 	
 	public boolean savePlayer(Account getVar) {
 		try {
-			String dozentZufriedenheit = getVar.getDozentZufiredenheit(), dozentenAnzahl = getVar.getDozentenAnzahl(),
-					dozentenGehalt = getVar.getDozentenGehalt(),
+			String dozentZufriedenheit = ""+getVar.getDozentZufriedenheit(), dozentenAnzahl = ""+getVar.getDozentenAnzahl(),
+					dozentenGehalt = ""+getVar.getDozentenGehalt(),
 
-			studentenZufriedenheit = getVar.getStudentenZufriedenheit(), studentenAnzahl = getVar.getStudentenAnzahl(),
+			studentenZufriedenheit = ""+getVar.getStudentenZufriedenheit(), studentenAnzahl = ""+getVar.getStudentenAnzahl(),
 
-			partnerunternehmenAnzahl = getVar.getPartnerunternehmenAnzahl(),
+			partnerunternehmenAnzahl = ""+getVar.getPartnerunternehmenAnzahl(),
 
-			dhQualität = getVar.getDhQualität(), dhAnsehen = getVar.getDhAnsehen(), dhInventar = getVar.getDhInventar(),
-					dhEssen = getVar.getDhEssen(), dhVeranstaltungen = getVar.getDhVeranstaltungen(),
-					dhWerbung = getVar.getDhWerbung(), dhStudentenplätze = getVar.getDhStudentenplätze(),
-					dhKapital = getVar.getDhKapital(), spielstandname = getVar.getSpielstandname(),
-					semesterAnzahl = getVar.getSemesterAnzahl(), woche = getVar.getWoche();
+			dhQualitaet = ""+getVar.getQualitaet(), dhAnsehen = ""+getVar.getAnsehen(), dhInventar = ""+getVar.getInventar(),
+					dhEssen = ""+getVar.getEssen(), dhVeranstaltungen = ""+getVar.getVeranstaltungen(),
+					dhWerbung = ""+getVar.getWerbung(), dhStudentenplaetze = ""+getVar.getStudentenplaetze(),
+					dhKapital = ""+getVar.getKapital(), spielstandname = ""+getVar.getName(),
+					semesterAnzahl = ""+getVar.getSemester(), woche = ""+getVar.getWoche();
 
 			// holt sich alle aktuellen Variablen aus Account
 
@@ -113,8 +113,8 @@ public class MemoryManagement {
 			pUA.appendChild(doc.createTextNode(partnerunternehmenAnzahl));
 			speicher.appendChild(pUA);
 
-			Element dhQ = doc.createElement("DhQualität");
-			dhQ.appendChild(doc.createTextNode(dhQualität));
+			Element dhQ = doc.createElement("DhQualitaet");
+			dhQ.appendChild(doc.createTextNode(dhQualitaet));
 			speicher.appendChild(dhQ);
 
 			Element dhA = doc.createElement("DhAnsehen");
@@ -137,8 +137,8 @@ public class MemoryManagement {
 			dhW.appendChild(doc.createTextNode(dhWerbung));
 			speicher.appendChild(dhW);
 
-			Element dhSP = doc.createElement("DhStudentenplätze");
-			dhSP.appendChild(doc.createTextNode(dhStudentenplätze));
+			Element dhSP = doc.createElement("DhStudentenplaetze");
+			dhSP.appendChild(doc.createTextNode(dhStudentenplaetze));
 			speicher.appendChild(dhSP);
 
 			Element dhK = doc.createElement("DhKapital");
@@ -192,7 +192,7 @@ public class MemoryManagement {
 					Element eElement = (Element) nNode;
 					// Inhalt der Knoten wird den Variablen zugeordnet
 
-					String dozentZufiredenheit = eElement.getElementsByTagName("DozentZufriedenheit").item(0).getTextContent(),
+					String dozentZufriedenheit = eElement.getElementsByTagName("DozentZufriedenheit").item(0).getTextContent(),
 							dozentenAnzahl = eElement.getElementsByTagName("DozentenAnzahl").item(0).getTextContent(),
 							dozentenGehalt = eElement.getElementsByTagName("DozentenGehalt").item(0).getTextContent(),
 
@@ -201,38 +201,37 @@ public class MemoryManagement {
 
 							partnerunternehmenAnzahl = eElement.getElementsByTagName("PartnerunternehmenAnzahl").item(0).getTextContent(),
 
-							dhQualität = eElement.getElementsByTagName("DhQualität").item(0).getTextContent(),
+							dhQualitaet = eElement.getElementsByTagName("DhQualitaet").item(0).getTextContent(),
 							dhAnsehen = eElement.getElementsByTagName("DhAnsehen").item(0).getTextContent(),
 							dhInventar = eElement.getElementsByTagName("DhInventar").item(0).getTextContent(),
 							dhEssen = eElement.getElementsByTagName("DhEssen").item(0).getTextContent(),
 							dhVeranstaltungen = eElement.getElementsByTagName("DhVeranstaltungen").item(0).getTextContent(),
 							dhWerbung = eElement.getElementsByTagName("DhWerbung").item(0).getTextContent(),
-							dhStudentenplätze = eElement.getElementsByTagName("DhStudentenplätze").item(0).getTextContent(),
+							dhStudentenplaetze = eElement.getElementsByTagName("DhStudentenplaetze").item(0).getTextContent(),
 							dhKapital = eElement.getElementsByTagName("DhKapital").item(0).getTextContent(),
 
 							woche = eElement.getElementsByTagName("Woche").item(0).getTextContent(),
 							semesterAnzahl = eElement.getElementsByTagName("SemesterAnzahl").item(0).getTextContent();
 
 					// AccountVariablen werden gesetzt
-					Account setVar = new Account();
-					setVar.setDozentZufiredenheit(dozentZufiredenheit);
-					setVar.setDozentenAnzahl(dozentenAnzahl);
-					setVar.setDozentenGehalt(dozentenGehalt);
-					setVar.setStudentenZufriedenheit(studentenZufriedenheit);
-					setVar.setStudentenAnzahl(studentenAnzahl);
+					Account setVar = new Account(name);
+					setVar.setDozentZufriedenheit(Double.parseDouble(dozentZufriedenheit));
+					setVar.setDozentenAnzahl(Integer.parseInt(dozentenAnzahl));
+					setVar.setDozentenGehalt(Double.parseDouble(dozentenGehalt));
+					setVar.setStudentenZufriedenheit(Double.parseDouble(studentenZufriedenheit));
+					setVar.setStudentenAnzahl(Integer.parseInt(studentenAnzahl));
 
-					setVar.setPartnerunternehmenAnzahl(partnerunternehmenAnzahl);
-					setVar.setDhQualität(dhQualität);
-					setVar.setDhAnsehen(dhAnsehen);
-					setVar.setDhInventar(dhInventar);
-					setVar.setDhEssen(dhEssen);
-					setVar.setDhVeranstaltungen(dhVeranstaltungen);
-					setVar.setDhWerbung(dhWerbung);
-					setVar.setDhStudentenplätze(dhStudentenplätze);
-					setVar.setDhKapital(dhKapital);
-					setVar.setSpielstandname(name);
-					setVar.setSemesterAnzahl(semesterAnzahl);
-					setVar.setWoche(woche);
+					setVar.setPartnerunternehmenAnzahl(Integer.parseInt(partnerunternehmenAnzahl));
+					setVar.setQualitaet(Double.parseDouble(dhQualitaet));
+					setVar.setAnsehen(Double.parseDouble(dhAnsehen));
+					setVar.setInventar(Double.parseDouble(dhInventar));
+					setVar.setEssen(Double.parseDouble(dhEssen));
+					setVar.setVeranstaltungen(Double.parseDouble(dhVeranstaltungen));
+					setVar.setWerbung(Double.parseDouble(dhWerbung));
+					setVar.setStudentenplaetze(Integer.parseInt(dhStudentenplaetze));
+					setVar.setKapital(Double.parseDouble(dhKapital));
+					setVar.setSemester(Integer.parseInt(semesterAnzahl));
+					setVar.setWoche(Integer.parseInt(woche));
 					return setVar;
 				}
 			}
@@ -261,14 +260,14 @@ public class MemoryManagement {
 			return false;
 		}
 		try {
-			String dozentZufriedenheit = "50", dozentenAnzahl = "5", dozentenGehalt = "5000",
+			String dozentZufriedenheit = "50.0", dozentenAnzahl = "5", dozentenGehalt = "5000.0",
 
-			studentenZufriedenheit = "50", studentenAnzahl = "125",
+			studentenZufriedenheit = "50.0", studentenAnzahl = "125",
 
 			partnerunternehmenAnzahl = "3",
 
-			dhQualität = "60", dhAnsehen = "100", dhInventar = "1", dhEssen = "1", dhVeranstaltungen = "1",
-					dhWerbung = "1", dhStudentenplätze = "200", dhKapital = "5000", spielstandname = name,
+			dhQualitaet = "60.0", dhAnsehen = "100.0", dhInventar = "1.0", dhEssen = "1.0", dhVeranstaltungen = "1.0",
+					dhWerbung = "1.0", dhStudentenplaetze = "200", dhKapital = "5000.0", spielstandname = name,
 					semesterAnzahl = "1", woche = "0";
 
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -317,8 +316,8 @@ public class MemoryManagement {
 			pUA.appendChild(doc.createTextNode(partnerunternehmenAnzahl));
 			speicher.appendChild(pUA);
 
-			Element dhQ = doc.createElement("DhQualität");
-			dhQ.appendChild(doc.createTextNode(dhQualität));
+			Element dhQ = doc.createElement("DhQualitaet");
+			dhQ.appendChild(doc.createTextNode(dhQualitaet));
 			speicher.appendChild(dhQ);
 
 			Element dhA = doc.createElement("DhAnsehen");
@@ -341,8 +340,8 @@ public class MemoryManagement {
 			dhW.appendChild(doc.createTextNode(dhWerbung));
 			speicher.appendChild(dhW);
 
-			Element dhSP = doc.createElement("DhStudentenplätze");
-			dhSP.appendChild(doc.createTextNode(dhStudentenplätze));
+			Element dhSP = doc.createElement("DhStudentenplaetze");
+			dhSP.appendChild(doc.createTextNode(dhStudentenplaetze));
 			speicher.appendChild(dhSP);
 
 			Element dhK = doc.createElement("DhKapital");

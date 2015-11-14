@@ -111,7 +111,7 @@ public class GUI extends Application {
 	private void setPage(Scene scene) {
 		window.setScene(scene);
 		if(scene != MAIN) {
-			initiateLeftMenu(engine.getSemesterAnzahlInAccount(), engine.getWocheInAccount());
+			initiateLeftMenu(""+engine.getSemester(), ""+engine.getWoche());
 			initiateTopMenu();
 		}
 	}
@@ -144,7 +144,7 @@ public class GUI extends Application {
 					Optional<String> result = dialog.showAndWait();
 					result.ifPresent(name -> {
 							if(engine.createPlayer(name)){
-								Alert alert = new Alert(AlertType.CONFIRMATION);
+								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Account erstellt");
 								alert.setHeaderText(null);
 								alert.setContentText("Dein Account wurde erfolgreich erstellt!");
@@ -178,27 +178,35 @@ public class GUI extends Application {
 					result.ifPresent(name -> {
 							if(engine.loadPlayer(name))
 								start.setDisable(false);
+							else {
+								Alert alert = new Alert(AlertType.ERROR);
+								alert.setTitle("Account defekt");
+								alert.setHeaderText(null);
+								alert.setContentText("Der Account konnte leider nicht geladen werden.\nEs scheint die Daten sind verloren...");
+								alert.initOwner(window);
+								alert.showAndWait();
+							}
 						});
 				});
-		Button staff_more = (Button) MONEY.lookup("#button_staff_getMore");
+		Button staff_more = (Button) STAFF.lookup("#button_staff_getMore");
 		if(staff_more != null)
 			staff_more.setOnMouseClicked(e -> {
-					System.out.println("More Stuff");
+					System.out.println("More Stuff");//TODO
 				});
-		Button staff_less = (Button) MONEY.lookup("#button_staff_getLess");
+		Button staff_less = (Button) STAFF.lookup("#button_staff_getLess");
 		if(staff_less != null)
 			staff_less.setOnMouseClicked(e -> {
-				System.out.println("Less Stuff");
+				System.out.println("Less Stuff");//TODO
 				});
-		Button money_more = (Button) MONEY.lookup("#button_staff_moneyMore");
+		Button money_more = (Button) STAFF.lookup("#button_staff_moneyMore");
 		if(money_more != null)
 			money_more.setOnMouseClicked(e -> {
-				System.out.println("More Money");
+				System.out.println("More Money");//TODO
 				});
-		Button money_less = (Button) MONEY.lookup("#button_staff_moneyLess");
+		Button money_less = (Button) STAFF.lookup("#button_staff_moneyLess");
 		if(money_less != null)
 			money_less.setOnMouseClicked(e -> {
-				System.out.println("Less Money");
+				System.out.println("Less Money");//TODO
 				});
 		Label revenue = (Label) MONEY.lookup("#label_money_revenue");
 		if(revenue != null)
@@ -233,43 +241,43 @@ public class GUI extends Application {
 	
 	private void updateLabels() {
 		if(engine.hasPlayer()){
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+engine.getDhQualitätInAccount(), 0.0);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+engine.getDhKapitalInAccount(), 0.2);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+engine.getDozentZufriedenheitInAccount(), 1.4);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), ""+engine.getDhAnsehenInAccount(), 0.5);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), ""+engine.getPartnerunternehmenAnzahlInAccount(), 0.7);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+engine.getStudentenZufriedenheitInAccount(), 0.8);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+engine.getQualitaet(), 0.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+engine.getKapital(), 0.2);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+engine.getDozentZufriedenheit(), 1.4);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), ""+engine.getAnsehen(), 0.5);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), ""+engine.getPartnerunternehmenAnzahl(), 0.7);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+engine.getStudentenZufriedenheit(), 0.8);
 
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), ""+engine.getDhQualitätInAccount(), 0.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), ""+engine.getDhAnsehenInAccount(), 0.5);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahlInAccount(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahlInAccount(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory1"), ""+engine.getDhInventarInAccount(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory2"), ""+engine.getDhInventarInAccount(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events1"), ""+engine.getDhVeranstaltungenInAccount(), 0.6);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events2"), ""+engine.getDhVeranstaltungenInAccount(), 0.6);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_food"), ""+engine.getDhEssenInAccount(), 0.9);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+engine.getDhKapitalInAccount(), 0.1);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_tv"), ""+engine.getDhWerbungInAccount(), 0.5);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality2"), ""+engine.getDhQualitätInAccount(), 1.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), ""+engine.getQualitaet(), 0.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), ""+engine.getAnsehen(), 0.5);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahl(), 0.3);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahl(), 0.3);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory1"), ""+engine.getInventar(), 0.3);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory2"), ""+engine.getInventar(), 0.3);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events1"), ""+engine.getVeranstaltungen(), 0.6);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events2"), ""+engine.getVeranstaltungen(), 0.6);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_food"), ""+engine.getEssen(), 0.9);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+engine.getKapital(), 0.1);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_tv"), ""+engine.getWerbung(), 0.5);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality2"), ""+engine.getQualitaet(), 1.0);
 			
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+engine.getDozentZufriedenheitInAccount(), 0.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+engine.getStudentenZufriedenheitInAccount(), 0.5);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahlInAccount(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory1"), ""+engine.getDhInventarInAccount(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory2"), ""+engine.getDhInventarInAccount(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events1"), ""+engine.getDhVeranstaltungenInAccount(), 0.6);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events2"), ""+engine.getDhVeranstaltungenInAccount(), 0.6);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food1"), ""+engine.getDhEssenInAccount(), 0.9);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food2"), ""+engine.getDhEssenInAccount(), 0.9);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+engine.getDozentenGehaltInAccount(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality1"), ""+engine.getDhQualitätInAccount(), 1.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality2"), ""+engine.getDhQualitätInAccount(), 1.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), ""+engine.getDhAnsehenInAccount(), 0.9);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), ""+engine.getDhAnsehenInAccount(), 0.9);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+engine.getDozentZufriedenheit(), 0.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+engine.getStudentenZufriedenheit(), 0.5);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahl(), 0.3);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory1"), ""+engine.getInventar(), 0.3);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory2"), ""+engine.getInventar(), 0.3);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events1"), ""+engine.getVeranstaltungen(), 0.6);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events2"), ""+engine.getVeranstaltungen(), 0.6);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food1"), ""+engine.getEssen(), 0.9);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food2"), ""+engine.getEssen(), 0.9);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+engine.getDozentenGehalt(), 0.3);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality1"), ""+engine.getQualitaet(), 1.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality2"), ""+engine.getQualitaet(), 1.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), ""+engine.getAnsehen(), 0.9);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), ""+engine.getAnsehen(), 0.9);
 			
-			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+engine.getDozentZufriedenheitInAccount(), 0.7);
-			PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), ""+engine.getDozentenGehaltInAccount(), 0.0);
+			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+engine.getDozentZufriedenheit(), 0.7);
+			PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), ""+engine.getDozentenGehalt(), 0.0);
 		}
 	}
 	
@@ -331,16 +339,16 @@ public class GUI extends Application {
 			Alert status = new Alert(AlertType.INFORMATION);
 			status.setTitle("Statusbericht");
 
-			String statStuds = "Der Leiter der dualen Hochschule hat dieses Semester eine Veränderungen der Studentenzahl auf " + engine.getStudentenAnzahlInAccount() + " Studenten erreicht. ";
-			String statQuality = "Der Leiter der dualen Hochschule bewirkte eine Veränderung ihrer Qualität auf " + engine.getDhQualitätInAccount() + " .";
-			String statCompanies = "Die Anzahl der Partnerunternehmen der dualen Hochschule hat sich dieses Semester auf" + engine.getPartnerunternehmenAnzahlInAccount() + " Stück verändert. ";
-			String statSatStud = "Er erreichte es außerdem die Zufriedenheit der Studenten auf einen Wert von " + engine.getStudentenZufriedenheitInAccount() + " zu bringen. ";
-			String statSatStaff = "Des Weiteren veränderte sich die Zufriedenheit der Dozenten auf einen Wert von " + engine.getDozentZufriedenheitInAccount() + " . ";
-			String statReputation = "Weiterhin hat sich dieses Semester eine Veränderung auf " + engine.getDhAnsehenInAccount() + " beim Ansehen der dualen Hochschule ergeben. ";
-			String statMoney = "Eine weitere große Veränderung ist der Umsatz der DH, welcher sich nach letztem Semester auf einen Wert von " + engine.getDhKapitalInAccount() + " festsetzte. ";
-			String statStaffMoney = "Was ebenfalls beachtet werden sollte, ist das aktuelle Gehalt der Dozenten, welches der DH mit " + engine.getDozentenGehaltInAccount() + " pro Dozent zu Buche schlägt. ";
+			String statStuds = "Der Leiter der dualen Hochschule hat dieses Semester eine Veränderungen der Studentenzahl auf " + engine.getStudentenAnzahl() + " Studenten erreicht. ";
+			String statQuality = "Der Leiter der dualen Hochschule bewirkte eine Veränderung ihrer Qualität auf " + engine.getQualitaet() + " .";
+			String statCompanies = "Die Anzahl der Partnerunternehmen der dualen Hochschule hat sich dieses Semester auf " + engine.getPartnerunternehmenAnzahl() + " Stück verändert. ";
+			String statSatStud = "Er erreichte es außerdem die Zufriedenheit der Studenten auf einen Wert von " + engine.getStudentenZufriedenheit() + " zu bringen. ";
+			String statSatStaff = "Des Weiteren veränderte sich die Zufriedenheit der Dozenten auf einen Wert von " + engine.getDozentZufriedenheit() + " . ";
+			String statReputation = "Weiterhin hat sich dieses Semester eine Veränderung auf " + engine.getAnsehen() + " beim Ansehen der dualen Hochschule ergeben. ";
+			String statMoney = "Eine weitere große Veränderung ist der Umsatz der DH, welcher sich nach letztem Semester auf einen Wert von " + engine.getKapital() + " festsetzte. ";
+			String statStaffMoney = "Was ebenfalls beachtet werden sollte, ist das aktuelle Gehalt der Dozenten, welches der DH mit " + engine.getDozentenGehalt() + " pro Dozent zu Buche schlägt. ";
 			String statEnd = "Insgesamt lässt sich sagen, dass es beachtlich ist, wie die duale Hochschule sich letztes Semester ingesamt entwickelt hat. ";
-			String statBegin = "Die duale Hochschule ist sehr vielen Menschen bekannt. Sie ist aktuell im " + engine.getSemesterAnzahlInAccount() + " und es ergaben sich so einige Veränderungen, die hier gleich erfahren werden. ";
+			String statBegin = "Die duale Hochschule ist sehr vielen Menschen bekannt. Sie ist aktuell im " + engine.getSemester() + " und es ergaben sich so einige Veränderungen, die hier gleich erfahren werden. ";
 			
 			String[] statFirstArr = new String[2];
 			String[] statFirstRand = new String[2];
