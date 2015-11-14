@@ -1,14 +1,25 @@
 package de.dhbw_mannheim.Better_DH;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 
 /**
@@ -118,5 +129,47 @@ public class PreDef {
 			}
 		}
 	}
-
+	
+	/**
+	 * Dialogfenster mit einem Slider
+	 */
+	public static Alert getSliderDialog(String title, String head, String content, double min, double max, double start, double scale) {
+		Alert alert1 = new Alert(AlertType.CONFIRMATION);
+		alert1.setTitle(title);
+		alert1.setHeaderText(head+"0.00");
+		alert1.setContentText(content);
+		Slider slider = new Slider(min, max, scale);
+		slider.setPrefWidth(300);
+		slider.setShowTickMarks(true);
+		slider.setShowTickLabels(true);
+		slider.setMajorTickUnit(5);
+		slider.setMinorTickCount(4);
+		slider.setValue(start);
+		slider.setBlockIncrement(scale);
+		slider.valueProperty().addListener(new ChangeListener<Number>() {
+		    @Override
+		    public void changed(ObservableValue<? extends Number> observable,
+		            Number oldValue, Number newValue) {
+				alert1.setHeaderText(head+Math.round(newValue.doubleValue()*(1/scale))/(1/scale));
+		    }
+		});
+		alert1.setGraphic(slider);
+		
+		return alert1;
+	}
+	
+	/**
+	 * Dialogfenster mit Rating
+	 */
+	public static ChoiceDialog<String> getRatingDialog(String title, String head, Node graphic, String def) {
+		String[] list = {"1", "2", "3", "4", "5"};
+		
+		ChoiceDialog<String> dialog = new ChoiceDialog<>(def, list);
+		dialog.setTitle(title);
+		dialog.setHeaderText(head);
+		dialog.setContentText("Sterne: ");
+		dialog.setGraphic(graphic);
+		
+		return dialog;
+	}
 }

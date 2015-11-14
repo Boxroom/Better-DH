@@ -191,22 +191,30 @@ public class GUI extends Application {
 		Button staff_more = (Button) STAFF.lookup("#button_staff_getMore");
 		if(staff_more != null)
 			staff_more.setOnMouseClicked(e -> {
-					System.out.println("More Stuff");//TODO
+					Alert alert1 = PreDef.getSliderDialog("Dozenten einstellen", "Einstellen: ", "Anzahl der Dozenten erhöhen: (max 20)", 0, 20, 0, 1);
+					alert1.initOwner(window);
+					alert1.showAndWait();//TODO
 				});
 		Button staff_less = (Button) STAFF.lookup("#button_staff_getLess");
 		if(staff_less != null)
 			staff_less.setOnMouseClicked(e -> {
-				System.out.println("Less Stuff");//TODO
+					Alert alert1 = PreDef.getSliderDialog("Dozenten feuern", "Entlassen: ", "Anzahl der Dozenten verringern: (max 20)", 0, 20, 0, 1);
+					alert1.initOwner(window);
+					alert1.showAndWait();//TODO
 				});
 		Button money_more = (Button) STAFF.lookup("#button_staff_moneyMore");
 		if(money_more != null)
 			money_more.setOnMouseClicked(e -> {
-				System.out.println("More Money");//TODO
+					Alert alert1 = PreDef.getSliderDialog("Gehälter erhöhen", "Aufschlag(€): ", "Lohn der Dozenten um den Betrag erhöhen: (max 500)", 0, 500, 0, 0.5);
+					alert1.initOwner(window);
+					alert1.showAndWait();//TODO
 				});
 		Button money_less = (Button) STAFF.lookup("#button_staff_moneyLess");
 		if(money_less != null)
 			money_less.setOnMouseClicked(e -> {
-				System.out.println("Less Money");//TODO
+					Alert alert1 = PreDef.getSliderDialog("Gehälter kürzen", "Senkung(€): ", "Lohn der Dozenten um den Betrag verringern: (max 500)", 0, 500, 0, 0.5);
+					alert1.initOwner(window);
+					alert1.showAndWait();//TODO
 				});
 		Label revenue = (Label) MONEY.lookup("#label_money_revenue");
 		if(revenue != null)
@@ -228,6 +236,53 @@ public class GUI extends Application {
 			changeSIte2.setOnMouseClicked(e -> {
 					setPage(BUY);
 				});
+		Button inventory = (Button) BUY.lookup("#button_buy_inventory");
+		if(inventory != null)
+			inventory.setOnMouseClicked(e -> {
+				ChoiceDialog<String> rating = PreDef.getRatingDialog("Inventar", "Qualität des Inventars", null, ""+((int)engine.getInventar()));
+				rating.initOwner(window);
+				Optional<String> result = rating.showAndWait();
+				result.ifPresent(choice -> {
+						engine.setInventar(Integer.parseInt(choice));
+					});
+				});
+		Button tv = (Button) BUY.lookup("#button_buy_tv");
+		if(tv != null)
+			tv.setOnMouseClicked(e -> {
+				ChoiceDialog<String> rating = PreDef.getRatingDialog("Werbung", "Qualität der Werbung", null, ""+((int)engine.getWerbung()));
+				rating.initOwner(window);
+				Optional<String> result = rating.showAndWait();
+				result.ifPresent(choice -> {
+						engine.setWerbung(Integer.parseInt(choice));
+					});
+				});
+		Button events = (Button) BUY.lookup("#button_buy_events");
+		if(events != null)
+			events.setOnMouseClicked(e -> {
+				ChoiceDialog<String> rating = PreDef.getRatingDialog("Veranstaltungen", "Qualität der Veranstaltungen", null, ""+((int)engine.getVeranstaltungen()));
+				rating.initOwner(window);
+				Optional<String> result = rating.showAndWait();
+				result.ifPresent(choice -> {
+						engine.setVeranstaltungen(Integer.parseInt(choice));
+					});
+				});
+		Button students = (Button) BUY2.lookup("#button_buy2_students");
+		if(students != null)
+			students.setOnMouseClicked(e -> {
+					Alert alert1 = PreDef.getSliderDialog("Gehälter kürzen", "Senkung(€): ", "Lohn der Dozenten um den Betrag verringern: (max 500)", 0, 500, 0, 0.5);
+					alert1.initOwner(window);
+					alert1.showAndWait();//TODO
+				});
+		Button food = (Button) BUY2.lookup("#button_buy2_food");
+		if(food != null)
+			food.setOnMouseClicked(e -> {
+					ChoiceDialog<String> rating = PreDef.getRatingDialog("Essen", "Qualität des Essens", null, ""+((int)engine.getEssen()));
+					rating.initOwner(window);
+					Optional<String> result = rating.showAndWait();
+					result.ifPresent(choice -> {
+							engine.setEssen(Integer.parseInt(choice));
+						});
+				});
 		PreDef.initButton((Button) MAIN.lookup("#button_main_start"));
 		PreDef.initButton((Button) MAIN.lookup("#button_main_create"));
 		PreDef.initButton((Button) MAIN.lookup("#button_main_load"));
@@ -237,6 +292,11 @@ public class GUI extends Application {
 		PreDef.initButton((Button) STAFF.lookup("#button_staff_moneyLess"));
 		PreDef.initButton((Button) BUY.lookup("#button_buy_changeSIte"));
 		PreDef.initButton((Button) BUY2.lookup("#button_buy2_changeSIte"));
+		PreDef.initButton((Button) BUY.lookup("#button_buy_inventory"));
+		PreDef.initButton((Button) BUY.lookup("#button_buy_tv"));
+		PreDef.initButton((Button) BUY.lookup("#button_buy_events"));
+		PreDef.initButton((Button) BUY2.lookup("#button_buy2_students"));
+		PreDef.initButton((Button) BUY2.lookup("#button_buy2_food"));
 	}
 	
 	private void updateLabels() {
