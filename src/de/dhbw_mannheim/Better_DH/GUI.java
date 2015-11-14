@@ -30,6 +30,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
@@ -195,6 +197,15 @@ public class GUI extends Application {
 		Button staff_more = (Button) STAFF.lookup("#button_staff_getMore");
 		if(staff_more != null)
 			staff_more.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media welcomeSound = new Media(new File("src/sounds/Willkommen.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(welcomeSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 					Alert alert1 = PreDef.getSliderDialog("Dozenten einstellen", "Einstellen: ", "Anzahl der Dozenten erhöhen: (max 20)", 0, 20, 0, 1);
 					alert1.initOwner(window);
 					alert1.showAndWait();//TODO
@@ -202,6 +213,15 @@ public class GUI extends Application {
 		Button staff_less = (Button) STAFF.lookup("#button_staff_getLess");
 		if(staff_less != null)
 			staff_less.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media byeByeSound = new Media(new File("src/sounds/ByeBye.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(byeByeSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 					Alert alert1 = PreDef.getSliderDialog("Dozenten feuern", "Entlassen: ", "Anzahl der Dozenten verringern: (max 20)", 0, 20, 0, 1);
 					alert1.initOwner(window);
 					alert1.showAndWait();//TODO
@@ -209,6 +229,15 @@ public class GUI extends Application {
 		Button money_more = (Button) STAFF.lookup("#button_staff_moneyMore");
 		if(money_more != null)
 			money_more.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media moreMoneySound = new Media(new File("src/sounds/Gehaltserhoehung.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(moreMoneySound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 					Alert alert1 = PreDef.getSliderDialog("Gehälter erhöhen", "Aufschlag(€): ", "Lohn der Dozenten um den Betrag erhöhen: (max 500)", 0, 500, 0, 0.5);
 					alert1.initOwner(window);
 					alert1.showAndWait();//TODO
@@ -216,6 +245,15 @@ public class GUI extends Application {
 		Button money_less = (Button) STAFF.lookup("#button_staff_moneyLess");
 		if(money_less != null)
 			money_less.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media lessMoneySound = new Media(new File("src/sounds/GeldWirdGekuerzt.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(lessMoneySound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 					Alert alert1 = PreDef.getSliderDialog("Gehälter kürzen", "Senkung(€): ", "Lohn der Dozenten um den Betrag verringern: (max 500)", 0, 500, 0, 0.5);
 					alert1.initOwner(window);
 					alert1.showAndWait();//TODO
@@ -243,6 +281,15 @@ public class GUI extends Application {
 		Button inventory = (Button) BUY.lookup("#button_buy_inventory");
 		if(inventory != null)
 			inventory.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media inventorySound = new Media(new File("src/sounds/NeuesInventar.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(inventorySound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 				ChoiceDialog<String> rating = PreDef.getRatingDialog("Inventar", "Qualität des Inventars", null, ""+((int)engine.getInventar()));
 				rating.initOwner(window);
 				Optional<String> result = rating.showAndWait();
@@ -253,6 +300,15 @@ public class GUI extends Application {
 		Button tv = (Button) BUY.lookup("#button_buy_tv");
 		if(tv != null)
 			tv.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media adSound = new Media(new File("src/sounds/HoertHoert.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(adSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 				ChoiceDialog<String> rating = PreDef.getRatingDialog("Werbung", "Qualität der Werbung", null, ""+((int)engine.getWerbung()));
 				rating.initOwner(window);
 				Optional<String> result = rating.showAndWait();
@@ -263,6 +319,15 @@ public class GUI extends Application {
 		Button events = (Button) BUY.lookup("#button_buy_events");
 		if(events != null)
 			events.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media eventsSound = new Media(new File("src/sounds/NeueEvents.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(eventsSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 				ChoiceDialog<String> rating = PreDef.getRatingDialog("Veranstaltungen", "Qualität der Veranstaltungen", null, ""+((int)engine.getVeranstaltungen()));
 				rating.initOwner(window);
 				Optional<String> result = rating.showAndWait();
@@ -273,6 +338,15 @@ public class GUI extends Application {
 		Button students = (Button) BUY2.lookup("#button_buy2_students");
 		if(students != null)
 			students.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media studentSound = new Media(new File("src/sounds/MehrPlaetze.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(studentSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 					Alert alert1 = PreDef.getSliderDialog("Gehälter kürzen", "Senkung(€): ", "Lohn der Dozenten um den Betrag verringern: (max 500)", 0, 500, 0, 0.5);
 					alert1.initOwner(window);
 					alert1.showAndWait();//TODO
@@ -280,6 +354,15 @@ public class GUI extends Application {
 		Button food = (Button) BUY2.lookup("#button_buy2_food");
 		if(food != null)
 			food.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media foodSound = new Media(new File("src/sounds/BesseresEssen.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 					ChoiceDialog<String> rating = PreDef.getRatingDialog("Essen", "Qualität des Essens", null, ""+((int)engine.getEssen()));
 					rating.initOwner(window);
 					Optional<String> result = rating.showAndWait();
