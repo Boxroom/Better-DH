@@ -9,9 +9,8 @@ package de.dhbw_mannheim.Better_DH;
  */
 public class Account {
 
-	private int dozentenAnzahl, studentenAnzahl, partnerunternehmenAnzahl, studentenplaetze;
-	private double dozentZufriedenheit, dozentenGehalt, studentenZufriedenheit, qualitaet, ansehen, inventar,
-			essen, veranstaltungen, werbung, kapital;
+	private int dozentenAnzahl, studentenAnzahl, partnerunternehmenAnzahl, studentenplaetze, inventar, essen, veranstaltungen, werbung;
+	private double dozentZufriedenheit, dozentenGehalt, studentenZufriedenheit, qualitaet, ansehen, kapital;
 
 	private String name;
 	private int semester, woche;
@@ -86,28 +85,28 @@ public class Account {
 	/**
 	 * @return the inventar
 	 */
-	public double getInventar() {
+	public int getInventar() {
 		return inventar;
 	}
 
 	/**
 	 * @return the essen
 	 */
-	public double getEssen() {
+	public int getEssen() {
 		return essen;
 	}
 
 	/**
 	 * @return the veranstaltungen
 	 */
-	public double getVeranstaltungen() {
+	public int getVeranstaltungen() {
 		return veranstaltungen;
 	}
 
 	/**
 	 * @return the werbung
 	 */
-	public double getWerbung() {
+	public int getWerbung() {
 		return werbung;
 	}
 
@@ -205,28 +204,28 @@ public class Account {
 	/**
 	 * @param inventar the inventar to set
 	 */
-	public void setInventar(double inventar) {
+	public void setInventar(int inventar) {
 		this.inventar = inventar;
 	}
 
 	/**
 	 * @param essen the essen to set
 	 */
-	public void setEssen(double essen) {
+	public void setEssen(int essen) {
 		this.essen = essen;
 	}
 
 	/**
 	 * @param veranstaltungen the veranstaltungen to set
 	 */
-	public void setVeranstaltungen(double veranstaltungen) {
+	public void setVeranstaltungen(int veranstaltungen) {
 		this.veranstaltungen = veranstaltungen;
 	}
 
 	/**
 	 * @param werbung the werbung to set
 	 */
-	public void setWerbung(double werbung) {
+	public void setWerbung(int werbung) {
 		this.werbung = werbung;
 	}
 

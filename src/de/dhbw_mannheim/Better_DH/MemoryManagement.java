@@ -224,10 +224,10 @@ public class MemoryManagement {
 					setVar.setPartnerunternehmenAnzahl(Integer.parseInt(partnerunternehmenAnzahl));
 					setVar.setQualitaet(Double.parseDouble(dhQualitaet));
 					setVar.setAnsehen(Double.parseDouble(dhAnsehen));
-					setVar.setInventar(Double.parseDouble(dhInventar));
-					setVar.setEssen(Double.parseDouble(dhEssen));
-					setVar.setVeranstaltungen(Double.parseDouble(dhVeranstaltungen));
-					setVar.setWerbung(Double.parseDouble(dhWerbung));
+					setVar.setInventar(Integer.parseInt(dhInventar));
+					setVar.setEssen(Integer.parseInt(dhEssen));
+					setVar.setVeranstaltungen(Integer.parseInt(dhVeranstaltungen));
+					setVar.setWerbung(Integer.parseInt(dhWerbung));
 					setVar.setStudentenplaetze(Integer.parseInt(dhStudentenplaetze));
 					setVar.setKapital(Double.parseDouble(dhKapital));
 					setVar.setSemester(Integer.parseInt(semesterAnzahl));
@@ -266,8 +266,8 @@ public class MemoryManagement {
 
 			partnerunternehmenAnzahl = "3",
 
-			dhQualitaet = "60.0", dhAnsehen = "100.0", dhInventar = "1.0", dhEssen = "1.0", dhVeranstaltungen = "1.0",
-					dhWerbung = "1.0", dhStudentenplaetze = "200", dhKapital = "5000.0", spielstandname = name,
+			dhQualitaet = "60.0", dhAnsehen = "100.0", dhInventar = "1", dhEssen = "1", dhVeranstaltungen = "1",
+					dhWerbung = "1", dhStudentenplaetze = "200", dhKapital = "5000.0", spielstandname = name,
 					semesterAnzahl = "1", woche = "0";
 
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

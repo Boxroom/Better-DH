@@ -216,7 +216,7 @@ public class Engine {
 	 * @return
 	 * @see de.dhbw_mannheim.Better_DH.Account#getInventar()
 	 */
-	public double getInventar() {
+	public int getInventar() {
 		return account.getInventar();
 	}
 
@@ -224,7 +224,7 @@ public class Engine {
 	 * @return
 	 * @see de.dhbw_mannheim.Better_DH.Account#getEssen()
 	 */
-	public double getEssen() {
+	public int getEssen() {
 		return account.getEssen();
 	}
 
@@ -232,7 +232,7 @@ public class Engine {
 	 * @return
 	 * @see de.dhbw_mannheim.Better_DH.Account#getVeranstaltungen()
 	 */
-	public double getVeranstaltungen() {
+	public int getVeranstaltungen() {
 		return account.getVeranstaltungen();
 	}
 
@@ -240,7 +240,7 @@ public class Engine {
 	 * @return
 	 * @see de.dhbw_mannheim.Better_DH.Account#getWerbung()
 	 */
-	public double getWerbung() {
+	public int getWerbung() {
 		return account.getWerbung();
 	}
 
@@ -352,7 +352,7 @@ public class Engine {
 	 * @param inventar
 	 * @see de.dhbw_mannheim.Better_DH.Account#setInventar(double)
 	 */
-	public void setInventar(double inventar) {
+	public void setInventar(int inventar) {
 		account.setInventar(inventar);
 	}
 
@@ -360,7 +360,7 @@ public class Engine {
 	 * @param essen
 	 * @see de.dhbw_mannheim.Better_DH.Account#setEssen(double)
 	 */
-	public void setEssen(double essen) {
+	public void setEssen(int essen) {
 		account.setEssen(essen);
 	}
 
@@ -368,7 +368,7 @@ public class Engine {
 	 * @param veranstaltungen
 	 * @see de.dhbw_mannheim.Better_DH.Account#setVeranstaltungen(double)
 	 */
-	public void setVeranstaltungen(double veranstaltungen) {
+	public void setVeranstaltungen(int veranstaltungen) {
 		account.setVeranstaltungen(veranstaltungen);
 	}
 
@@ -376,7 +376,7 @@ public class Engine {
 	 * @param werbung
 	 * @see de.dhbw_mannheim.Better_DH.Account#setWerbung(double)
 	 */
-	public void setWerbung(double werbung) {
+	public void setWerbung(int werbung) {
 		account.setWerbung(werbung);
 	}
 

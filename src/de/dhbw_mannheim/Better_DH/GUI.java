@@ -15,9 +15,6 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.prefs.Preferences;
 
-
-import com.sun.glass.ui.GestureSupport;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -30,6 +27,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -286,6 +285,7 @@ public class GUI extends Application {
 				Optional<String> result = rating.showAndWait();
 				result.ifPresent(choice -> {
 						engine.setInventar(Integer.parseInt(choice));
+						updateLabels();
 					});
 				try {
 				    //Die Klasse Media braucht eine URI
@@ -305,6 +305,7 @@ public class GUI extends Application {
 				Optional<String> result = rating.showAndWait();
 				result.ifPresent(choice -> {
 						engine.setWerbung(Integer.parseInt(choice));
+						updateLabels();
 					});
 				try {
 				    //Die Klasse Media braucht eine URI
@@ -324,6 +325,7 @@ public class GUI extends Application {
 				Optional<String> result = rating.showAndWait();
 				result.ifPresent(choice -> {
 						engine.setVeranstaltungen(Integer.parseInt(choice));
+						updateLabels();
 					});
 				try {
 				    //Die Klasse Media braucht eine URI
@@ -359,6 +361,7 @@ public class GUI extends Application {
 					Optional<String> result = rating.showAndWait();
 					result.ifPresent(choice -> {
 							engine.setEssen(Integer.parseInt(choice));
+							updateLabels();
 						});
 					try {
 					    //Die Klasse Media braucht eine URI
@@ -425,6 +428,49 @@ public class GUI extends Application {
 			
 			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+engine.getDozentZufriedenheit(), 0.7);
 			PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), ""+engine.getDozentenGehalt(), 0.0);
+
+			PreDef.initLabel((Label) BUY.lookup("#label_buy_inventory"), ""+engine.getInventar()+" €", 0.0);
+			PreDef.initLabel((Label) BUY.lookup("#label_buy_tv"), ""+engine.getWerbung()+" €", 0.0);
+			PreDef.initLabel((Label) BUY.lookup("#label_buy_events"), ""+engine.getVeranstaltungen()+" €", 0.0);
+			PreDef.initLabel((Label) BUY2.lookup("#label_buy2_students"), ""+engine.getStudentenplaetze(), 0.0);
+			PreDef.initLabel((Label) BUY2.lookup("#label_buy2_food"), ""+engine.getEssen()+" €", 0.0);
+			
+			HBox img_inv = (HBox) BUY.lookup("#image_buy_inventory");
+			switch(engine.getInventar()){
+			case 1: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/Tacker.png')"); break;
+			case 2: case 3: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/computer-313456_1280.png')"); break;
+			case 4: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/monitor-32743_1280.png')"); break;
+			case 5: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/laptop-33521_1280.png')"); break;
+			}
+			
+			HBox img_tv = (HBox) BUY.lookup("#image_buy_tv");
+			switch(engine.getWerbung()){
+			case 1: case 2: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Newsletter.png')"); break;
+			case 3: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Bild6.png')"); break;
+			case 4: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Megaphon.png')"); break;
+			case 5: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Bild5.png')"); break;
+			}
+			
+			HBox img_students = (HBox) BUY2.lookup("#image_buy2_students");
+			if(engine.getStudentenplaetze() < 500){
+				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Huette2.png')");
+			} else if(engine.getStudentenplaetze() < 1000){
+				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild4.png')");
+			} else if(engine.getStudentenplaetze() < 2000){
+				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild3.png')");
+			} else if(engine.getStudentenplaetze() < 4000){
+				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild2.png')");
+			} else {
+				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild1.png')");
+			}
+			
+			HBox img_food = (HBox) BUY2.lookup("#image_buy2_food");
+			switch(engine.getEssen()){
+			case 1: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/Apfel.png')"); break;
+			case 2: case 3: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/Spaghetti.png')"); break;
+			case 4: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/NuggetsPommes.png')"); break;
+			case 5: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/Festmahl.png')"); break;
+			}
 		}
 	}
 	

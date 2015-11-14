@@ -1,6 +1,6 @@
 .button-default{
 	-fx-background-color: #5D6971; 
-	-fx-font: bold 18px "BankGothic Lt Bt";
+	-fx-font: bold 18px "Arial";
 	-fx-border-width: 0;
 	-fx-background-radius: 10px;
     -fx-text-fill: white;
@@ -13,7 +13,7 @@
 }
 .button-menu{
 	-fx-background-color: #FFFFFF; 
-	-fx-font: bold 18px "BankGothic Lt Bt";
+	-fx-font: bold 18px "Arial";
 	-fx-border-width: 0;
 	-fx-background-radius: 10px;
     -fx-text-fill: black;
@@ -30,7 +30,7 @@
 }
 .label_h3, .label_h1, .label_view{
 	-fx-background-color: transparent;
-	-fx-font: bold 12px "BankGothic Lt Bt";
+	-fx-font: bold 12px "Arial";
     -fx-border-width: 0;
     -fx-text-fill: white;
 }
@@ -50,9 +50,6 @@
 .green-bar  { -fx-accent: green;  }
 .orange-bar    { -fx-accent: orange;    }
 .red-bar    { -fx-accent: red;    }
-.tableColumn {
-	-fx-width: 20%;
-}
 .img {
 	-fx-background-size: contain;
 	-fx-background-repeat: no-repeat;
