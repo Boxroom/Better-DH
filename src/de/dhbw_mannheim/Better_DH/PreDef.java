@@ -119,9 +119,9 @@ public class PreDef {
 				bar.setProgress(progress);
 				bar.setTooltip(new Tooltip(""+insert));
 		        
-			    if(progress < 0.5) {
+			    if(progress < 0.35) {
 			        bar.getStyleClass().add("red-bar");
-				} else if(progress < 0.75) {
+				} else if(progress < 0.65) {
 					bar.getStyleClass().add("orange-bar");
 				} else {
 					bar.getStyleClass().add("green-bar");

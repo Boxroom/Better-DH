@@ -391,49 +391,49 @@ public class GUI extends Application {
 	
 	private void updateLabels() {
 		if(engine.hasPlayer()){
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+engine.getQualitaet(), 0.0);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+engine.getKapital(), 0.2);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+engine.getDozentZufriedenheit(), 1.4);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), ""+engine.getAnsehen(), 0.5);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), ""+engine.getPartnerunternehmenAnzahl(), 0.7);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+engine.getStudentenZufriedenheit(), 0.8);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", 0.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), ""+Math.round(engine.getPartnerunternehmenAnzahl()), 0.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100);
 
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), ""+engine.getQualitaet(), 0.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), ""+engine.getAnsehen(), 0.5);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahl(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahl(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory1"), ""+engine.getInventar(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory2"), ""+engine.getInventar(), 0.3);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events1"), ""+engine.getVeranstaltungen(), 0.6);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events2"), ""+engine.getVeranstaltungen(), 0.6);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_food"), ""+engine.getEssen(), 0.9);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+engine.getKapital(), 0.1);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_tv"), ""+engine.getWerbung(), 0.5);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality2"), ""+engine.getQualitaet(), 1.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahl(), 0.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahl(), 0.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory1"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory2"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events1"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events2"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_food"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", 0.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_tv"), ""+engine.getWerbung()+" Sterne", (engine.getWerbung())/5.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
 			
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+engine.getDozentZufriedenheit(), 0.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+engine.getStudentenZufriedenheit(), 0.5);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahl(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory1"), ""+engine.getInventar(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory2"), ""+engine.getInventar(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events1"), ""+engine.getVeranstaltungen(), 0.6);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events2"), ""+engine.getVeranstaltungen(), 0.6);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food1"), ""+engine.getEssen(), 0.9);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food2"), ""+engine.getEssen(), 0.9);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+engine.getDozentenGehalt(), 0.3);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality1"), ""+engine.getQualitaet(), 1.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality2"), ""+engine.getQualitaet(), 1.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), ""+engine.getAnsehen(), 0.9);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), ""+engine.getAnsehen(), 0.9);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahl(), 0.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory1"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory2"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events1"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events2"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food1"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food2"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", 0.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality1"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
 			
-			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+engine.getDozentZufriedenheit(), 0.7);
-			PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), ""+engine.getDozentenGehalt(), 0.0);
+			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100);
+			PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", 0.0);
 
-			PreDef.initLabel((Label) BUY.lookup("#label_buy_inventory"), ""+engine.getInventar()+" €", 0.0);
-			PreDef.initLabel((Label) BUY.lookup("#label_buy_tv"), ""+engine.getWerbung()+" €", 0.0);
-			PreDef.initLabel((Label) BUY.lookup("#label_buy_events"), ""+engine.getVeranstaltungen()+" €", 0.0);
+			PreDef.initLabel((Label) BUY.lookup("#label_buy_inventory"), ""+engine.getInventar()+" Sterne", 0.0);
+			PreDef.initLabel((Label) BUY.lookup("#label_buy_tv"), ""+engine.getWerbung()+" Sterne", 0.0);
+			PreDef.initLabel((Label) BUY.lookup("#label_buy_events"), ""+engine.getVeranstaltungen()+" Sterne", 0.0);
 			PreDef.initLabel((Label) BUY2.lookup("#label_buy2_students"), ""+engine.getStudentenplaetze(), 0.0);
-			PreDef.initLabel((Label) BUY2.lookup("#label_buy2_food"), ""+engine.getEssen()+" €", 0.0);
+			PreDef.initLabel((Label) BUY2.lookup("#label_buy2_food"), ""+engine.getEssen()+" Sterne", 0.0);
 			
 			HBox img_inv = (HBox) BUY.lookup("#image_buy_inventory");
 			switch(engine.getInventar()){
