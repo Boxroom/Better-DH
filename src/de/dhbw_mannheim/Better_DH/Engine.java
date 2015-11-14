@@ -44,14 +44,14 @@ public class Engine {
 
 	public void simulate() {
 		// TODO
-		double averageMeal = 3 / mealMAX;
-		double averageStock = 4000 / stockMAX;
-		double averageEvents = 2 / eventsMAX;
-		double averageLecturer = 50 / amountLecturerMAX;
-		double averageCapital = 100000 / capitalMAX;
-		double averageAd = 6000 / adMAX;
-		double averageSalaryLecturer = 10000 / salaryLecturerMAX;
-		double spots = 10000;
+		double averageMeal = account.getEssen() / mealMAX;
+		double averageStock = account.getInventar() / stockMAX;
+		double averageEvents = account.getVeranstaltungen() / eventsMAX;
+		double averageLecturer = account.getDozentenAnzahl() / amountLecturerMAX;
+		double averageCapital = account.getKapital() / capitalMAX;
+		double averageAd = account.getWerbung() / adMAX;
+		double averageSalaryLecturer = account.getDozentenGehalt() / salaryLecturerMAX;
+		double spots = account.getStudentenplaetze();
 
 		double qualityDH = qualityDH(averageStock, averageEvents, averageMeal, averageLecturer, averageCapital);
 		double reputationDH = reputationDH(averageStock, averageEvents, averageAd, averageLecturer, qualityDH);
