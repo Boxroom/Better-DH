@@ -9,10 +9,14 @@
  */
 package de.dhbw_mannheim.Better_DH;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
 import java.util.prefs.Preferences;
+
+
+import com.sun.glass.ui.GestureSupport;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -26,13 +30,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
  * Die GUI dient als Einstieg in die Anwendung, da von hier die onClick Events optimal verarbeitet werden können.
  * Das Fenster wird initialisiert und mit Inhalt aus anderen Klassen die von View erben gefüllt.
  * 
- * @author Florian, Sebastian
+ * @author Florian, Sebastian, Louisa
  */
 public class GUI extends Application {
 
@@ -191,21 +197,57 @@ public class GUI extends Application {
 		Button staff_more = (Button) STAFF.lookup("#button_staff_getMore");
 		if(staff_more != null)
 			staff_more.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media welcomeSound = new Media(new File("src/sounds/Willkommen.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(welcomeSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 					System.out.println("More Stuff");//TODO
 				});
 		Button staff_less = (Button) STAFF.lookup("#button_staff_getLess");
 		if(staff_less != null)
 			staff_less.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media byeByeSound = new Media(new File("src/sounds/ByeBye.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(byeByeSound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 				System.out.println("Less Stuff");//TODO
 				});
 		Button money_more = (Button) STAFF.lookup("#button_staff_moneyMore");
 		if(money_more != null)
 			money_more.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media moreMoneySound = new Media(new File("src/sounds/Gehaltserhoehung.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(moreMoneySound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 				System.out.println("More Money");//TODO
 				});
 		Button money_less = (Button) STAFF.lookup("#button_staff_moneyLess");
 		if(money_less != null)
 			money_less.setOnMouseClicked(e -> {
+				try {
+				    //Die Klasse Media braucht eine URI
+			        Media lessMoneySound = new Media(new File("src/sounds/GeldWirdGekuerzt.mp3").toURI().toString());
+			        MediaPlayer mediaPlayer = new MediaPlayer(lessMoneySound);
+			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+			        mediaPlayer.play();
+			      } catch (Exception d) {
+			        System.err.println(d.getMessage());
+			      }
 				System.out.println("Less Money");//TODO
 				});
 		Label revenue = (Label) MONEY.lookup("#label_money_revenue");
