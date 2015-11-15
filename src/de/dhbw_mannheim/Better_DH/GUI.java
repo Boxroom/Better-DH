@@ -626,27 +626,27 @@ public class GUI extends Application {
 			default:
 			case 0:
 				alert1.setHeaderText("Streik");
-				alert1.setContentText("");
+				alert1.setContentText("Sowohl die Studenten als auch die Dozenten streiken! Das wird teuer werden.");
 				engine.addKosten(20000*(1+(incident.nextInt()%10)/10));
 				break;
 			case 1:
 				alert1.setHeaderText("Heizungsausfall");
-				alert1.setContentText("");
+				alert1.setContentText("Die bereits 20 Jahre alte Heizung hat den Geist aufgegeben. Eine neue Heizung wird teuer werden.");
 				engine.addKosten(25000*(1+(incident.nextInt()%10)/10));
 				break;
 			case 2:
 				alert1.setHeaderText("Rohrbruch");
-				alert1.setContentText("");
+				alert1.setContentText("Ein Teil der alten Rohre, die an Ihrer dualen Hochschule verlegt sind, sind mittlerweile undicht und es gab einen Rohrbruch. Diese Reperaturen werden sehr teuer werden!");
 				engine.addKosten(50000*(1+(incident.nextInt()%10)/10));
 				break;
 			case 3:
 				alert1.setHeaderText("Serverausfall");
-				alert1.setContentText("");
+				alert1.setContentText("Ein Praktikant hat seinen USB-MP3-Player an einen Server angeschlossen um Musik während der Arbeit zu hören. Auf dem MP3-Player war ein Virus, der die Hälfte ihrer Server zerstört hat! Die Anschaffung neuer Server wird teuer.");
 				engine.addKosten(10000*(1+(incident.nextInt()%10)/10));
 				break;
 			case 4:
 				alert1.setHeaderText("Amoklauf");
-				alert1.setContentText("");
+				alert1.setContentText("Einer Ihrer Studenten hatte das Burnout Syndrom und war mental so kaputt, dass er sich eine Waffe besorgt hat und in Ihrer dualen Hochschule wild um sich geschossen hat. Zum Glück wurde niemand ernsthaft verletzt, jedoch ist viel Inventar zu Bruch gegangen.");
 				engine.addKosten(250000*(1+(incident.nextInt()%10)/10));
 				break;
 			}
