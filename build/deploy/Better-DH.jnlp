@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Better-DH.jnlp">
+  <information>
+    <title>Better-DH</title>
+    <vendor>Better-DH</vendor>
+    <description>Better-DH</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Better-DH.jar" size="6291186" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="de.dhbw_mannheim.Better_DH.GUI"  name="Better-DH" />
+  <update check="background"/>
+</jnlp>

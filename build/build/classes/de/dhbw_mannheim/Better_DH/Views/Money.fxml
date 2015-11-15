@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * @author Sebastian
+ *
+-->
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../MainWindow.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="8.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="14.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label id="label_money_sales" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0" styleClass="label_view" text="Derzeitiges Kapital:" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" StackPane.alignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <graphic>
+            <Label id="label_money_capital" alignment="CENTER" contentDisplay="TEXT_ONLY" text="&amp;VAR&amp;" textFill="WHITE">
+               <graphic>
+                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="110.0">
+                     <effect>
+                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
+                           <input>
+                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
+                                 <bumpInput>
+                                    <Shadow height="26.92" radius="10.74" width="18.04" />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant azimuth="11.51" elevation="132.9" />
+                                 </light>
+                              </Lighting>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                  </ProgressBar>
+               </graphic>
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Label>
+         </graphic>
+      </Label>
+      <Label id="label_money_revenue" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0" styleClass="button-default" text="Derzeitige monatliche Einnahmen:" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <graphic>
+            <Label alignment="CENTER" contentDisplay="TEXT_ONLY" text="&amp;VAR&amp;" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="110.0">
+                     <effect>
+                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
+                           <input>
+                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
+                                 <bumpInput>
+                                    <Shadow height="26.92" radius="10.74" width="18.04" />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant azimuth="11.51" elevation="132.9" />
+                                 </light>
+                              </Lighting>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                  </ProgressBar>
+               </graphic>
+            </Label>
+         </graphic>
+      </Label>
+      <Label id="label_money_expenditure" alignment="CENTER" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0" styleClass="button-default" text="Derzeitige monatliche Ausgaben:" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <graphic>
+            <Label alignment="CENTER" contentDisplay="TEXT_ONLY" text="&amp;VAR&amp;" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="110.0">
+                     <effect>
+                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
+                           <input>
+                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
+                                 <bumpInput>
+                                    <Shadow height="26.92" radius="10.74" width="18.04" />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant azimuth="11.51" elevation="132.9" />
+                                 </light>
+                              </Lighting>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                  </ProgressBar>
+               </graphic>
+            </Label>
+         </graphic>
+      </Label>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" style="-fx-background-image: url('./Images/Grafiken/Bilanz/Gewinn2.png');" styleClass="img" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" style="-fx-background-image: url('./Images/Grafiken/Bilanz/money-40603_1280.png');" styleClass="img" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" style="-fx-background-image: url('./Images/Grafiken/Bilanz/Verlust2.png');" styleClass="img" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+      
+   </children>
+</GridPane>
