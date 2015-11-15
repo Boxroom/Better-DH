@@ -36,7 +36,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import sun.applet.Main;
 
 /**
  * Die GUI dient als Einstieg in die Anwendung, da von hier die onClick Events optimal verarbeitet werden können.
@@ -169,8 +171,19 @@ public class GUI extends Application {
 								alert.setContentText("Dein Account wurde erfolgreich erstellt!");
 								alert.initOwner(window);
 								alert.showAndWait();
-								if(engine.loadPlayer(name))
+								if(engine.loadPlayer(name)){
 									start.setDisable(false);
+
+							        Stage stage = new Stage();
+							        stage.setTitle("Better DH - Tutorial");
+							        stage.getIcons().add(new Image("Images/BetterDH_Icon.png"));
+							        WebView web = new WebView();  
+							        String url = Main.class.getResource("/Images/Tutorial.htm").toExternalForm(); 
+							        web.getEngine().load(url);
+							        Scene scene = new Scene(web);
+							        stage.setScene(scene);
+							        stage.show();
+								}
 							}else{
 								Alert alert = new Alert(AlertType.ERROR);
 								alert.setTitle("Account exestiert");

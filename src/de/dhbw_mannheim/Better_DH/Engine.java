@@ -589,6 +589,14 @@ public class Engine {
 			account.setInventar(5);
 			return false;
 		}
+		if(getInventar() < inventar){
+			switch(inventar){
+			case 2: addKosten(800);
+			case 3: addKosten(2500);
+			case 4: addKosten(7000);
+			case 5: addKosten(14000);
+			}
+		}
 		account.setInventar(inventar);
 		return true;
 	}
@@ -604,6 +612,14 @@ public class Engine {
 		} else if(essen > 5){
 			account.setEssen(5);
 			return false;
+		}
+		if(getEssen() < essen){
+			switch(essen){
+			case 2: addKosten(3500);
+			case 3: addKosten(3500);
+			case 4: addKosten(3500);
+			case 5: addKosten(3500);
+			}
 		}
 		account.setEssen(essen);
 		return true;
@@ -621,6 +637,14 @@ public class Engine {
 			account.setVeranstaltungen(5);
 			return false;
 		}
+		if(getVeranstaltungen() < veranstaltungen){
+			switch(veranstaltungen){
+			case 2: addKosten(100);
+			case 3: addKosten(100);
+			case 4: addKosten(20000);
+			case 5: addKosten(50000);
+			}
+		}
 		account.setVeranstaltungen(veranstaltungen);
 		return true;
 	}
@@ -636,6 +660,14 @@ public class Engine {
 		} else if(werbung > 5){
 			account.setWerbung(5);
 			return false;
+		}
+		if(getWerbung() < werbung){
+			switch(werbung){
+			case 2: addKosten(500);
+			case 3: addKosten(2000);
+			case 4: addKosten(5000);
+			case 5: addKosten(10000);
+			}
 		}
 		account.setWerbung(werbung);
 		return true;
