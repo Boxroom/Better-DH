@@ -148,6 +148,58 @@ public class PreDef {
 			}
 		}
 	}
+
+	/**
+	 * Alle Labels auf den Fenstern werden nach dem selben Muster initialisiert.
+	 */
+	public static void initLabel(Label label, String insert, double progress, String tooltip) {
+		if(label != null) {
+			DoubleProperty fontSize = new SimpleDoubleProperty(30);
+	        fontSize.bind(label.widthProperty().add(label.heightProperty()).divide(17));
+	        label.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"));
+			if(label.getGraphic() != null && label.getGraphic() instanceof Label){
+				Label label2 = (Label) label.getGraphic();
+				label2.setText(insert);
+				
+		        label2.styleProperty().bind(label.styleProperty());
+		        
+				if(label2.getGraphic() != null && label2.getGraphic() instanceof ProgressBar) {
+					ProgressBar bar = (ProgressBar) label2.getGraphic();
+					bar.setProgress(progress);
+					bar.setTooltip(new Tooltip(""+tooltip));
+					label2.prefWidthProperty().bind(label.widthProperty());
+					bar.prefWidthProperty().bind(label2.widthProperty());
+					bar.setPadding(new Insets(0,15,0,15));
+					bar.getStyleClass().remove("red-bar");
+					bar.getStyleClass().remove("orange-bar");
+					bar.getStyleClass().remove("green-bar");
+			        
+			        if(progress < 0.5) {
+						bar.getStyleClass().add("red-bar");
+					} else if(progress < 0.75) {
+						bar.getStyleClass().add("orange-bar");
+					} else {
+						bar.getStyleClass().add("green-bar");
+					}
+				}
+			} else if(label.getGraphic() != null && label.getGraphic() instanceof ProgressBar){
+				ProgressBar bar = (ProgressBar) label.getGraphic();
+				bar.setProgress(progress);
+				bar.setTooltip(new Tooltip(""+tooltip));
+				bar.getStyleClass().remove("red-bar");
+				bar.getStyleClass().remove("orange-bar");
+				bar.getStyleClass().remove("green-bar");
+		        
+			    if(progress <= 0.35) {
+			        bar.getStyleClass().add("red-bar");
+				} else if(progress <= 0.65) {
+					bar.getStyleClass().add("orange-bar");
+				} else {
+					bar.getStyleClass().add("green-bar");
+				}
+			}
+		}
+	}
 	
 	/**
 	 * Dialogfenster mit einem Slider

@@ -418,41 +418,41 @@ public class GUI extends Application {
 	private void updateLabels() {
 		if(engine.hasPlayer()){
 			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", engine.getKapital()/500000.0);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", engine.getKapital()/(engine.capitalMAX/10));
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0, ""+Math.round(engine.getDozentenAnzahl())+" Dozenten");
 			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
 			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), ""+Math.round(engine.getPartnerunternehmenAnzahl()), engine.getPartnerunternehmenAnzahl()/1000.0);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100.0, ""+Math.round(engine.getStudentenAnzahl())+" Studenten");
 
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahl(), engine.getDozentenAnzahl()/350.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahl(), engine.getDozentenAnzahl()/350.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahl()+" Dozenten", engine.getDozentenAnzahl()/(engine.amountLecturerMAX*3/4));
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahl()+" Dozenten", engine.getDozentenAnzahl()/(engine.amountLecturerMAX*3/4));
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory1"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory2"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events1"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events2"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_food"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", engine.getKapital()*1/500000.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", engine.getKapital()/(engine.capitalMAX/10));
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_tv"), ""+engine.getWerbung()+" Sterne", (engine.getWerbung())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
 			
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahl(), engine.getDozentenAnzahl()/350.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0, ""+Math.round(engine.getDozentenAnzahl())+" Dozenten");
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100.0, ""+Math.round(engine.getStudentenAnzahl())+" Studenten");
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahl()+" Dozenten", engine.getDozentenAnzahl()/(engine.amountLecturerMAX*3/4));
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory1"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory2"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events1"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events2"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food1"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food2"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", engine.getDozentenGehalt()/8000.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", engine.getDozentenGehalt()/(engine.salaryLecturerMAX*3/4));
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality1"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
 			
-			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0);
+			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0, ""+Math.round(engine.getDozentenAnzahl())+" Dozenten");
 			PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", 0.0);
 			
 			PreDef.initLabel((Label) MONEY.lookup("#label_money_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", 0.0);
@@ -561,15 +561,15 @@ public class GUI extends Application {
 			status.setTitle(end?"Abschlussbericht":"Statusbericht");
 
 			String statStuds = "Der Leiter der dualen Hochschule hat dieses Semester eine Veränderungen der Studentenzahl auf " + engine.getStudentenAnzahl() + " Studenten erreicht. ";
-			String statQuality = "Der Leiter der dualen Hochschule bewirkte eine Veränderung ihrer Qualität auf " + engine.getQualitaet() + " .";
+			String statQuality = "Der Leiter der dualen Hochschule bewirkte eine Veränderung ihrer Qualität auf " + (int)engine.getQualitaet() + "%. ";
 			String statCompanies = "Die Anzahl der Partnerunternehmen der dualen Hochschule hat sich dieses Semester auf " + engine.getPartnerunternehmenAnzahl() + " Stück verändert. ";
-			String statSatStud = "Er erreichte es außerdem die Zufriedenheit der Studenten auf einen Wert von " + engine.getStudentenZufriedenheit() + " zu bringen. ";
-			String statSatStaff = "Des Weiteren veränderte sich die Zufriedenheit der Dozenten auf einen Wert von " + engine.getDozentZufriedenheit() + " . ";
-			String statReputation = "Weiterhin hat sich dieses Semester eine Veränderung auf " + engine.getAnsehen() + " beim Ansehen der dualen Hochschule ergeben. ";
-			String statMoney = "Eine weitere große Veränderung ist der Umsatz der DH, welcher sich nach letztem Semester auf einen Wert von " + engine.getKapital() + " festsetzte. ";
-			String statStaffMoney = "Was ebenfalls beachtet werden sollte, ist das aktuelle Gehalt der Dozenten, welches der DH mit " + engine.getDozentenGehalt() + " pro Dozent zu Buche schlägt. ";
+			String statSatStud = "Er erreichte es außerdem die Zufriedenheit der Studenten auf einen Wert von " + (int)engine.getStudentenZufriedenheit() + "% zu bringen. ";
+			String statSatStaff = "Des Weiteren veränderte sich die Zufriedenheit der Dozenten auf einen Wert von " + (int)engine.getDozentZufriedenheit() + "%. ";
+			String statReputation = "Weiterhin hat sich dieses Semester eine Veränderung auf " + (int)engine.getAnsehen() + "% beim Ansehen der dualen Hochschule ergeben. ";
+			String statMoney = "Eine weitere große Veränderung ist der Umsatz der DH, welcher sich nach letztem Semester auf einen Wert von " + (int)engine.getKapital() + "€ festsetzte. ";
+			String statStaffMoney = "Was ebenfalls beachtet werden sollte, ist das aktuelle Gehalt der Dozenten, welches der DH mit " + (int)engine.getDozentenGehalt() + "€ pro Dozent zu Buche schlägt. ";
 			String statEnd = "Insgesamt lässt sich sagen, dass es beachtlich ist, wie die duale Hochschule sich letztes Semester ingesamt entwickelt hat. ";
-			String statBegin = "Die duale Hochschule ist sehr vielen Menschen bekannt. Sie ist aktuell im " + engine.getSemester() + " und es ergaben sich so einige Veränderungen, die hier gleich erfahren werden. ";
+			String statBegin = "Die duale Hochschule ist sehr vielen Menschen bekannt. Sie ist aktuell im " + engine.getSemester() + " Semester und es ergaben sich so einige Veränderungen, die hier gleich erfahren werden. ";
 			
 			String[] statFirstArr = new String[2];
 			String[] statFirstRand = new String[2];
@@ -597,7 +597,7 @@ public class GUI extends Application {
 			int rand2Int = rand2.nextInt();
 			int z2 = rand2Int % 6;
 			z2 = Math.abs(z2);
-			for (int i = 3; i>=0 ; --i){
+			for (int i = 5; i>=0 ; --i){
 				statSecRand[z2] = statSecArr[i];
 				z2++;
 				z2 = z2 % 6;
