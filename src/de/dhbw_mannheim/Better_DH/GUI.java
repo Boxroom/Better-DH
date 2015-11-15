@@ -17,6 +17,8 @@ import java.util.Random;
 import java.util.prefs.Preferences;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -26,9 +28,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -414,6 +418,29 @@ public class GUI extends Application {
 		PreDef.initButton((Button) BUY2.lookup("#button_buy2_students"), true);
 		PreDef.initButton((Button) BUY2.lookup("#button_buy2_food"), true);
 	}
+
+	private ObservableList<Data> getDataEinnahmen() {
+
+		ObservableList<Data> data = FXCollections.observableArrayList();
+		data.addAll(new Data("Spenden", ""+engine.getEinnahmenSpenden()));
+		data.addAll(new Data("Zuschüsse vom Land BW", ""+engine.getEinnahmenLand()));
+		data.addAll(new Data("Studiengebühren", ""+engine.getEinnahmenStudiengebuehren()));
+		data.addAll(new Data("Partnerfirmen", ""+engine.getEinnahmenPartnerfirmen()));
+
+		return data;
+	}
+
+	private ObservableList<Data> getDataAusgaben() {
+
+		ObservableList<Data> data = FXCollections.observableArrayList();
+		data.addAll(new Data("Dozentengehälter", ""+engine.getAusgabenDozenten()));
+		data.addAll(new Data("Inventarinstanthaltung", ""+engine.getAusgabenInventar()));
+		data.addAll(new Data("Essensausgaben", ""+engine.getAusgabenEssen()));
+		data.addAll(new Data("Werbemaßnahmen", ""+engine.getAusgabenWerbung()));
+		data.addAll(new Data("Gebäude", ""+engine.getAusgabenPlaetze()));
+
+		return data;
+	}
 	
 	private void updateLabels() {
 		if(engine.hasPlayer()){
@@ -458,6 +485,18 @@ public class GUI extends Application {
 			PreDef.initLabel((Label) MONEY.lookup("#label_money_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", 0.0);
 			PreDef.initLabel((Label) MONEY.lookup("#label_money_revenue"), ""+Math.round(engine.getEinnahmen()*100.0)/100.0+" €", 0.0);
 			PreDef.initLabel((Label) MONEY.lookup("#label_money_expenditure"), ""+Math.round(engine.getAusgaben()*100.0)/100.0+" €", 0.0);
+			
+			GridPane money1Main_IN = (GridPane) MONEY_IN.lookup("#gridpane_money1_main");
+			TableView<Data> table_IN = new TableView<Data>();
+			table_IN.getColumns().addAll(Data.getColumn(table_IN, "Einnahmen"));
+			table_IN.setItems(getDataEinnahmen());
+			money1Main_IN.add(table_IN, 0, 0);
+
+			GridPane money1Main_OUT = (GridPane) MONEY_OUT.lookup("#gridpane_money1_main");
+			TableView<Data> table_OUT = new TableView<Data>();
+			table_OUT.getColumns().addAll(Data.getColumn(table_OUT, "Ausgaben"));
+			table_OUT.setItems(getDataAusgaben());
+			money1Main_OUT.add(table_OUT, 0, 0);
 
 			PreDef.initLabel((Label) BUY.lookup("#label_buy_inventory"), ""+engine.getInventar()+" Sterne", 0.0);
 			PreDef.initLabel((Label) BUY.lookup("#label_buy_tv"), ""+engine.getWerbung()+" Sterne", 0.0);

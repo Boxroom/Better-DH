@@ -71,7 +71,6 @@ public class Engine {
 			setPartnerunternehmenAnzahl(amountCompanies);
 			setStudentenAnzahl(amountStudents);
 			
-			double kapital = getKapital();
 			double ausgaben = 0;
 			double einnahmen = 0;
 
@@ -81,7 +80,7 @@ public class Engine {
 				ausgaben += getAusgaben();
 			}
 			
-			setKapital(kapital+einnahmen-ausgaben);
+			setKapital(getKapital()+einnahmen-ausgaben);
 			
 			if(!addWoche()){
 				//Spiel vorbei
@@ -169,78 +168,115 @@ public class Engine {
 	
 	public double getEinnahmen(){
 		double einnahmen = 0;
+		einnahmen += getEinnahmenSpenden();
+		einnahmen += getEinnahmenLand();
+		einnahmen += getEinnahmenStudiengebuehren();
+		einnahmen += getEinnahmenPartnerfirmen();
+		return einnahmen;
+	}
+	
+	public double getEinnahmenSpenden(){
 		//Spenden von dritten abhängig vom Ansehen und Qualität
 		double spenden = (getQualitaet()+getAnsehen())/2.0;
 		if(spenden <= 20) {
-			einnahmen += 25000;
+			return 25000;
 		} else if(spenden <= 40) {
-			einnahmen += 70000;
+			return 70000;
 		} else if(spenden <= 60) {
-			einnahmen += 150000;
+			return 150000;
 		} else if(spenden <= 80) {
-			einnahmen += 270000;
+			return 270000;
 		} else if(spenden <= 95) {
-			einnahmen += 400000;
+			return 400000;
 		} else{
-			einnahmen += 600000;
+			return 600000;
 		}
-
+	}
+	
+	public double getEinnahmenLand(){
 		//Pro Dozent 7000€ und pro Student 2000€ vom Land
-		einnahmen += getDozentenAnzahl()*7000+getStudentenAnzahl()*2000;
+		return getDozentenAnzahl()*7000+getStudentenAnzahl()*2000;
+	}
+	
+	public double getEinnahmenStudiengebuehren(){
 		//Pro Student 120€ Studiengebühr
-		einnahmen += getStudentenAnzahl()*120;
+		return getStudentenAnzahl()*120;
+	}
+	
+	public double getEinnahmenPartnerfirmen(){
 		//Pro Firma 600€
-		einnahmen += getPartnerunternehmenAnzahl()*600;
-		
-		return einnahmen;
+		return getPartnerunternehmenAnzahl()*600;
 	}
 	
 	public double getAusgaben(){
 		double ausgaben = 0;
-		
+		ausgaben += getAusgabenDozenten();
+		ausgaben += getAusgabenInventar();
+		ausgaben += getAusgabenVeranstaltungen();
+		ausgaben += getAusgabenEssen();
+		ausgaben += getAusgabenWerbung();
+		ausgaben += getAusgabenPlaetze();
+		return ausgaben;
+	}
+	
+	public double getAusgabenDozenten(){
 		//Gehalt für alle Dozenten
-		ausgaben += getDozentenGehalt()*getDozentenAnzahl();
+		return getDozentenGehalt()*getDozentenAnzahl();
+	}
+	
+	public double getAusgabenInventar(){
 		//Inventar Instanthaltungskosten
 		switch(getInventar()){
-		case 1: ausgaben += 700; break;
-		case 2: ausgaben += 1000; break;
-		case 3: ausgaben += 1700; break;
-		case 4: ausgaben += 2500; break;
-		case 5: ausgaben += 3400; break;
+		default: case 1: return 700;
+		case 2: return 1000;
+		case 3: return 1700;
+		case 4: return 2500;
+		case 5: return 3400;
 		}
+	}
+	
+	public double getAusgabenVeranstaltungen(){
 		//Regelmäßige Veranstaltungen
 		switch(getVeranstaltungen()){
-		case 1: ausgaben += 230; break;
-		case 2: ausgaben += 500; break;
-		case 3: ausgaben += 1000; break;
-		case 4: ausgaben += 2000; break;
-		case 5: ausgaben += 3800; break;
+		default: case 1: return 230;
+		case 2: return 500;
+		case 3: return 1000;
+		case 4: return 2000;
+		case 5: return 3800;
 		}
+	}
+	
+	public double getAusgabenEssen(){
 		//Essensqualität
 		switch(getEssen()){
-		case 1: ausgaben += 30*getStudentenAnzahl(); break;
-		case 2: ausgaben += 31*getStudentenAnzahl(); break;
-		case 3: ausgaben += 32*getStudentenAnzahl(); break;
-		case 4: ausgaben += 34*getStudentenAnzahl(); break;
-		case 5: ausgaben += 36*getStudentenAnzahl(); break;
+		default: case 1: return 30*getStudentenAnzahl();
+		case 2: return 31*getStudentenAnzahl();
+		case 3: return 32*getStudentenAnzahl();
+		case 4: return 34*getStudentenAnzahl();
+		case 5: return 36*getStudentenAnzahl();
 		}
+	}
+	
+	public double getAusgabenWerbung(){
 		//Werbeintensität
 		switch(getWerbung()){
-		case 1: ausgaben += 100; break;
-		case 2: ausgaben += 500; break;
-		case 3: ausgaben += 1400; break;
-		case 4: ausgaben += 2900; break;
-		case 5: ausgaben += 4600; break;
+		default: case 1: return 100;
+		case 2: return 500;
+		case 3: return 1400;
+		case 4: return 2900;
+		case 5: return 4600;
 		}
+	}
+	
+	public double getAusgabenPlaetze(){
 		//Studentenplätze
 		switch(getStudentenplaetze()){
-		case 1: ausgaben += 165*getStudentenAnzahl(); break;
-		case 2: ausgaben += 160*getStudentenAnzahl(); break;
-		case 3: ausgaben += 155*getStudentenAnzahl(); break;
-		case 4: ausgaben += 150*getStudentenAnzahl(); break;
-		case 5: ausgaben += 145*getStudentenAnzahl(); break;
+		default: case 1: return 165*getStudentenAnzahl();
+		case 2: return 160*getStudentenAnzahl();
+		case 3: return 155*getStudentenAnzahl();
+		case 4: return 150*getStudentenAnzahl();
+		case 5: return 145*getStudentenAnzahl();
 		}
-		return ausgaben;
 	}
 	
 	public void addKosten(double kosten){
@@ -610,6 +646,10 @@ public class Engine {
 	 * @see de.dhbw_mannheim.Better_DH.Account#setKapital(double)
 	 */
 	private boolean setKapital(double kapital) {
+		if(kapital >= capitalMAX){
+			account.setKapital(capitalMAX-1);
+			return false;
+		}
 		account.setKapital(kapital);
 		return true;
 	}

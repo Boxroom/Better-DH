@@ -10,20 +10,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.HBox?>
 
-
-<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane id="gridpane_money1_main" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
-   <children>
-      <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" pickOnBounds="false" stylesheets="@../../../../MainWindow.css">
-        <columns>
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="-1.0" text="Betreff" />
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="-1.0" text="Monatliche Einnahmen" />
-        </columns>
-      </TableView>
-   </children>
 </GridPane>
