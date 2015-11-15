@@ -45,5 +45,6 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Etwaige Ähnlichkeiten mit tatsächlichen Begebenheiten oder lebenden oder verstorbenen Personen wären rein zufällig." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="4" />
    </children>
 </GridPane>
