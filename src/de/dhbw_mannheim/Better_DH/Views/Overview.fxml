@@ -58,7 +58,7 @@
             </Label>
          </graphic>
       </Label>
-      <Label id="label_overview_sales" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0" styleClass="label_view" text="Umsatz" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" StackPane.alignment="CENTER">
+      <Label id="label_overview_sales" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0" styleClass="label_view" text="Kapital" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" StackPane.alignment="CENTER">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>

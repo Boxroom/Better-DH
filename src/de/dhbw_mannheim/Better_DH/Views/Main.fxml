@@ -35,7 +35,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button id="button_main_create" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" styleClass="button-default" text="Account erstellen" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+      <Button id="button_main_create" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="150.0" styleClass="button-default" text="Neues Spiel" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
          <font>
             <Font size="16.0" />
          </font>

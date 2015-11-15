@@ -1,9 +1,5 @@
 package de.dhbw_mannheim.Better_DH;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -105,6 +101,9 @@ public class PreDef {
 					label2.prefWidthProperty().bind(label.widthProperty());
 					bar.prefWidthProperty().bind(label2.widthProperty());
 					bar.setPadding(new Insets(0,15,0,15));
+					bar.getStyleClass().remove("red-bar");
+					bar.getStyleClass().remove("orange-bar");
+					bar.getStyleClass().remove("green-bar");
 			        
 			        if(progress < 0.5) {
 						bar.getStyleClass().add("red-bar");
@@ -118,10 +117,13 @@ public class PreDef {
 				ProgressBar bar = (ProgressBar) label.getGraphic();
 				bar.setProgress(progress);
 				bar.setTooltip(new Tooltip(""+insert));
+				bar.getStyleClass().remove("red-bar");
+				bar.getStyleClass().remove("orange-bar");
+				bar.getStyleClass().remove("green-bar");
 		        
-			    if(progress < 0.35) {
+			    if(progress <= 0.35) {
 			        bar.getStyleClass().add("red-bar");
-				} else if(progress < 0.65) {
+				} else if(progress <= 0.65) {
 					bar.getStyleClass().add("orange-bar");
 				} else {
 					bar.getStyleClass().add("green-bar");
@@ -136,7 +138,7 @@ public class PreDef {
 	public static Alert getSliderDialog(String title, String head, String content, double min, double max, double start, double scale) {
 		Alert alert1 = new Alert(AlertType.CONFIRMATION);
 		alert1.setTitle(title);
-		alert1.setHeaderText(head+"0.00");
+		alert1.setHeaderText(""+head+""+start);
 		alert1.setContentText(content);
 		Slider slider = new Slider(min, max, scale);
 		slider.setPrefWidth(300);

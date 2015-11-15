@@ -102,7 +102,7 @@ public class View {
 		left.setPrefWidth(170);
 
 		if (buttons) {
-			Label l_date = new Label("Semester &VAR& / Woche &VAR&");
+			Label l_date = new Label("Semester 0 / Woche 0");
 			l_date.setPrefWidth(Integer.MAX_VALUE);
 			l_date.getStyleClass().add("label_h3");
 			l_date.setAlignment(Pos.CENTER);

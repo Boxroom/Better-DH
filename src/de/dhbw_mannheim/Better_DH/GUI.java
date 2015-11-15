@@ -24,14 +24,15 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 /**
  * Die GUI dient als Einstieg in die Anwendung, da von hier die onClick Events optimal verarbeitet werden können.
@@ -45,6 +46,7 @@ public class GUI extends Application {
 	
 	private Engine engine;
 	private Stage window;
+	private boolean simulateable;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -58,6 +60,7 @@ public class GUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		engine = new Engine();
 		window = primaryStage;
+		simulateable=false;
 		window.setTitle("Better DH");
 		window.getIcons().add(new Image("Images/BetterDH_Icon.png"));
 
@@ -114,6 +117,7 @@ public class GUI extends Application {
 	 * @param scene	Scene des Views
 	 */
 	private void setPage(Scene scene) {
+		scene.getRoot();
 		window.setScene(scene);
 		if(scene != MAIN) {
 			initiateLeftMenu(""+engine.getSemester(), ""+engine.getWoche());
@@ -128,6 +132,10 @@ public class GUI extends Application {
 					if(engine.hasPlayer()){
 						setPage(OVERVIEW);
 						updateLabels();
+						if(engine.getSemester()>6)
+							simulateable=false;
+						else
+							simulateable=true;
 					} else {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("Error Dialog");
@@ -196,66 +204,84 @@ public class GUI extends Application {
 		Button staff_more = (Button) STAFF.lookup("#button_staff_getMore");
 		if(staff_more != null)
 			staff_more.setOnMouseClicked(e -> {
-					Alert alert1 = PreDef.getSliderDialog("Dozenten einstellen", "Einstellen: ", "Anzahl der Dozenten erhöhen: (max 20)", 0, 20, 0, 1);
+					Alert alert1 = PreDef.getSliderDialog("Dozenten einstellen", "Einstellen: ", "Anzahl der Dozenten erhöhen.", 0, 500-engine.getDozentenAnzahl(), 0, 1);
 					alert1.initOwner(window);
-					alert1.showAndWait();//TODO
-					try {
-					    //Die Klasse Media braucht eine URI
-				        Media welcomeSound = new Media(new File("src/sounds/Willkommen.mp3").toURI().toString());
-				        MediaPlayer mediaPlayer = new MediaPlayer(welcomeSound);
-				        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-				        mediaPlayer.play();
-				      } catch (Exception d) {
-				        System.err.println(d.getMessage());
-				      }
+					Optional<ButtonType> result = alert1.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						Slider slider = (Slider) alert1.getGraphic();
+						engine.addDozentenAnzahl((int) Math.round(slider.getValue()));
+						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media welcomeSound = new Media(new File("src/sounds/Willkommen.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(welcomeSound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
+					}
 				});
 		Button staff_less = (Button) STAFF.lookup("#button_staff_getLess");
 		if(staff_less != null)
 			staff_less.setOnMouseClicked(e -> {
-					Alert alert1 = PreDef.getSliderDialog("Dozenten feuern", "Entlassen: ", "Anzahl der Dozenten verringern: (max 20)", 0, 20, 0, 1);
+					Alert alert1 = PreDef.getSliderDialog("Dozenten feuern", "Entlassen: ", "Anzahl der Dozenten verringern.", 0, engine.getDozentenAnzahl(), 0, 1);
 					alert1.initOwner(window);
-					alert1.showAndWait();//TODO
-					try {
-					    //Die Klasse Media braucht eine URI
-				        Media byeByeSound = new Media(new File("src/sounds/ByeBye.mp3").toURI().toString());
-				        MediaPlayer mediaPlayer = new MediaPlayer(byeByeSound);
-				        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-				        mediaPlayer.play();
-				      } catch (Exception d) {
-				        System.err.println(d.getMessage());
-				      }
+					Optional<ButtonType> result = alert1.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						Slider slider = (Slider) alert1.getGraphic();
+						engine.addDozentenAnzahl((int) Math.round(-slider.getValue()));
+						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media byeByeSound = new Media(new File("src/sounds/ByeBye.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(byeByeSound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
+					}
 				});
 		Button money_more = (Button) STAFF.lookup("#button_staff_moneyMore");
 		if(money_more != null)
 			money_more.setOnMouseClicked(e -> {
-					Alert alert1 = PreDef.getSliderDialog("Gehälter erhöhen", "Aufschlag(€): ", "Lohn der Dozenten um den Betrag erhöhen: (max 500)", 0, 500, 0, 0.5);
+					Alert alert1 = PreDef.getSliderDialog("Gehälter erhöhen", "Aufschlag(€): ", "Lohn der Dozenten um den Betrag erhöhen.", 0, 10000-engine.getDozentenGehalt(), 0, 50);
 					alert1.initOwner(window);
-					alert1.showAndWait();//TODO
-					try {
-					    //Die Klasse Media braucht eine URI
-				        Media moreMoneySound = new Media(new File("src/sounds/Gehaltserhoehung.mp3").toURI().toString());
-				        MediaPlayer mediaPlayer = new MediaPlayer(moreMoneySound);
-				        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-				        mediaPlayer.play();
-				      } catch (Exception d) {
-				        System.err.println(d.getMessage());
-				      }
+					Optional<ButtonType> result = alert1.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						Slider slider = (Slider) alert1.getGraphic();
+						engine.addDozentenGehalt((double) Math.round(slider.getValue()));
+						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media moreMoneySound = new Media(
+									new File("src/sounds/Gehaltserhoehung.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(moreMoneySound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
+					}
 				});
 		Button money_less = (Button) STAFF.lookup("#button_staff_moneyLess");
 		if(money_less != null)
 			money_less.setOnMouseClicked(e -> {
-					Alert alert1 = PreDef.getSliderDialog("Gehälter kürzen", "Senkung(€): ", "Lohn der Dozenten um den Betrag verringern: (max 500)", 0, 500, 0, 0.5);
+					Alert alert1 = PreDef.getSliderDialog("Gehälter kürzen", "Senkung(€): ", "Lohn der Dozenten um den Betrag verringern.", 0, engine.getDozentenGehalt()-5000, 0, 50);
 					alert1.initOwner(window);
-					alert1.showAndWait();//TODO
-					try {
-					    //Die Klasse Media braucht eine URI
-				        Media lessMoneySound = new Media(new File("src/sounds/GeldWirdGekuerzt.mp3").toURI().toString());
-				        MediaPlayer mediaPlayer = new MediaPlayer(lessMoneySound);
-				        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-				        mediaPlayer.play();
-				      } catch (Exception d) {
-				        System.err.println(d.getMessage());
-				      }
+					Optional<ButtonType> result = alert1.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						Slider slider = (Slider) alert1.getGraphic();
+						engine.addDozentenGehalt((double) Math.round(-slider.getValue()));
+						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media lessMoneySound = new Media(
+									new File("src/sounds/GeldWirdGekuerzt.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(lessMoneySound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
+					}
 				});
 		Label revenue = (Label) MONEY.lookup("#label_money_revenue");
 		if(revenue != null)
@@ -286,16 +312,15 @@ public class GUI extends Application {
 				result.ifPresent(choice -> {
 						engine.setInventar(Integer.parseInt(choice));
 						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media inventorySound = new Media(new File("src/sounds/NeuesInventar.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(inventorySound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
 					});
-				try {
-				    //Die Klasse Media braucht eine URI
-			        Media inventorySound = new Media(new File("src/sounds/NeuesInventar.mp3").toURI().toString());
-			        MediaPlayer mediaPlayer = new MediaPlayer(inventorySound);
-			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-			        mediaPlayer.play();
-			      } catch (Exception d) {
-			        System.err.println(d.getMessage());
-			      }
 				});
 		Button tv = (Button) BUY.lookup("#button_buy_tv");
 		if(tv != null)
@@ -306,16 +331,15 @@ public class GUI extends Application {
 				result.ifPresent(choice -> {
 						engine.setWerbung(Integer.parseInt(choice));
 						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media adSound = new Media(new File("src/sounds/HoertHoert.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(adSound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
 					});
-				try {
-				    //Die Klasse Media braucht eine URI
-			        Media adSound = new Media(new File("src/sounds/HoertHoert.mp3").toURI().toString());
-			        MediaPlayer mediaPlayer = new MediaPlayer(adSound);
-			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-			        mediaPlayer.play();
-			      } catch (Exception d) {
-			        System.err.println(d.getMessage());
-			      }
 				});
 		Button events = (Button) BUY.lookup("#button_buy_events");
 		if(events != null)
@@ -326,32 +350,35 @@ public class GUI extends Application {
 				result.ifPresent(choice -> {
 						engine.setVeranstaltungen(Integer.parseInt(choice));
 						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media eventsSound = new Media(new File("src/sounds/NeueEvents.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(eventsSound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
 					});
-				try {
-				    //Die Klasse Media braucht eine URI
-			        Media eventsSound = new Media(new File("src/sounds/NeueEvents.mp3").toURI().toString());
-			        MediaPlayer mediaPlayer = new MediaPlayer(eventsSound);
-			        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-			        mediaPlayer.play();
-			      } catch (Exception d) {
-			        System.err.println(d.getMessage());
-			      }
 				});
 		Button students = (Button) BUY2.lookup("#button_buy2_students");
 		if(students != null)
 			students.setOnMouseClicked(e -> {
-					Alert alert1 = PreDef.getSliderDialog("Gehälter kürzen", "Senkung(€): ", "Lohn der Dozenten um den Betrag verringern: (max 500)", 0, 500, 0, 0.5);
+					Alert alert1 = PreDef.getSliderDialog("Studentenplätze", "Gebäudekapazität: ", "Maximal Anzahl unterzubringender Studenten: (max 10.000)", 0, 10000, engine.getStudentenplaetze(), 100);
 					alert1.initOwner(window);
-					alert1.showAndWait();//TODO
-					try {
-					    //Die Klasse Media braucht eine URI
-				        Media studentSound = new Media(new File("src/sounds/MehrPlaetze.mp3").toURI().toString());
-				        MediaPlayer mediaPlayer = new MediaPlayer(studentSound);
-				        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-				        mediaPlayer.play();
-				      } catch (Exception d) {
-				        System.err.println(d.getMessage());
-				      }
+					Optional<ButtonType> result = alert1.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						Slider slider = (Slider) alert1.getGraphic();
+						engine.setStudentenplaetze((int) Math.round(slider.getValue()));
+						updateLabels();
+						try {
+							// Die Klasse Media braucht eine URI
+							Media studentSound = new Media(new File("src/sounds/MehrPlaetze.mp3").toURI().toString());
+							MediaPlayer mediaPlayer = new MediaPlayer(studentSound);
+							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+							mediaPlayer.play();
+						} catch (Exception d) {
+						}
+					}
 				});
 		Button food = (Button) BUY2.lookup("#button_buy2_food");
 		if(food != null)
@@ -362,16 +389,15 @@ public class GUI extends Application {
 					result.ifPresent(choice -> {
 							engine.setEssen(Integer.parseInt(choice));
 							updateLabels();
+							try {
+								// Die Klasse Media braucht eine URI
+								Media foodSound = new Media(new File("src/sounds/BesseresEssen.mp3").toURI().toString());
+								MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
+								// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+								mediaPlayer.play();
+							} catch (Exception d) {
+							}
 						});
-					try {
-					    //Die Klasse Media braucht eine URI
-				        Media foodSound = new Media(new File("src/sounds/BesseresEssen.mp3").toURI().toString());
-				        MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
-				        //Der Sound wird mit Hilfe der Media Player Klasse abgespielt
-				        mediaPlayer.play();
-				      } catch (Exception d) {
-				        System.err.println(d.getMessage());
-				      }
 				});
 		PreDef.initButton((Button) MAIN.lookup("#button_main_start"));
 		PreDef.initButton((Button) MAIN.lookup("#button_main_create"));
@@ -391,43 +417,47 @@ public class GUI extends Application {
 	
 	private void updateLabels() {
 		if(engine.hasPlayer()){
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", 0.0);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), ""+Math.round(engine.getPartnerunternehmenAnzahl()), 0.0);
-			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", engine.getKapital()/500000.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_lecturers"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_venturer"), ""+Math.round(engine.getPartnerunternehmenAnzahl()), engine.getPartnerunternehmenAnzahl()/1000.0);
+			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100.0);
 
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahl(), 0.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahl(), 0.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_reputation"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber1"), ""+engine.getDozentenAnzahl(), engine.getDozentenAnzahl()/350.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_staffNumber2"), ""+engine.getDozentenAnzahl(), engine.getDozentenAnzahl()/350.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory1"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_inventory2"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events1"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_events2"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_food"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", 0.0);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_money"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", engine.getKapital()*1/500000.0);
 			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_tv"), ""+engine.getWerbung()+" Sterne", (engine.getWerbung())/5.0);
-			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
+			PreDef.initLabel((Label) REPUTATION.lookup("#label_reputation_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
 			
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahl(), 0.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staff"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_students"), ""+Math.round(engine.getStudentenZufriedenheit())+" %", engine.getStudentenZufriedenheit()/100.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_staffNumber"), ""+engine.getDozentenAnzahl(), engine.getDozentenAnzahl()/350.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory1"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_inventory2"), ""+engine.getInventar()+" Sterne", (engine.getInventar())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events1"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_events2"), ""+engine.getVeranstaltungen()+" Sterne", (engine.getVeranstaltungen())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food1"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
 			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_food2"), ""+engine.getEssen()+" Sterne", (engine.getEssen())/5.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", 0.0);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality1"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
-			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", engine.getDozentenGehalt()/8000.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality1"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_quality2"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation1"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
+			PreDef.initLabel((Label) SATISFACTION.lookup("#label_satisfaction_reputation2"), ""+Math.round(engine.getAnsehen())+" %", engine.getAnsehen()/100.0);
 			
-			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100);
+			PreDef.initLabel((Label) STAFF.lookup("#label_staff_satisfaction"), ""+Math.round(engine.getDozentZufriedenheit())+" %", engine.getDozentZufriedenheit()/100.0);
 			PreDef.initLabel((Label) STAFF.lookup("#label_staff_money"), ""+Math.round(engine.getDozentenGehalt()*100.0)/100.0+" €", 0.0);
+			
+			PreDef.initLabel((Label) MONEY.lookup("#label_money_sales"), ""+Math.round(engine.getKapital()*100.0)/100.0+" €", 0.0);
+			PreDef.initLabel((Label) MONEY.lookup("#label_money_revenue"), ""+Math.round(engine.getEinnahmen()*100.0)/100.0+" €", 0.0);
+			PreDef.initLabel((Label) MONEY.lookup("#label_money_expenditure"), ""+Math.round(engine.getAusgaben()*100.0)/100.0+" €", 0.0);
 
 			PreDef.initLabel((Label) BUY.lookup("#label_buy_inventory"), ""+engine.getInventar()+" Sterne", 0.0);
 			PreDef.initLabel((Label) BUY.lookup("#label_buy_tv"), ""+engine.getWerbung()+" Sterne", 0.0);
@@ -452,13 +482,11 @@ public class GUI extends Application {
 			}
 			
 			HBox img_students = (HBox) BUY2.lookup("#image_buy2_students");
-			if(engine.getStudentenplaetze() < 500){
-				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Huette2.png')");
-			} else if(engine.getStudentenplaetze() < 1000){
+			if(engine.getStudentenplaetze() <= 1000){
 				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild4.png')");
-			} else if(engine.getStudentenplaetze() < 2000){
+			} else if(engine.getStudentenplaetze() <= 3500){
 				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild3.png')");
-			} else if(engine.getStudentenplaetze() < 4000){
+			} else if(engine.getStudentenplaetze() <= 7000){
 				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild2.png')");
 			} else {
 				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild1.png')");
@@ -525,12 +553,46 @@ public class GUI extends Application {
 	/**
 	 * Der Statusbericht wird hier generiert
 	 */
-	
-	private void status(){
-		
-		if(true /*Integer.parseInt(account.getWoche()) == 0*/){
+	private void status(boolean end){
+		Random incident = new Random();
+		if(incident.nextInt() % 20 == 0){
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setTitle("Unvorhergesehenes Ereignis");
+			switch(incident.nextInt() % 5){
+			default:
+			case 0:
+				alert1.setHeaderText("Streik");
+				alert1.setContentText("");
+				engine.addKosten(20000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 1:
+				alert1.setHeaderText("Heizungsausfall");
+				alert1.setContentText("");
+				engine.addKosten(25000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 2:
+				alert1.setHeaderText("Rohrbruch");
+				alert1.setContentText("");
+				engine.addKosten(50000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 3:
+				alert1.setHeaderText("Serverausfall");
+				alert1.setContentText("");
+				engine.addKosten(10000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 4:
+				alert1.setHeaderText("Amoklauf");
+				alert1.setContentText("");
+				engine.addKosten(250000*(1+(incident.nextInt()%10)/10));
+				break;
+			}
+			alert1.initOwner(window);
+			alert1.showAndWait();
+
+		}
+		if(engine.getWoche() == 1){
 			Alert status = new Alert(AlertType.INFORMATION);
-			status.setTitle("Statusbericht");
+			status.setTitle(end?"Abschlussbericht":"Statusbericht");
 
 			String statStuds = "Der Leiter der dualen Hochschule hat dieses Semester eine Veränderungen der Studentenzahl auf " + engine.getStudentenAnzahl() + " Studenten erreicht. ";
 			String statQuality = "Der Leiter der dualen Hochschule bewirkte eine Veränderung ihrer Qualität auf " + engine.getQualitaet() + " .";
@@ -591,9 +653,16 @@ public class GUI extends Application {
 		Button simulate = (Button) scene.lookup("#button_view_simulate");
 		if(simulate != null)
 			simulate.setOnAction(e -> {
-					engine.simulate();
-					updateLabels();
-					status();
+					if(simulateable){
+						if(engine.simulate()){
+							status(false);
+						} else {
+							simulateable = false;
+							status(true);
+						}
+						updateLabels();
+						updateDate(""+engine.getSemester(), ""+engine.getWoche());
+					}
 				});
 		Button save = (Button) scene.lookup("#button_view_save");
 		if(save != null)
@@ -631,14 +700,24 @@ public class GUI extends Application {
 	}
 	
 	/**
+	 * Update des Labels zum anzeigen der aktuellen Zeit
+	 * @param semester
+	 * @param week
+	 */
+	private void updateDate(String semester, String week){
+		Scene scene = window.getScene();
+		Label date = (Label) scene.lookup("#label_view_date");
+		if(date != null)
+			date.setText("Semester "+semester+" / Woche "+week);
+	}
+	
+	/**
 	 * Alle Events der linken Menübuttons werden hier festgelegt.
 	 * Sowie das Label mit dem aktuellen Semester/Wochen fortschritt.
 	 */
 	private void initiateLeftMenu(String semester, String week) {
 		Scene scene = window.getScene();
-		Label date = (Label) scene.lookup("#label_view_date");
-		if(date != null)
-			date.setText(date.getText().replaceFirst("&VAR&", ""+semester).replaceFirst("&VAR&", ""+week));
+		updateDate(semester, week);
 		Button overview = (Button) scene.lookup("#button_view_overview");
 		if(overview != null)
 			overview.setOnAction(e -> {

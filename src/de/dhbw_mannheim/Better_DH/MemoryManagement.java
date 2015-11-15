@@ -268,7 +268,7 @@ public class MemoryManagement {
 
 			dhQualitaet = "60.0", dhAnsehen = "100.0", dhInventar = "1", dhEssen = "1", dhVeranstaltungen = "1",
 					dhWerbung = "1", dhStudentenplaetze = "200", dhKapital = "5000.0", spielstandname = name,
-					semesterAnzahl = "1", woche = "0";
+					semesterAnzahl = "1", woche = "1";
 
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();

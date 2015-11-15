@@ -47,9 +47,9 @@
 	-fx-wrap-text: true;
     -fx-text-alignment: center;
 }
-.green-bar  { -fx-accent: green;  }
-.orange-bar    { -fx-accent: orange;    }
-.red-bar    { -fx-accent: red;    }
+.green-bar  { -fx-accent: #00FF00;  }
+.orange-bar    { -fx-accent: #FFC000;    }
+.red-bar    { -fx-accent: #FF0000;    }
 .img {
 	-fx-background-size: contain;
 	-fx-background-repeat: no-repeat;
