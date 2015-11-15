@@ -51,6 +51,7 @@ public class GUI extends Application {
 	private Engine engine;
 	private Stage window;
 	private boolean simulateable;
+	private long lastSimulate;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -62,6 +63,7 @@ public class GUI extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		lastSimulate = 0;
 		engine = new Engine();
 		window = primaryStage;
 		simulateable=false;
@@ -709,14 +711,28 @@ public class GUI extends Application {
 			PreDef.initButton(simulate, false);
 			simulate.setOnMouseClicked(e -> {
 					if(simulateable){
-						if(engine.simulate()){
-							status(false);
-						} else {
-							simulateable = false;
-							status(true);
+						if(lastSimulate+30 < System.currentTimeMillis()/1000){
+							lastSimulate = System.currentTimeMillis()/1000;
+							if(engine.simulate()){
+								status(false);
+							} else {
+								simulateable = false;
+								status(true);
+							}
+							updateLabels();
+							updateDate(""+engine.getSemester(), ""+engine.getWoche());
+						}else{
+							Alert alert = new Alert(AlertType.INFORMATION);
+							alert.setTitle("Prozesse ausstehend");
+							alert.setHeaderText("In kürze verfügbar");
+							alert.setContentText("Eine Simulation für die nächste Woche ist noch nicht möglich!\nVersuche es in gleich erneut.");
+							ImageView graphic = new ImageView("./Images/Newtons_cradle_animation_book_2.gif");
+							graphic.setFitWidth(170);
+							graphic.setFitHeight(100);
+							alert.setGraphic(graphic);
+							alert.initOwner(window);
+							alert.showAndWait();
 						}
-						updateLabels();
-						updateDate(""+engine.getSemester(), ""+engine.getWoche());
 					}
 				});
 		Button save = (Button) scene.lookup("#button_view_save");
