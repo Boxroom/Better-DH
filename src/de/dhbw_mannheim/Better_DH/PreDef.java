@@ -1,5 +1,7 @@
 package de.dhbw_mannheim.Better_DH;
 
+import java.io.File;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -17,6 +19,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * Diese Klasse hat lediglich statische Elemente und wird zu keiner Zeit instanziiert.
@@ -72,11 +76,24 @@ public class PreDef {
 	/**
 	 * Alle Buttons auf den Fenstern werden nach dem selben Muster initialisiert.
 	 */
-	public static void initButton(Button button) {
+	public static void initButton(Button button, boolean resize) {
 		if(button != null) {
-			DoubleProperty fontSize = new SimpleDoubleProperty(30);
-	        fontSize.bind(button.widthProperty().add(button.heightProperty()).divide(17));
-	        button.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"));
+			if(resize){
+				DoubleProperty fontSize = new SimpleDoubleProperty(30);
+		        fontSize.bind(button.widthProperty().add(button.heightProperty()).divide(17));
+		        button.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"));
+			}
+	        button.setOnAction(e -> {
+		        	try {
+					// Die Klasse Media braucht eine URI
+					Media foodSound = new Media(new File("src/sounds/Button.wav").toURI().toString());
+					MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
+					// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+					mediaPlayer.play();
+					} catch (Exception d) {
+					}
+	        	});
+			
 		}
 	}
 

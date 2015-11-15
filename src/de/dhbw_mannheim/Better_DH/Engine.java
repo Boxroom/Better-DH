@@ -157,7 +157,7 @@ public class Engine {
 		int anzahlStudenten = 0;
 
 		prozentStudenten = (3 * satisfactionStudents + qualityDH + 2 * stock + 2 * reputationDH + 2 * amountCompanies
-				+ ad + events + meal) / 13;
+				+ ad + events + meal) / 13 /100;
 		prozentStudenten = Math.sin((Math.PI / 2) * prozentStudenten);
 		anzahlStudenten = (int) (prozentStudenten * amountStudentsMAX);
 		if (anzahlStudenten <= spots) {

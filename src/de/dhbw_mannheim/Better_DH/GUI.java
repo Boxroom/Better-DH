@@ -9,6 +9,7 @@
  */
 package de.dhbw_mannheim.Better_DH;
 
+import java.awt.MouseInfo;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -32,7 +33,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 
 /**
  * Die GUI dient als Einstieg in die Anwendung, da von hier die onClick Events optimal verarbeitet werden können.
@@ -399,20 +399,20 @@ public class GUI extends Application {
 							}
 						});
 				});
-		PreDef.initButton((Button) MAIN.lookup("#button_main_start"));
-		PreDef.initButton((Button) MAIN.lookup("#button_main_create"));
-		PreDef.initButton((Button) MAIN.lookup("#button_main_load"));
-		PreDef.initButton((Button) STAFF.lookup("#button_staff_getMore"));
-		PreDef.initButton((Button) STAFF.lookup("#button_staff_getLess"));
-		PreDef.initButton((Button) STAFF.lookup("#button_staff_moneyMore"));
-		PreDef.initButton((Button) STAFF.lookup("#button_staff_moneyLess"));
-		PreDef.initButton((Button) BUY.lookup("#button_buy_changeSIte"));
-		PreDef.initButton((Button) BUY2.lookup("#button_buy2_changeSIte"));
-		PreDef.initButton((Button) BUY.lookup("#button_buy_inventory"));
-		PreDef.initButton((Button) BUY.lookup("#button_buy_tv"));
-		PreDef.initButton((Button) BUY.lookup("#button_buy_events"));
-		PreDef.initButton((Button) BUY2.lookup("#button_buy2_students"));
-		PreDef.initButton((Button) BUY2.lookup("#button_buy2_food"));
+		PreDef.initButton((Button) MAIN.lookup("#button_main_start"), true);
+		PreDef.initButton((Button) MAIN.lookup("#button_main_create"), true);
+		PreDef.initButton((Button) MAIN.lookup("#button_main_load"), true);
+		PreDef.initButton((Button) STAFF.lookup("#button_staff_getMore"), true);
+		PreDef.initButton((Button) STAFF.lookup("#button_staff_getLess"), true);
+		PreDef.initButton((Button) STAFF.lookup("#button_staff_moneyMore"), true);
+		PreDef.initButton((Button) STAFF.lookup("#button_staff_moneyLess"), true);
+		PreDef.initButton((Button) BUY.lookup("#button_buy_changeSIte"), true);
+		PreDef.initButton((Button) BUY2.lookup("#button_buy2_changeSIte"), true);
+		PreDef.initButton((Button) BUY.lookup("#button_buy_inventory"), true);
+		PreDef.initButton((Button) BUY.lookup("#button_buy_tv"), true);
+		PreDef.initButton((Button) BUY.lookup("#button_buy_events"), true);
+		PreDef.initButton((Button) BUY2.lookup("#button_buy2_students"), true);
+		PreDef.initButton((Button) BUY2.lookup("#button_buy2_food"), true);
 	}
 	
 	private void updateLabels() {
@@ -555,41 +555,7 @@ public class GUI extends Application {
 	 */
 	private void status(boolean end){
 		Random incident = new Random();
-		if(incident.nextInt() % 20 == 0){
-			Alert alert1 = new Alert(AlertType.INFORMATION);
-			alert1.setTitle("Unvorhergesehenes Ereignis");
-			switch(incident.nextInt() % 5){
-			default:
-			case 0:
-				alert1.setHeaderText("Streik");
-				alert1.setContentText("");
-				engine.addKosten(20000*(1+(incident.nextInt()%10)/10));
-				break;
-			case 1:
-				alert1.setHeaderText("Heizungsausfall");
-				alert1.setContentText("");
-				engine.addKosten(25000*(1+(incident.nextInt()%10)/10));
-				break;
-			case 2:
-				alert1.setHeaderText("Rohrbruch");
-				alert1.setContentText("");
-				engine.addKosten(50000*(1+(incident.nextInt()%10)/10));
-				break;
-			case 3:
-				alert1.setHeaderText("Serverausfall");
-				alert1.setContentText("");
-				engine.addKosten(10000*(1+(incident.nextInt()%10)/10));
-				break;
-			case 4:
-				alert1.setHeaderText("Amoklauf");
-				alert1.setContentText("");
-				engine.addKosten(250000*(1+(incident.nextInt()%10)/10));
-				break;
-			}
-			alert1.initOwner(window);
-			alert1.showAndWait();
-
-		}
+		incident.setSeed((long) (System.currentTimeMillis()*MouseInfo.getPointerInfo().getLocation().getX()*MouseInfo.getPointerInfo().getLocation().getY()));
 		if(engine.getWoche() == 1){
 			Alert status = new Alert(AlertType.INFORMATION);
 			status.setTitle(end?"Abschlussbericht":"Statusbericht");
@@ -644,7 +610,56 @@ public class GUI extends Application {
 			graphic.setFitHeight(130);
 			status.setGraphic(graphic);
 			status.initOwner(window);
+			try {
+				// Die Klasse Media braucht eine URI
+				Media foodSound = new Media(new File("src/sounds/applause.wav").toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
+				// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+				mediaPlayer.play();
+			} catch (Exception d) {
+			}
 			status.showAndWait();
+		} else if(incident.nextInt() % 20 == 0){
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setTitle("Unvorhergesehenes Ereignis");
+			switch(incident.nextInt() % 5){
+			default:
+			case 0:
+				alert1.setHeaderText("Streik");
+				alert1.setContentText("");
+				engine.addKosten(20000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 1:
+				alert1.setHeaderText("Heizungsausfall");
+				alert1.setContentText("");
+				engine.addKosten(25000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 2:
+				alert1.setHeaderText("Rohrbruch");
+				alert1.setContentText("");
+				engine.addKosten(50000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 3:
+				alert1.setHeaderText("Serverausfall");
+				alert1.setContentText("");
+				engine.addKosten(10000*(1+(incident.nextInt()%10)/10));
+				break;
+			case 4:
+				alert1.setHeaderText("Amoklauf");
+				alert1.setContentText("");
+				engine.addKosten(250000*(1+(incident.nextInt()%10)/10));
+				break;
+			}
+			alert1.initOwner(window);
+			try {
+				// Die Klasse Media braucht eine URI
+				Media foodSound = new Media(new File("src/sounds/coin-fall.wav").toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
+				// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
+				mediaPlayer.play();
+			} catch (Exception d) {
+			}
+			alert1.showAndWait();
 		}
 	}
 	
@@ -652,7 +667,8 @@ public class GUI extends Application {
 		Scene scene = window.getScene();
 		Button simulate = (Button) scene.lookup("#button_view_simulate");
 		if(simulate != null)
-			simulate.setOnAction(e -> {
+			PreDef.initButton(simulate, false);
+			simulate.setOnMouseClicked(e -> {
 					if(simulateable){
 						if(engine.simulate()){
 							status(false);
@@ -666,7 +682,8 @@ public class GUI extends Application {
 				});
 		Button save = (Button) scene.lookup("#button_view_save");
 		if(save != null)
-			save.setOnAction(e -> {
+			PreDef.initButton(save, false);
+			save.setOnMouseClicked(e -> {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setTitle("Simulation speichern");
 					alert.setHeaderText("Möchtest du den aktuellen Simulationsstand speichern?");
@@ -720,32 +737,38 @@ public class GUI extends Application {
 		updateDate(semester, week);
 		Button overview = (Button) scene.lookup("#button_view_overview");
 		if(overview != null)
-			overview.setOnAction(e -> {
+			PreDef.initButton(overview, false);
+			overview.setOnMouseClicked(e -> {
 					setPage(OVERVIEW);
 				});
 		Button reputation = (Button) scene.lookup("#button_view_reputation");
 		if(reputation != null)
-			reputation.setOnAction(e -> {
+			PreDef.initButton(reputation, false);
+			reputation.setOnMouseClicked(e -> {
 					setPage(REPUTATION);
 				});
 		Button satisfaction = (Button) scene.lookup("#button_view_satisfaction");
 		if(satisfaction != null)
-			satisfaction.setOnAction(e -> {
+			PreDef.initButton(satisfaction, false);
+			satisfaction.setOnMouseClicked(e -> {
 					setPage(SATISFACTION);
 				});
 		Button staff = (Button) scene.lookup("#button_view_staff");
 		if(staff != null)
-			staff.setOnAction(e -> {
+			PreDef.initButton(staff, false);
+			staff.setOnMouseClicked(e -> {
 					setPage(STAFF);
 				});
 		Button money = (Button) scene.lookup("#button_view_money");
 		if(money != null)
-			money.setOnAction(e -> {
+			PreDef.initButton(money, false);
+			money.setOnMouseClicked(e -> {
 					setPage(MONEY);
 				});
 		Button buy = (Button) scene.lookup("#button_view_buy");
 		if(buy != null)
-			buy.setOnAction(e -> {
+			PreDef.initButton(buy, false);
+			buy.setOnMouseClicked(e -> {
 					setPage(BUY);
 				});
 	}
