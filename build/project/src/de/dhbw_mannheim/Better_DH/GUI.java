@@ -10,7 +10,6 @@
 package de.dhbw_mannheim.Better_DH;
 
 import java.awt.MouseInfo;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -38,7 +37,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import sun.applet.Main;
 
 /**
  * Die GUI dient als Einstieg in die Anwendung, da von hier die onClick Events optimal verarbeitet werden können.
@@ -49,7 +47,6 @@ import sun.applet.Main;
 public class GUI extends Application {
 
 	private Scene MAIN, OVERVIEW, REPUTATION, SATISFACTION, STAFF, MONEY, MONEY_IN, MONEY_OUT, BUY, BUY2;
-	
 	private Engine engine;
 	private Stage window;
 	private boolean simulateable;
@@ -178,7 +175,7 @@ public class GUI extends Application {
 							        stage.setTitle("Better DH - Tutorial");
 							        stage.getIcons().add(new Image("Images/BetterDH_Icon.png"));
 							        WebView web = new WebView();  
-							        String url = Main.class.getResource("/Images/Tutorial.htm").toExternalForm(); 
+							        String url = getClass().getResource("/Images/Tutorial.htm").toExternalForm();
 							        web.getEngine().load(url);
 							        Scene scene = new Scene(web);
 							        stage.setScene(scene);
@@ -232,7 +229,8 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media welcomeSound = new Media(new File("src/sounds/Willkommen.mp3").toURI().toString());
+							
+							Media welcomeSound = new Media(getClass().getResource("/sounds/Willkommen.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(welcomeSound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -252,7 +250,7 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media byeByeSound = new Media(new File("src/sounds/ByeBye.mp3").toURI().toString());
+							Media byeByeSound = new Media(getClass().getResource("/sounds/ByeBye.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(byeByeSound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -272,8 +270,7 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media moreMoneySound = new Media(
-									new File("src/sounds/Gehaltserhoehung.mp3").toURI().toString());
+							Media moreMoneySound = new Media(getClass().getResource("/sounds/Gehaltserhoehung.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(moreMoneySound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -293,8 +290,7 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media lessMoneySound = new Media(
-									new File("src/sounds/GeldWirdGekuerzt.mp3").toURI().toString());
+							Media lessMoneySound = new Media(getClass().getResource("/sounds/GeldWirdGekuerzt.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(lessMoneySound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -333,7 +329,7 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media inventorySound = new Media(new File("src/sounds/NeuesInventar.mp3").toURI().toString());
+							Media inventorySound = new Media(getClass().getResource("/sounds/NeuesInventar.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(inventorySound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -352,7 +348,7 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media adSound = new Media(new File("src/sounds/HoertHoert.mp3").toURI().toString());
+							Media adSound = new Media(getClass().getResource("/sounds/HoertHoert.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(adSound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -371,7 +367,7 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media eventsSound = new Media(new File("src/sounds/NeueEvents.mp3").toURI().toString());
+							Media eventsSound = new Media(getClass().getResource("/sounds/NeueEvents.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(eventsSound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -391,7 +387,7 @@ public class GUI extends Application {
 						updateLabels();
 						try {
 							// Die Klasse Media braucht eine URI
-							Media studentSound = new Media(new File("src/sounds/MehrPlaetze.mp3").toURI().toString());
+							Media studentSound = new Media(getClass().getResource("/sounds/MehrPlaetze.mp3").toExternalForm().toString());
 							MediaPlayer mediaPlayer = new MediaPlayer(studentSound);
 							// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 							mediaPlayer.play();
@@ -410,7 +406,7 @@ public class GUI extends Application {
 							updateLabels();
 							try {
 								// Die Klasse Media braucht eine URI
-								Media foodSound = new Media(new File("src/sounds/BesseresEssen.mp3").toURI().toString());
+								Media foodSound = new Media(getClass().getResource("/sounds/BesseresEssen.mp3").toExternalForm().toString());
 								MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
 								// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 								mediaPlayer.play();
@@ -521,37 +517,37 @@ public class GUI extends Application {
 			
 			HBox img_inv = (HBox) BUY.lookup("#image_buy_inventory");
 			switch(engine.getInventar()){
-			case 1: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/Tacker.png')"); break;
-			case 2: case 3: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/computer-313456_1280.png')"); break;
-			case 4: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/monitor-32743_1280.png')"); break;
-			case 5: img_inv.setStyle("-fx-background-image: url('./Images/Grafiken/Inventar/laptop-33521_1280.png')"); break;
+			case 1: img_inv.setStyle("-fx-background-image: url('Images/Grafiken/Inventar/Tacker.png')"); break;
+			case 2: case 3: img_inv.setStyle("-fx-background-image: url('Images/Grafiken/Inventar/computer-313456_1280.png')"); break;
+			case 4: img_inv.setStyle("-fx-background-image: url('Images/Grafiken/Inventar/monitor-32743_1280.png')"); break;
+			case 5: img_inv.setStyle("-fx-background-image: url('Images/Grafiken/Inventar/laptop-33521_1280.png')"); break;
 			}
 			
 			HBox img_tv = (HBox) BUY.lookup("#image_buy_tv");
 			switch(engine.getWerbung()){
-			case 1: case 2: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Newsletter.png')"); break;
-			case 3: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Bild6.png')"); break;
-			case 4: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Megaphon.png')"); break;
-			case 5: img_tv.setStyle("-fx-background-image: url('./Images/Grafiken/Werbung/Bild5.png')"); break;
+			case 1: case 2: img_tv.setStyle("-fx-background-image: url('Images/Grafiken/Werbung/Newsletter.png')"); break;
+			case 3: img_tv.setStyle("-fx-background-image: url('Images/Grafiken/Werbung/Bild6.png')"); break;
+			case 4: img_tv.setStyle("-fx-background-image: url('Images/Grafiken/Werbung/Megaphon.png')"); break;
+			case 5: img_tv.setStyle("-fx-background-image: url('Images/Grafiken/Werbung/Bild5.png')"); break;
 			}
 			
 			HBox img_students = (HBox) BUY2.lookup("#image_buy2_students");
 			if(engine.getStudentenplaetze() <= 1000){
-				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild4.png')");
+				img_students.setStyle("-fx-background-image: url('Images/Grafiken/Gebäude/Bild4.png')");
 			} else if(engine.getStudentenplaetze() <= 3500){
-				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild3.png')");
+				img_students.setStyle("-fx-background-image: url('Images/Grafiken/Gebäude/Bild3.png')");
 			} else if(engine.getStudentenplaetze() <= 7000){
-				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild2.png')");
+				img_students.setStyle("-fx-background-image: url('Images/Grafiken/Gebäude/Bild2.png')");
 			} else {
-				img_students.setStyle("-fx-background-image: url('./Images/Grafiken/Gebäude/Bild1.png')");
+				img_students.setStyle("-fx-background-image: url('Images/Grafiken/Gebäude/Bild1.png')");
 			}
 			
 			HBox img_food = (HBox) BUY2.lookup("#image_buy2_food");
 			switch(engine.getEssen()){
-			case 1: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/Apfel.png')"); break;
-			case 2: case 3: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/Spaghetti.png')"); break;
-			case 4: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/NuggetsPommes.png')"); break;
-			case 5: img_food.setStyle("-fx-background-image: url('./Images/Grafiken/Essen/Festmahl.png')"); break;
+			case 1: img_food.setStyle("-fx-background-image: url('Images/Grafiken/Essen/Apfel.png')"); break;
+			case 2: case 3: img_food.setStyle("-fx-background-image: url('Images/Grafiken/Essen/Spaghetti.png')"); break;
+			case 4: img_food.setStyle("-fx-background-image: url('Images/Grafiken/Essen/NuggetsPommes.png')"); break;
+			case 5: img_food.setStyle("-fx-background-image: url('Images/Grafiken/Essen/Festmahl.png')"); break;
 			}
 		}
 	}
@@ -659,14 +655,14 @@ public class GUI extends Application {
 			String statusContent = statBegin + statFirstRand[0] + statSecRand[0] + statSecRand[1] + statSecRand[2] + statSecRand[3] + statSecRand[4] + statSecRand[5] + statFirstRand[1] + statEnd;
 			status.setContentText(statusContent);
 			status.setHeaderText("Aktuelles vom Campus");
-			ImageView graphic = new ImageView("./Images/Grafiken/Werbung/Bild6.png");
+			ImageView graphic = new ImageView("Images/Grafiken/Werbung/Bild6.png");
 			graphic.setFitWidth(200);
 			graphic.setFitHeight(130);
 			status.setGraphic(graphic);
 			status.initOwner(window);
 			try {
 				// Die Klasse Media braucht eine URI
-				Media foodSound = new Media(new File("src/sounds/applause.wav").toURI().toString());
+				Media foodSound = new Media(getClass().getResource("/sounds/applause.wav").toExternalForm().toString());
 				MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
 				// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 				mediaPlayer.play();
@@ -707,7 +703,7 @@ public class GUI extends Application {
 			alert1.initOwner(window);
 			try {
 				// Die Klasse Media braucht eine URI
-				Media foodSound = new Media(new File("src/sounds/coin-fall.wav").toURI().toString());
+				Media foodSound = new Media(getClass().getResource("/sounds/coin-fall.wav").toExternalForm().toString());
 				MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
 				// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 				mediaPlayer.play();
@@ -739,7 +735,7 @@ public class GUI extends Application {
 							alert.setTitle("Prozesse ausstehend");
 							alert.setHeaderText("In kürze verfügbar");
 							alert.setContentText("Eine Simulation für die nächste Woche ist noch nicht möglich!\nVersuche es in gleich erneut.");
-							ImageView graphic = new ImageView("./Images/Newtons_cradle_animation_book_2.gif");
+							ImageView graphic = new ImageView("Images/Newtons_cradle_animation_book_2.gif");
 							graphic.setFitWidth(170);
 							graphic.setFitHeight(100);
 							alert.setGraphic(graphic);

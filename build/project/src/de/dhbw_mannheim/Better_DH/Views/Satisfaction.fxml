@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
- * @author Sebastian
- *
--->
+<!-- * @author Sebastian * -->
 
 <?import javafx.scene.image.*?>
 <?import javafx.scene.*?>
@@ -16,339 +13,444 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../MainWindow.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="3.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints minHeight="10.0" percentHeight="8.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" percentHeight="14.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" percentHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
-   </rowConstraints>
-   <children>
-      <Label id="label_satisfaction_staff" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0" styleClass="label_view" text="Dozenten" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <font>
-            <Font name="Arial Bold" size="16.0" />
-         </font>
-         <graphic>
-            <Label alignment="CENTER" contentDisplay="TOP" text="&amp;VAR&amp;" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="110.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-         </graphic>
-      </Label>
-      <VBox GridPane.columnIndex="3" GridPane.rowIndex="1">
-         <children>
-            <Label id="label_satisfaction_inventory1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Inventar">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_events1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Veranstaltungen">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_food1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Essen">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-         </children>
-      </VBox>
-      <Label id="label_satisfaction_students" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0" styleClass="label_view" text="Studenten" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <font>
-            <Font name="Arial Bold" size="16.0" />
-         </font>
-         <graphic>
-            <Label alignment="CENTER" contentDisplay="TOP" text="&amp;VAR&amp;" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="110.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-         </graphic>
-      </Label>
-      <VBox GridPane.columnIndex="3" GridPane.rowIndex="3">
-         <children>
-            <Label id="label_satisfaction_staffNumber" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Anzahl Dozenten">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_inventory2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Inventar">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_events2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Veranstaltungen">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-         </children>
-      </VBox>
-      <VBox GridPane.columnIndex="5" GridPane.rowIndex="1">
-         <children>
-            <Label id="label_satisfaction_money" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Gehalt">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_quality1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Qualität der DH">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_reputation1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Ansehen der DH">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-         </children>
-      </VBox>
-      <VBox GridPane.columnIndex="5" GridPane.rowIndex="3">
-         <children>
-            <Label id="label_satisfaction_food2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Essen">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_quality2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Qualität der DH">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-            <Label id="label_satisfaction_reputation2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0" prefHeight="150.0" prefWidth="150.0" text=" Ansehen der DH">
-               <graphic>
-                  <ProgressBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0" prefWidth="70.0">
-                     <effect>
-                        <DropShadow color="#000000b2" height="10.0" offsetX="5.0" offsetY="4.0" radius="5.75" width="15.0">
-                           <input>
-                              <Lighting diffuseConstant="1.21" specularConstant="2.0" specularExponent="31.16" surfaceScale="3.14">
-                                 <bumpInput>
-                                    <Shadow height="26.92" radius="10.74" width="18.04" />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant azimuth="11.51" elevation="132.9" />
-                                 </light>
-                              </Lighting>
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ProgressBar>
-               </graphic>
-            </Label>
-         </children>
-      </VBox>
-   </children>
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+	minHeight="200.0" minWidth="500.0" prefHeight="400.0" prefWidth="600.0"
+	stylesheets="@../../../../MainWindow.css" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			percentWidth="3.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			percentWidth="28.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			percentWidth="5.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			percentWidth="28.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			percentWidth="5.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			percentWidth="28.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			percentWidth="3.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints minHeight="10.0" percentHeight="8.0"
+			vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" percentHeight="35.0"
+			prefHeight="30.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" percentHeight="14.0"
+			prefHeight="30.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" percentHeight="35.0"
+			prefHeight="30.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" percentHeight="8.0"
+			prefHeight="30.0" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<Label id="label_satisfaction_staff" alignment="CENTER"
+			contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+			minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0"
+			styleClass="label_view" text="Dozenten" textAlignment="CENTER"
+			textFill="WHITE" wrapText="true" GridPane.columnIndex="1"
+			GridPane.rowIndex="1">
+			<font>
+				<Font name="Arial Bold" size="16.0" />
+			</font>
+			<graphic>
+				<Label alignment="CENTER" contentDisplay="TOP" text="&amp;VAR&amp;"
+					textFill="WHITE">
+					<font>
+						<Font name="Arial Bold" size="16.0" />
+					</font>
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="110.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+			</graphic>
+		</Label>
+		<VBox GridPane.columnIndex="3" GridPane.rowIndex="1">
+			<children>
+				<Label id="label_satisfaction_inventory1" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Inventar">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_events1" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Veranstaltungen">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_food1" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Essen">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+			</children>
+		</VBox>
+		<Label id="label_satisfaction_students" alignment="CENTER"
+			contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+			minHeight="85.0" minWidth="130.0" prefHeight="100.0" prefWidth="150.0"
+			styleClass="label_view" text="Studenten" textAlignment="CENTER"
+			textFill="WHITE" wrapText="true" GridPane.columnIndex="1"
+			GridPane.rowIndex="3">
+			<font>
+				<Font name="Arial Bold" size="16.0" />
+			</font>
+			<graphic>
+				<Label alignment="CENTER" contentDisplay="TOP" text="&amp;VAR&amp;"
+					textFill="WHITE">
+					<font>
+						<Font name="Arial Bold" size="16.0" />
+					</font>
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="110.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+			</graphic>
+		</Label>
+		<VBox GridPane.columnIndex="3" GridPane.rowIndex="3">
+			<children>
+				<Label id="label_satisfaction_staffNumber" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Anzahl Dozenten">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_inventory2" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Inventar">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_events2" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Veranstaltungen">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+			</children>
+		</VBox>
+		<VBox GridPane.columnIndex="5" GridPane.rowIndex="1">
+			<children>
+				<Label id="label_satisfaction_money" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Gehalt">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_quality1" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Qualität der DH">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_reputation1" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Ansehen der DH">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+			</children>
+		</VBox>
+		<VBox GridPane.columnIndex="5" GridPane.rowIndex="3">
+			<children>
+				<Label id="label_satisfaction_food2" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Essen">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_quality2" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Qualität der DH">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+				<Label id="label_satisfaction_reputation2" maxHeight="1.7976931348623157E308"
+					maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="130.0"
+					prefHeight="150.0" prefWidth="150.0" text=" Ansehen der DH">
+					<graphic>
+						<ProgressBar maxHeight="1.7976931348623157E308"
+							maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="70.0"
+							prefWidth="70.0">
+							<effect>
+								<DropShadow color="#000000b2" height="10.0" offsetX="5.0"
+									offsetY="4.0" radius="5.75" width="15.0">
+									<input>
+										<Lighting diffuseConstant="1.21" specularConstant="2.0"
+											specularExponent="31.16" surfaceScale="3.14">
+											<bumpInput>
+												<Shadow height="26.92" radius="10.74" width="18.04" />
+											</bumpInput>
+											<light>
+												<Light.Distant azimuth="11.51" elevation="132.9" />
+											</light>
+										</Lighting>
+									</input>
+								</DropShadow>
+							</effect>
+						</ProgressBar>
+					</graphic>
+				</Label>
+			</children>
+		</VBox>
+	</children>
 </GridPane>

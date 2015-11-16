@@ -1,7 +1,5 @@
 package de.dhbw_mannheim.Better_DH;
 
-import java.io.File;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -86,8 +84,8 @@ public class PreDef {
 	        button.setOnAction(e -> {
 		        	try {
 					// Die Klasse Media braucht eine URI
-					Media foodSound = new Media(new File("src/sounds/Button.wav").toURI().toString());
-					MediaPlayer mediaPlayer = new MediaPlayer(foodSound);
+					Media buttonSound = new Media(GUI.class.getResource("/sounds/two_tone_nav.mp3").toExternalForm().toString());
+					MediaPlayer mediaPlayer = new MediaPlayer(buttonSound);
 					// Der Sound wird mit Hilfe der Media Player Klasse abgespielt
 					mediaPlayer.play();
 					} catch (Exception d) {

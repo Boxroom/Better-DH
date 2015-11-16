@@ -19,7 +19,8 @@
         dtjava.embed(
             {
                 id : 'fxApplication',
-                url : 'Better-DH.jnlp',
+                toolkit : 'swing',
+                url : 'Better-DH_browser.jnlp',
                 placeholder : 'javafx-app-placeholder',
                 width : '600',
                 height : '400'
@@ -27,7 +28,9 @@
             {
                 javafx : '8.0+'
             },
-            {}
+            {
+                onGetSplash : function() {}
+            }
         );
     }
     <!-- Embed FX application into web page once page is loaded -->
