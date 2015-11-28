@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.dhbw_mannheim.Better_DH;
 
 import java.util.ArrayList;
@@ -10,13 +7,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
+ * Diese Klasse organisiert die Daten einer Finanz-Tabelle
+ * 
  * @author Sebastian, Florian
- *
  */
 public class Data {
-	private String name, ausgaben;
+	private String name;
+	private double ausgaben;
 
-	public Data(String name, String ausgaben) {
+	public Data(String name, double ausgaben) {
 		super();
 		this.name = name;
 		this.ausgaben = ausgaben;
@@ -30,11 +29,11 @@ public class Data {
 		this.name = name;
 	}
 
-	public String getAusgaben() {
+	public double getAusgaben() {
 		return ausgaben;
 	}
 
-	public void setAusgaben(String ausgaben) {
+	public void setAusgaben(double ausgaben) {
 		this.ausgaben = ausgaben;
 	}
 

@@ -7,7 +7,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -22,7 +21,7 @@ import javafx.scene.media.MediaPlayer;
 
 /**
  * Diese Klasse hat lediglich statische Elemente und wird zu keiner Zeit instanziiert.
- * Enthalten sind Codesegmente, die von mehreren Klassen benötigt werden können um z.B. einen global
+ * Enthalten sind Codesegmente, die eventuell von mehreren Klassen benötigt werden können um z.B. einen global
  * gleich aussehenden Button zu erstellen.
  * 
  * @author Florian
@@ -45,7 +44,9 @@ public class PreDef {
 	/**
 	 * Standardbuttons werden hier erstellt und zurückgegeben
 	 *
-	 * @return	Standardisierter Button
+	 * @param text	Beschriftung des Buttons
+	 * @param id	Identifikationsstring
+	 * @return		Standardisierter Button
 	 */
 	public static Button button(String text, String id) {
 		Button button = new Button(text);
@@ -60,7 +61,9 @@ public class PreDef {
 	/**
 	 * Standardbuttons werden hier erstellt und zurückgegeben
 	 *
-	 * @return	Standardisierter Button für oberes Menü
+	 * @param text	Beschriftung des Buttons
+	 * @param id	Identifikationsstring
+	 * @return		Standardisierter Button für oberes Menü
 	 */
 	public static Button button_menu(String text, String id) {
 		Button button = new Button(text);
@@ -73,6 +76,9 @@ public class PreDef {
 
 	/**
 	 * Alle Buttons auf den Fenstern werden nach dem selben Muster initialisiert.
+	 * 
+	 * @param button	Button
+	 * @param resize	Vergrößern mit Fenster
 	 */
 	public static void initButton(Button button, boolean resize) {
 		if(button != null) {
@@ -97,58 +103,23 @@ public class PreDef {
 
 	/**
 	 * Alle Labels auf den Fenstern werden nach dem selben Muster initialisiert.
+	 * initLabel ohne tooltip bzw. tooltip == null zeigt die Daten aus insert als Tooltip an
+	 * 
+	 * @param label			Label mit Progressbalken
+	 * @param insert		Beschreibung des Inhaltes des Progress Balken
+	 * @param progress		Fortschritt des Progressbalken in Prozent 0.0-1.0
 	 */
 	public static void initLabel(Label label, String insert, double progress) {
-		if(label != null) {
-			DoubleProperty fontSize = new SimpleDoubleProperty(30);
-	        fontSize.bind(label.widthProperty().add(label.heightProperty()).divide(17));
-	        label.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"));
-			if(label.getGraphic() != null && label.getGraphic() instanceof Label){
-				Label label2 = (Label) label.getGraphic();
-				label2.setText(insert);
-				
-		        label2.styleProperty().bind(label.styleProperty());
-		        
-				if(label2.getGraphic() != null && label2.getGraphic() instanceof ProgressBar) {
-					ProgressBar bar = (ProgressBar) label2.getGraphic();
-					bar.setProgress(progress);
-					bar.setTooltip(new Tooltip(""+Math.min(Math.round(progress*100),100)+"%"));
-					label2.prefWidthProperty().bind(label.widthProperty());
-					bar.prefWidthProperty().bind(label2.widthProperty());
-					bar.setPadding(new Insets(0,15,0,15));
-					bar.getStyleClass().remove("red-bar");
-					bar.getStyleClass().remove("orange-bar");
-					bar.getStyleClass().remove("green-bar");
-			        
-			        if(progress < 0.5) {
-						bar.getStyleClass().add("red-bar");
-					} else if(progress < 0.75) {
-						bar.getStyleClass().add("orange-bar");
-					} else {
-						bar.getStyleClass().add("green-bar");
-					}
-				}
-			} else if(label.getGraphic() != null && label.getGraphic() instanceof ProgressBar){
-				ProgressBar bar = (ProgressBar) label.getGraphic();
-				bar.setProgress(progress);
-				bar.setTooltip(new Tooltip(""+insert));
-				bar.getStyleClass().remove("red-bar");
-				bar.getStyleClass().remove("orange-bar");
-				bar.getStyleClass().remove("green-bar");
-		        
-			    if(progress <= 0.35) {
-			        bar.getStyleClass().add("red-bar");
-				} else if(progress <= 0.65) {
-					bar.getStyleClass().add("orange-bar");
-				} else {
-					bar.getStyleClass().add("green-bar");
-				}
-			}
-		}
+		initLabel(label, insert, progress, null);
 	}
 
 	/**
 	 * Alle Labels auf den Fenstern werden nach dem selben Muster initialisiert.
+	 * 
+	 * @param label			Label mit Progressbalken
+	 * @param insert		Beschreibung des Inhaltes des Progress Balken
+	 * @param progress		Fortschritt des Progressbalken in Prozent 0.0-1.0
+	 * @param tooltip		Tooltip für Progressbar, sofern der Inhalt von der Variable insert abweichen soll
 	 */
 	public static void initLabel(Label label, String insert, double progress, String tooltip) {
 		if(label != null) {
@@ -164,7 +135,7 @@ public class PreDef {
 				if(label2.getGraphic() != null && label2.getGraphic() instanceof ProgressBar) {
 					ProgressBar bar = (ProgressBar) label2.getGraphic();
 					bar.setProgress(progress);
-					bar.setTooltip(new Tooltip(""+tooltip));
+					bar.setTooltip(new Tooltip(""+(tooltip==null?(Math.min(Math.round(progress*100),100)+"%"):tooltip)));
 					label2.prefWidthProperty().bind(label.widthProperty());
 					bar.prefWidthProperty().bind(label2.widthProperty());
 					bar.setPadding(new Insets(0,15,0,15));
@@ -183,7 +154,7 @@ public class PreDef {
 			} else if(label.getGraphic() != null && label.getGraphic() instanceof ProgressBar){
 				ProgressBar bar = (ProgressBar) label.getGraphic();
 				bar.setProgress(progress);
-				bar.setTooltip(new Tooltip(""+tooltip));
+				bar.setTooltip(new Tooltip(""+(tooltip==null?insert:tooltip)));
 				bar.getStyleClass().remove("red-bar");
 				bar.getStyleClass().remove("orange-bar");
 				bar.getStyleClass().remove("green-bar");
@@ -201,6 +172,15 @@ public class PreDef {
 	
 	/**
 	 * Dialogfenster mit einem Slider
+	 * 
+	 * @param title		Text für den Dialogtitel
+	 * @param head		Text für die Anzeige neben dem Slider
+	 * @param content	Text für die Beschreibung des Fensters
+	 * @param min		Minimaler Wert des Slider
+	 * @param max		Maximaler Wert des Slider
+	 * @param start		Startwert beim öffnen des Slider
+	 * @param scale		Schrittweite des Slider
+	 * @return			Das Dialogfenster mit einem Slider
 	 */
 	public static Alert getSliderDialog(String title, String head, String content, double min, double max, double start, double scale) {
 		Alert alert1 = new Alert(AlertType.CONFIRMATION);
@@ -229,15 +209,20 @@ public class PreDef {
 	
 	/**
 	 * Dialogfenster mit Rating
+	 * 
+	 * @param title		Titel des Dialogfenster
+	 * @param head		Beschreibung des Fensters
+	 * @param def		Aktueller Ratingwert der als Auswahl des Dropdown vordefiniert wird
+	 * @return			Das Dialogfenster mit einer Dropdown auswahl von 1 bis 5
 	 */
-	public static ChoiceDialog<String> getRatingDialog(String title, String head, Node graphic, String def) {
+	public static ChoiceDialog<String> getRatingDialog(String title, String head, String def) {
 		String[] list = {"1", "2", "3", "4", "5"};
 		
 		ChoiceDialog<String> dialog = new ChoiceDialog<>(def, list);
 		dialog.setTitle(title);
 		dialog.setHeaderText(head);
 		dialog.setContentText("Sterne: ");
-		dialog.setGraphic(graphic);
+		dialog.setGraphic(null);
 		
 		return dialog;
 	}

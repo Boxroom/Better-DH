@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.dhbw_mannheim.Better_DH;
 
 import java.io.IOException;

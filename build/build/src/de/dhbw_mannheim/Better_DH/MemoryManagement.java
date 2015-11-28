@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.dhbw_mannheim.Better_DH;
 
 import java.io.File;
@@ -22,8 +19,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
+ * Diese Klasse dient zur Verwaltung des Speicherstandes auf der Festplatte.
+ * Sie ermöglicht das Schreibten sowie Lesen der permanenten Daten.
+ * 
  * @author Lucas, Florian
- *
  */
 public class MemoryManagement {
 	private String pathName;
@@ -33,6 +32,9 @@ public class MemoryManagement {
 		createFolder();
 	}
 	
+	/**
+	 * @return 	Eine Liste aller Speicherstände die im Ordner gespeichert sind
+	 */
 	public ArrayList<String> getNames() {
 		ArrayList<String> names = new ArrayList<>();
 		File files[] = new File(pathName).listFiles();
@@ -45,11 +47,20 @@ public class MemoryManagement {
 		return names;
 	}
 
+	/**
+	 * Erstellt den Ordner zum speichern der Speicherstände, falls dieser noch nicht exisiterit
+	 */
 	private void createFolder() {
 		File filePath = new File(pathName);
 		filePath.mkdirs();
 	}
 	
+	/**
+	 * Speichert temporäre Accountdaten auf der Festplatte
+	 * 
+	 * @param getVar	enthalt ein Object von Account und somit einen temporären Account
+	 * @return			Erfolg des Speicherns des Accounts
+	 */
 	public boolean savePlayer(Account getVar) {
 		try {
 			String dozentZufriedenheit = ""+getVar.getDozentZufriedenheit(), dozentenAnzahl = ""+getVar.getDozentenAnzahl(),
@@ -169,6 +180,12 @@ public class MemoryManagement {
 		}
 	}
 
+	/**
+	 * Lädt einen Speicherstand anhand des übergebenen Namens und gibt ein Accountobjekt zurück
+	 * 
+	 * @param name	Speicherstandsname
+	 * @return		Temporärer Account der die Speicherstanddaten enthät und für die Simulation verwendet werden kann
+	 */
 	public Account loadPlayer(String name) {
 		try { // testet ob die Datei vorhanden ist
 			File fXmlFile = new File(pathName + name + ".xml");
@@ -242,6 +259,12 @@ public class MemoryManagement {
 
 	}
 	
+	/**
+	 * Überprüft ob ein Speicherstand mit dem Namen existiert
+	 * 
+	 * @param name	Zu überprüfender Speicherstandsname
+	 * @return		Ergebnis der Suche
+	 */
 	public boolean existPlayer(String name){
 		File files[] = new File(pathName).listFiles();
 		if(files != null){
@@ -255,6 +278,12 @@ public class MemoryManagement {
 		return false;
 	}
 	
+	/**
+	 * Erstellt einen neuen Speicherstand mit den Default Werten
+	 * 
+	 * @param name	Speicherstandsname
+	 * @return		Erfolg der Erstellung
+	 */
 	public boolean createPlayer(String name) {
 		if(existPlayer(name)){
 			return false;

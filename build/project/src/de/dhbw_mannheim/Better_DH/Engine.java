@@ -1,12 +1,9 @@
-/**
- * 
- */
 package de.dhbw_mannheim.Better_DH;
 
 import java.util.ArrayList;
 
 /**
- * @author alle
+ * @author Louisa, Lucas, Sebastian, Florian
  *
  */
 public class Engine {
@@ -17,35 +14,56 @@ public class Engine {
 		save = new MemoryManagement();
 	}
 	
-	public final double mealMAX = 5, stockMAX = 8000, eventsMAX = 7, amountLecturerMAX = 500, capitalMAX = 10000000,
-			adMAX = 6000, salaryLecturerMAX = 10000, amountCompaniesMAX = 4000, amountStudentsMAX = 10000;
+	public final double mealMAX = 5, inventaryMAX = 5, eventsMAX = 5, amountLecturerMAX = 500, capitalMAX = 9999999,
+			adMAX = 5, salaryLecturerMAX = 10000, amountCompaniesMAX = 4000, amountStudentsMAX = 10000;
 
+	/**
+	 * @param name	Erstelle einen neuen Spielstand mit dem Namen
+	 * @return		Erstellen erfolgreich
+	 */
 	public boolean createPlayer(String name) {
 		return save.createPlayer(name);
 	}
 	
+	/**
+	 * @return	Speichern erfolgreich
+	 */
 	public boolean savePlayer() {
 		return save.savePlayer(account);
 	}
 
+	/**
+	 * @param name	Lädt den Speicherstand hinter dem Namen
+	 * @return		Erfolg
+	 */
 	public boolean loadPlayer(String name) {
 		account = save.loadPlayer(name);
 		return hasPlayer();
 	}
 
+	/**
+	 * @return	Ob ein temporärer Simulationsstand geladen ist
+	 */
 	public boolean hasPlayer() {
 		return account != null && account.getName() != null && account.getName().length() > 0;
 	}
-
-	// array Liste, die alle Namen der gespeicherten Dateien wiedergibt
+	
+	/**
+	 * @return	array Liste, die alle Namen der gespeicherten Dateien wiedergibt
+	 */
 	public ArrayList<String> getAllNames() {
 		return save.getNames();
 	}
 
+	/**
+	 * Berechnet den neuen Stand der DHBW anhand der aufgestellten Formeln und der aktuellen Accountdaten
+	 * 
+	 * @return	Simulation noch nicht vorbei
+	 */
 	public boolean simulate() {
 		if(getSemester() <= 6){
 			double averageMeal = account.getEssen() / mealMAX;
-			double averageStock = account.getInventar() / stockMAX;
+			double averageInventary = account.getInventar() / inventaryMAX;
 			double averageEvents = account.getVeranstaltungen() / eventsMAX;
 			double averageLecturer = account.getDozentenAnzahl() / amountLecturerMAX;
 			double averageCapital = account.getKapital() / capitalMAX;
@@ -53,15 +71,15 @@ public class Engine {
 			double averageSalaryLecturer = account.getDozentenGehalt() / salaryLecturerMAX;
 			double spots = account.getStudentenplaetze();
 
-			double qualityDH = qualityDH(averageStock, averageEvents, averageMeal, averageLecturer, averageCapital);
-			double reputationDH = reputationDH(averageStock, averageEvents, averageAd, averageLecturer, qualityDH);
-			double satisfactionStudents = satisfactionStudents(averageStock, averageEvents, averageMeal, averageLecturer,
+			double qualityDH = qualityDH(averageInventary, averageEvents, averageMeal, averageLecturer, averageCapital);
+			double reputationDH = reputationDH(averageInventary, averageEvents, averageAd, averageLecturer, qualityDH);
+			double satisfactionStudents = satisfactionStudents(averageInventary, averageEvents, averageMeal, averageLecturer,
 					qualityDH, reputationDH);
-			double satisfactionLecturer = satisfactionLecturer(averageStock, averageEvents, averageMeal,
+			double satisfactionLecturer = satisfactionLecturer(averageInventary, averageEvents, averageMeal,
 					averageSalaryLecturer, qualityDH, reputationDH);
-			int amountCompanies = amountCompanies(qualityDH, averageStock, reputationDH, averageEvents, averageAd,
+			int amountCompanies = amountCompanies(qualityDH, averageInventary, reputationDH, averageEvents, averageAd,
 					satisfactionStudents);
-			int amountStudents = amountStudents(satisfactionStudents, qualityDH, averageStock, reputationDH,
+			int amountStudents = amountStudents(satisfactionStudents, qualityDH, averageInventary, reputationDH,
 					amountCompanies, averageAd, averageEvents, averageMeal, spots);
 			
 			setQualitaet(qualityDH*100);
@@ -96,31 +114,31 @@ public class Engine {
 	// Zuerst mit Hilfe einer gewichteten Durchschnittsberechnung.
 	// Dieser Prozentwert wird mit einer Sinusfunktion an die Realität
 	// angenähert
-	private double qualityDH(double stock, double events, double meal, double amountLecturer, double capital) {
+	private double qualityDH(double inventary, double events, double meal, double amountLecturer, double capital) {
 		double qualityDH = 0;
 
-		qualityDH = (3 * stock + 2 * events + meal + amountLecturer + 2 * capital) / 9;
+		qualityDH = (3 * inventary + 2 * events + meal + amountLecturer + 2 * capital) / 9;
 
 		qualityDH = Math.sin((Math.PI / 2) * qualityDH);
 
 		return Math.round(qualityDH * 100) / 100.00;
 	}
 
-	private double reputationDH(double stock, double events, double ad, double amountLecturer, double qualityDH) {
+	private double reputationDH(double inventary, double events, double ad, double amountLecturer, double qualityDH) {
 		double reputationDH = 0;
 
-		reputationDH = (2 * stock + 3 * events + 2 * ad + amountLecturer + 2 * qualityDH) / 10;
+		reputationDH = (2 * inventary + 3 * events + 2 * ad + amountLecturer + 2 * qualityDH) / 10;
 
 		reputationDH = Math.sin((Math.PI / 2) * reputationDH);
 
 		return Math.round(reputationDH * 100) / 100.00;
 	}
 
-	private double satisfactionStudents(double stock, double events, double meal, double amountLecturer,
+	private double satisfactionStudents(double inventary, double events, double meal, double amountLecturer,
 			double qualityDH, double reputationDH) {
 		double satisfactionStudents = 0;
 
-		satisfactionStudents = (3 * stock + events + 2 * meal + 2 * amountLecturer + 3 * qualityDH + 2 * reputationDH)
+		satisfactionStudents = (3 * inventary + events + 2 * meal + 2 * amountLecturer + 3 * qualityDH + 2 * reputationDH)
 				/ 13;
 
 		satisfactionStudents = Math.sin((Math.PI / 2) * satisfactionStudents);
@@ -128,11 +146,11 @@ public class Engine {
 		return Math.round(satisfactionStudents * 100) / 100.00;
 	}
 
-	private double satisfactionLecturer(double stock, double events, double meal, double salaryLecturer,
+	private double satisfactionLecturer(double inventary, double events, double meal, double salaryLecturer,
 			double qualityDH, double reputationDH) {
 		double satisfactionLecturer = 0;
 
-		satisfactionLecturer = (2 * stock + 2 * events + meal + 3 * salaryLecturer + 2 * qualityDH + 2 * reputationDH)
+		satisfactionLecturer = (2 * inventary + 2 * events + meal + 3 * salaryLecturer + 2 * qualityDH + 2 * reputationDH)
 				/ 12;
 
 		satisfactionLecturer = Math.sin((Math.PI / 2) * satisfactionLecturer);
@@ -140,22 +158,22 @@ public class Engine {
 		return Math.round(satisfactionLecturer * 100) / 100.00;
 	}
 
-	private int amountCompanies(double qualityDH, double stock, double reputationDH, double events, double ad,
+	private int amountCompanies(double qualityDH, double inventary, double reputationDH, double events, double ad,
 			double satisfactionStudents) {
 		double amountCompanies = 0;
 
-		amountCompanies = (3 * qualityDH + stock + 2 * reputationDH + events + 2 * ad + satisfactionStudents) / 10;
+		amountCompanies = (3 * qualityDH + inventary + 2 * reputationDH + events + 2 * ad + satisfactionStudents) / 10;
 		amountCompanies = Math.sin((Math.PI / 2) * amountCompanies);
 		return (int) (amountCompanies * amountCompaniesMAX);
 
 	}
 
-	private int amountStudents(double satisfactionStudents, double qualityDH, double stock, double reputationDH,
+	private int amountStudents(double satisfactionStudents, double qualityDH, double inventary, double reputationDH,
 			int amountCompanies, double ad, double events, double meal, double spots) {
 		double prozentStudenten = 0;
 		int anzahlStudenten = 0;
 
-		prozentStudenten = (3 * satisfactionStudents + qualityDH + 2 * stock + 2 * reputationDH + 2 * (amountCompanies/amountCompaniesMAX)
+		prozentStudenten = (3 * satisfactionStudents + qualityDH + 2 * inventary + 2 * reputationDH + 2 * (amountCompanies/amountCompaniesMAX)
 				+ ad + events + meal) / 13;
 		prozentStudenten = Math.sin((Math.PI / 2) * prozentStudenten);
 		anzahlStudenten = (int) (prozentStudenten * amountStudentsMAX);
@@ -166,6 +184,9 @@ public class Engine {
 		}
 	}
 	
+	/**
+	 * @return	Die Summe aller monatlichen Einnahmen
+	 */
 	public double getEinnahmen(){
 		double einnahmen = 0;
 		einnahmen += getEinnahmenSpenden();
@@ -208,6 +229,9 @@ public class Engine {
 		return getPartnerunternehmenAnzahl()*600;
 	}
 	
+	/**
+	 * @return	Die Summe aller monatlichen Ausgaben
+	 */
 	public double getAusgaben(){
 		double ausgaben = 0;
 		ausgaben += getAusgabenDozenten();
@@ -279,6 +303,11 @@ public class Engine {
 		}
 	}
 	
+	/**
+	 * Ausgaben hinzufügen, bzw. Kapital abziehen
+	 * 
+	 * @param kosten		abzuziehender Betrag
+	 */
 	public void addKosten(double kosten){
 		if(kosten > 0)
 			setKapital(getKapital()-kosten);
@@ -448,7 +477,7 @@ public class Engine {
 	 * @param studentenAnzahl
 	 * @see de.dhbw_mannheim.Better_DH.Account#setStudentenAnzahl(int)
 	 */
-	public boolean setStudentenAnzahl(int studentenAnzahl) {
+	private boolean setStudentenAnzahl(int studentenAnzahl) {
 		if(studentenAnzahl < 0){
 			account.setStudentenAnzahl(0);
 			return false;

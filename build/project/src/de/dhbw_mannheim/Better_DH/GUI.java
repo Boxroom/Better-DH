@@ -57,7 +57,7 @@ public class GUI extends Application {
 	}
 	
 	/**
-	 * Die Applikation wird gestartet. Das Hauptfenster wird initialisiert und alle Eigenschaften
+	 * Die Applikation wird gestartet. Alle Fenster werden initialisiert und alle Eigenschaften
 	 * gesetzt, die die Aplikation definieren. Dazu werden unteranderem die letzten Fenstereigenschaften abgerufen.
 	 */
 	@Override
@@ -130,6 +130,9 @@ public class GUI extends Application {
 		}
 	}
 	
+	/**
+	 * Alle Buttonfunktionen initialisieren
+	 */
 	private void initButtons(){
 		Button start = (Button) MAIN.lookup("#button_main_start");
 		if(start != null)
@@ -321,7 +324,7 @@ public class GUI extends Application {
 		Button inventory = (Button) BUY.lookup("#button_buy_inventory");
 		if(inventory != null)
 			inventory.setOnMouseClicked(e -> {
-				ChoiceDialog<String> rating = PreDef.getRatingDialog("Inventar", "Qualität des Inventars", null, ""+((int)engine.getInventar()));
+				ChoiceDialog<String> rating = PreDef.getRatingDialog("Inventar", "Qualität des Inventars", ""+((int)engine.getInventar()));
 				rating.initOwner(window);
 				Optional<String> result = rating.showAndWait();
 				result.ifPresent(choice -> {
@@ -340,7 +343,7 @@ public class GUI extends Application {
 		Button tv = (Button) BUY.lookup("#button_buy_tv");
 		if(tv != null)
 			tv.setOnMouseClicked(e -> {
-				ChoiceDialog<String> rating = PreDef.getRatingDialog("Werbung", "Qualität der Werbung", null, ""+((int)engine.getWerbung()));
+				ChoiceDialog<String> rating = PreDef.getRatingDialog("Werbung", "Qualität der Werbung", ""+((int)engine.getWerbung()));
 				rating.initOwner(window);
 				Optional<String> result = rating.showAndWait();
 				result.ifPresent(choice -> {
@@ -359,7 +362,7 @@ public class GUI extends Application {
 		Button events = (Button) BUY.lookup("#button_buy_events");
 		if(events != null)
 			events.setOnMouseClicked(e -> {
-				ChoiceDialog<String> rating = PreDef.getRatingDialog("Veranstaltungen", "Qualität der Veranstaltungen", null, ""+((int)engine.getVeranstaltungen()));
+				ChoiceDialog<String> rating = PreDef.getRatingDialog("Veranstaltungen", "Qualität der Veranstaltungen", ""+((int)engine.getVeranstaltungen()));
 				rating.initOwner(window);
 				Optional<String> result = rating.showAndWait();
 				result.ifPresent(choice -> {
@@ -398,7 +401,7 @@ public class GUI extends Application {
 		Button food = (Button) BUY2.lookup("#button_buy2_food");
 		if(food != null)
 			food.setOnMouseClicked(e -> {
-					ChoiceDialog<String> rating = PreDef.getRatingDialog("Essen", "Qualität des Essens", null, ""+((int)engine.getEssen()));
+					ChoiceDialog<String> rating = PreDef.getRatingDialog("Essen", "Qualität des Essens", ""+((int)engine.getEssen()));
 					rating.initOwner(window);
 					Optional<String> result = rating.showAndWait();
 					result.ifPresent(choice -> {
@@ -430,29 +433,38 @@ public class GUI extends Application {
 		PreDef.initButton((Button) BUY2.lookup("#button_buy2_food"), true);
 	}
 
+	/**
+	 * @return	Finanzen Tabelle - Daten monatlicher Einnahmen
+	 */
 	private ObservableList<Data> getDataEinnahmen() {
 
 		ObservableList<Data> data = FXCollections.observableArrayList();
-		data.addAll(new Data("Spenden", ""+engine.getEinnahmenSpenden()));
-		data.addAll(new Data("Zuschüsse vom Land BW", ""+engine.getEinnahmenLand()));
-		data.addAll(new Data("Studiengebühren", ""+engine.getEinnahmenStudiengebuehren()));
-		data.addAll(new Data("Partnerfirmen", ""+engine.getEinnahmenPartnerfirmen()));
+		data.addAll(new Data("Spenden", engine.getEinnahmenSpenden()));
+		data.addAll(new Data("Zuschüsse vom Land BW", engine.getEinnahmenLand()));
+		data.addAll(new Data("Studiengebühren", engine.getEinnahmenStudiengebuehren()));
+		data.addAll(new Data("Partnerfirmen", engine.getEinnahmenPartnerfirmen()));
 
 		return data;
 	}
 
+	/**
+	 * @return	Finanzen Tabelle - Daten monatlicher Ausgaben
+	 */
 	private ObservableList<Data> getDataAusgaben() {
 
 		ObservableList<Data> data = FXCollections.observableArrayList();
-		data.addAll(new Data("Dozentengehälter", ""+engine.getAusgabenDozenten()));
-		data.addAll(new Data("Inventarinstanthaltung", ""+engine.getAusgabenInventar()));
-		data.addAll(new Data("Essensausgaben", ""+engine.getAusgabenEssen()));
-		data.addAll(new Data("Werbemaßnahmen", ""+engine.getAusgabenWerbung()));
-		data.addAll(new Data("Gebäude", ""+engine.getAusgabenPlaetze()));
+		data.addAll(new Data("Dozentengehälter", engine.getAusgabenDozenten()));
+		data.addAll(new Data("Inventarinstanthaltung", engine.getAusgabenInventar()));
+		data.addAll(new Data("Essensausgaben", engine.getAusgabenEssen()));
+		data.addAll(new Data("Werbemaßnahmen", engine.getAusgabenWerbung()));
+		data.addAll(new Data("Gebäude", engine.getAusgabenPlaetze()));
 
 		return data;
 	}
 	
+	/**
+	 * Beschriftung und anzeige aller Texte und Grafiken aktuallisieren
+	 */
 	private void updateLabels() {
 		if(engine.hasPlayer()){
 			PreDef.initLabel((Label) OVERVIEW.lookup("#label_overview_qualitydh"), ""+Math.round(engine.getQualitaet())+" %", engine.getQualitaet()/100.0);
@@ -597,11 +609,11 @@ public class GUI extends Application {
 	}
 	
 	/**
-	 * Alle Events der oberen Menübuttons werden hier festgelegt.
-	 */
-	
-	/**
-	 * Der Statusbericht wird hier generiert
+	 * Der Statusbericht wird hier generiert, der nach jedem Semester erscheint
+	 * Und 
+	 * Jede Woche(sofern nicht Woche 1) gibt es die Chance auf ein unerwartetes Ereignes
+	 * 
+	 * @param end	gibt an, ob es sich um den Abschlussbericht nach Semester 6 handelt
 	 */
 	private void status(boolean end){
 		Random incident = new Random();
@@ -712,7 +724,10 @@ public class GUI extends Application {
 			alert1.showAndWait();
 		}
 	}
-	
+
+	/**
+	 * Alle Events der oberen Menübuttons werden hier festgelegt.
+	 */
 	private void initiateTopMenu() {
 		Scene scene = window.getScene();
 		Button simulate = (Button) scene.lookup("#button_view_simulate");
@@ -782,8 +797,9 @@ public class GUI extends Application {
 	
 	/**
 	 * Update des Labels zum anzeigen der aktuellen Zeit
-	 * @param semester
-	 * @param week
+	 * 
+	 * @param semester	Semesternummer
+	 * @param week		Wochennummer
 	 */
 	private void updateDate(String semester, String week){
 		Scene scene = window.getScene();
@@ -794,7 +810,9 @@ public class GUI extends Application {
 	
 	/**
 	 * Alle Events der linken Menübuttons werden hier festgelegt.
-	 * Sowie das Label mit dem aktuellen Semester/Wochen fortschritt.
+	 * 
+	 * @param semester	Semesternummer
+	 * @param week		Wochennummer
 	 */
 	private void initiateLeftMenu(String semester, String week) {
 		Scene scene = window.getScene();

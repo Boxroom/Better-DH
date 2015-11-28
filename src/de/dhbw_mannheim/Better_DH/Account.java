@@ -4,7 +4,7 @@
 package de.dhbw_mannheim.Better_DH;
 
 /**
- * @authorLucas
+ * @author Lucas
  *
  */
 public class Account {

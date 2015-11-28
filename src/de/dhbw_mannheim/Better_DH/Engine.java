@@ -1,12 +1,9 @@
-/**
- * 
- */
 package de.dhbw_mannheim.Better_DH;
 
 import java.util.ArrayList;
 
 /**
- * @author alle
+ * @author Louisa, Lucas, Sebastian, Florian
  *
  */
 public class Engine {
@@ -20,28 +17,49 @@ public class Engine {
 	public final double mealMAX = 5, inventaryMAX = 5, eventsMAX = 5, amountLecturerMAX = 500, capitalMAX = 9999999,
 			adMAX = 5, salaryLecturerMAX = 10000, amountCompaniesMAX = 4000, amountStudentsMAX = 10000;
 
+	/**
+	 * @param name	Erstelle einen neuen Spielstand mit dem Namen
+	 * @return		Erstellen erfolgreich
+	 */
 	public boolean createPlayer(String name) {
 		return save.createPlayer(name);
 	}
 	
+	/**
+	 * @return	Speichern erfolgreich
+	 */
 	public boolean savePlayer() {
 		return save.savePlayer(account);
 	}
 
+	/**
+	 * @param name	Lädt den Speicherstand hinter dem Namen
+	 * @return		Erfolg
+	 */
 	public boolean loadPlayer(String name) {
 		account = save.loadPlayer(name);
 		return hasPlayer();
 	}
 
+	/**
+	 * @return	Ob ein temporärer Simulationsstand geladen ist
+	 */
 	public boolean hasPlayer() {
 		return account != null && account.getName() != null && account.getName().length() > 0;
 	}
-
-	// array Liste, die alle Namen der gespeicherten Dateien wiedergibt
+	
+	/**
+	 * @return	array Liste, die alle Namen der gespeicherten Dateien wiedergibt
+	 */
 	public ArrayList<String> getAllNames() {
 		return save.getNames();
 	}
 
+	/**
+	 * Berechnet den neuen Stand der DHBW anhand der aufgestellten Formeln und der aktuellen Accountdaten
+	 * 
+	 * @return	Simulation noch nicht vorbei
+	 */
 	public boolean simulate() {
 		if(getSemester() <= 6){
 			double averageMeal = account.getEssen() / mealMAX;
@@ -166,6 +184,9 @@ public class Engine {
 		}
 	}
 	
+	/**
+	 * @return	Die Summe aller monatlichen Einnahmen
+	 */
 	public double getEinnahmen(){
 		double einnahmen = 0;
 		einnahmen += getEinnahmenSpenden();
@@ -208,6 +229,9 @@ public class Engine {
 		return getPartnerunternehmenAnzahl()*600;
 	}
 	
+	/**
+	 * @return	Die Summe aller monatlichen Ausgaben
+	 */
 	public double getAusgaben(){
 		double ausgaben = 0;
 		ausgaben += getAusgabenDozenten();
@@ -279,6 +303,11 @@ public class Engine {
 		}
 	}
 	
+	/**
+	 * Ausgaben hinzufügen, bzw. Kapital abziehen
+	 * 
+	 * @param kosten		abzuziehender Betrag
+	 */
 	public void addKosten(double kosten){
 		if(kosten > 0)
 			setKapital(getKapital()-kosten);
@@ -448,7 +477,7 @@ public class Engine {
 	 * @param studentenAnzahl
 	 * @see de.dhbw_mannheim.Better_DH.Account#setStudentenAnzahl(int)
 	 */
-	public boolean setStudentenAnzahl(int studentenAnzahl) {
+	private boolean setStudentenAnzahl(int studentenAnzahl) {
 		if(studentenAnzahl < 0){
 			account.setStudentenAnzahl(0);
 			return false;
